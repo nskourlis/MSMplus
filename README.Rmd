@@ -28,9 +28,9 @@ The advisable approach is the manual creation of an excel/csv file with the anal
 Here is an example data file structure:
 
 ```{r, echo = TRUE}
-load("excel_input_file_ex.rda", envir = parent.frame(), verbose = FALSE)
+#load("excel_input_file_ex.rda", envir = parent.frame(), verbose = FALSE)
 
-excel_input_file_ex[104:106,1:15]
+#excel_input_file_ex[104:106,1:15]
 ```
 
 

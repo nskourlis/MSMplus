@@ -62,4 +62,4 @@ library(MSMplus)
 ```
 
 Read the vignette to see how to automatically produce the input files
-for MSMplus
+for MSMplus.
