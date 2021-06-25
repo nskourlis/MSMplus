@@ -60,7 +60,6 @@
 #' 
 #' head(msebmt)
 #' 
-
 #' ## Multi-state model analysis: Using flexsurvjson function together with flexsurv package
 #' 
 #' ### Provide time vector
