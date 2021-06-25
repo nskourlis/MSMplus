@@ -1,15 +1,58 @@
 Package: MSMplus
-Title: What the Package Does (One Line, Title Case)
+Title: Prepare MSMplus input files and locally deploys the MSMplus app
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Nikolaos",
+           family = "Skourlis",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "nikolaos.skourlis@ki.se",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: MIT + file LICENSE
+Description: Prepare input files and local deployment of MSMplus.
+License: Karolinska
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Depends: 
+    R (>= 2.10)
+Imports: 
+    stringi,
+    msm,
+    mstate,
+    survival,
+    flexsurv,
+    visNetwork,
+    shinyjs,
+    shiny,
+    tidyr,
+    ggplot2,
+    DiagrammeR,
+    stringr,
+    plyr,
+    dplyr,
+    gapminder,
+    viridis,
+    cowplot,
+    magick,
+    StatMeasures,
+    processx,
+    webshot,
+    htmlwidgets,
+    raster,
+    jsonlite,
+    devtools,
+    usethis,
+    githubinstall,
+    shinyMatrix,
+    dlm,
+    rsvg,
+    miniUI,
+    RJSONIO,
+    htmltools
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+

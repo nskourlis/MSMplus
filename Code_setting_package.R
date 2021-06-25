@@ -34,3 +34,8 @@ usethis::use_travis()
 # sets up testing infrastructure
 usethis::use_testthat()
 
+
+?MSMplus
+MSMplus::
+  pacman::p_functions(MSMplus)
+
