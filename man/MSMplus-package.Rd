@@ -4,12 +4,12 @@
 \name{MSMplus-package}
 \alias{MSMplus}
 \alias{MSMplus-package}
-\title{MSMplus: What the Package Does (One Line, Title Case)}
+\title{MSMplus: Prepare MSMplus input files and locally deploys the MSMplus app}
 \description{
-What the package does (one paragraph).
+Prepare input files and local deployment of MSMplus.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Nikolaos Skourlis \email{nikolaos.skourlis@ki.se} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 
 }
 \keyword{internal}

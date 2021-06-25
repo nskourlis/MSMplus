@@ -70,3 +70,8 @@ usethis::use_data(excel_input_file_ex, overwrite = TRUE)
 
 
 
+#cav data
+library(msm)
+# write data in correct format to data folder ----
+usethis::use_data(cav, overwrite = TRUE)
+
