@@ -75,3 +75,53 @@ library(msm)
 # write data in correct format to data folder ----
 usethis::use_data(cav, overwrite = TRUE)
 
+
+usethis::use_package("survival", type = "Imports")
+usethis::use_package("mstate", type = "Imports")
+usethis::use_package("msm", type = "Imports")
+usethis::use_package("stringi", type = "Imports")
+usethis::use_package("RJSONIO", type = "Imports")
+
+
+usethis::use_package("visNetwork", type = "Imports")
+usethis::use_package("shinyjs", type = "Imports")
+usethis::use_package("shiny", type = "Imports")
+usethis::use_package("mstate", type = "Imports")
+usethis::use_package("tidyverse", type = "Imports")
+usethis::use_package("tidyr", type = "Imports")
+usethis::use_package("ggplot2", type = "Imports")
+usethis::use_package("DiagrammeR", type = "Imports")
+usethis::use_package("stringr", type = "Imports")
+usethis::use_package("dplyr", type = "Imports")
+usethis::use_package("gapminder", type = "Imports")
+usethis::use_package("plyr", type = "Imports")
+usethis::use_package("viridis", type = "Imports")
+usethis::use_package("cowplot", type = "Imports")
+usethis::use_package("magick", type = "Imports")
+usethis::use_package("StatMeasures", type = "Imports")
+usethis::use_package("processx", type = "Imports")
+usethis::use_package("webshot", type = "Imports")
+usethis::use_package("htmlwidgets", type = "Imports")
+usethis::use_package("raster", type = "Imports")
+usethis::use_package("jsonlite", type = "Imports")
+usethis::use_package("devtools", type = "Imports")
+usethis::use_package("usethis", type = "Imports")
+usethis::use_package("githubinstall", type = "Imports")
+usethis::use_package("shinyMatrix", type = "Imports")
+usethis::use_package("dlm", type = "Imports")
+usethis::use_package("rsvg", type = "Imports")
+usethis::use_package("miniUI", type = "Imports")
+usethis::use_package("htmltools", type = "Imports")
+usethis::use_package("webshot", type = "Imports")
+
+
+
+usethis::use_vignette(name = "MSMplus_application_input1")
+
+
+
+MSMplus::runMSMplus()
+
+
+
+devtools::check()
