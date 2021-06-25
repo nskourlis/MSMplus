@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # MSMplus
 
 <!-- badges: start -->
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/nskourlis/MSMplus?branch=master&svg=true)](https://ci.appveyor.com/project/nskourlis/MSMplus)
 <!-- badges: end -->
 
 MSMplus is a useful tool for presentation of results from a multi-state analysis in an easy,
