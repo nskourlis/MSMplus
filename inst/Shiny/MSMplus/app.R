@@ -70,7 +70,6 @@ if (!require("webshot"))  install.packages("webshot")
 if (!require("plotly")) install.packages("plotly")
 
 if (!require("gridExtra")) install.packages("gridExtra")
-library("orca")
 library(rsvg)
 library(miniUI)
 library(htmltools)
