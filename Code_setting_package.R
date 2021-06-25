@@ -39,3 +39,34 @@ usethis::use_testthat()
 MSMplus::
   pacman::p_functions(MSMplus)
 
+usethis::use_data_raw()
+
+
+if (!require("pacman")) install.packages("pacman") 
+library("pacman")
+pacman::p_load(magrittr, dplyr, usethis, data.table, here)
+pacman::p_load(here)
+
+
+### An MSM exapmle ####
+library("msm")
+library("mstate")
+library("tidyverse")
+head(cav)
+# clean data ----
+
+#ebmt data
+ebmt <-  read.csv("C:/Users/niksko/Desktop/mstate/jsonread/ebmt.csv",header=TRUE, sep=",")
+
+# write data in correct format to data folder ----
+usethis::use_data(ebmt, overwrite = TRUE)
+
+# excel_input_file_ex
+excel_input_file_ex <-  read.csv("C:/Users/niksko/Desktop/mstate4/datasets/csv/csv_present/excel_input_file_example.csv",header=TRUE, sep=",")
+
+# write data in correct format to data folder ----
+usethis::use_data(excel_input_file_ex, overwrite = TRUE)
+
+
+
+
