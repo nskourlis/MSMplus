@@ -113,7 +113,7 @@ tmat[2,4]=5; tmat[3,2]=6; tmat[3,4]=7
 
 ### We can now call function msboxes_R  
 
-results3_days=rpkg::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
+results3_days=MSMplus::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
                               xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
                               tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
                               jsonpath="C:/Users/niksko/Desktop/mstate3/datasets/json/msm/json_present_msm", name="msboxes_cav_R.json" ) 
@@ -139,7 +139,7 @@ summary(cavsex.msm)
 
 ### Prediction for different covariate patterns (males and females)
 
-results <- rpkg::msmjson(msm.model=cavsex.msm, vartime=seq(1,3,1), mat.init=q.crude,
+results <- MSMplus::msmjson(msm.model=cavsex.msm, vartime=seq(1,3,1), mat.init=q.crude,
                          totlos=TRUE, visit=TRUE, sojourn=TRUE, pnext=TRUE, efpt=TRUE, envisits=TRUE,
                          ci.json="normal", cl.json=0.95, B.json=100,
                          cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,

@@ -85,7 +85,7 @@
 #' ##We now run the mstatejson function to perform the multi-state model analysis using the function 
 #' ##from package mstate and the pack the predictions in a json file.
 #'
-#' results_semipar <- rpkg::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
+#' results_semipar <- MSMplus::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
 #'                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
 #'                                     variance=FALSE, vartype="greenwood",
 #'                                     covariates_list=list(pat1 ,pat2, pat3 ) , M=50,

@@ -125,3 +125,11 @@ MSMplus::runMSMplus()
 
 
 devtools::check()
+
+
+usethis::use_appveyor()
+
+
+
+
+
