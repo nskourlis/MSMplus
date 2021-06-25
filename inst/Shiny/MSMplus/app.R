@@ -11,6 +11,13 @@ if (!require(tidyverse)) install.packages("tidyverse")
 
 if (!require(mstate)) install.packages("mstate")
 
+if (!require(mstate)) install.packages("DT")
+if (!require(mstate)) install.packages("imager")
+if (!require(mstate)) install.packages("reshape2")
+if (!require(mstate)) install.packages("shiny.semantic")
+
+
+
 if (!require(tidyr)) install.packages("tidyr")
 
 if (!require(ggplot2)) install.packages("ggplot2")
@@ -45,6 +52,9 @@ if (!require("raster")) install.packages("raster")
 
 if (!require("jsonlite")) install.packages("jsonlite")
 
+
+
+
 if (!require("devtools")) install.packages("devtools")
 if (!require("usethis")) install.packages("usethis")
 if (!require("githubinstall")) install.packages("githubinstall")
@@ -56,6 +66,8 @@ if (!require("miniUI"))  install.packages("miniUI")
 if (!require("htmltools"))  install.packages("htmltools")
 
 if (!require("webshot"))  install.packages("webshot")
+
+
 
 
 #if ( !require("orca") ) {install.packages("orca")}
@@ -93,7 +105,6 @@ library('RJSONIO')
 library(ggplot2)
 library(plotly)
 library(dplyr)
-library(formattable)
 library(reshape2)
 library(ggplot2)
 library(gridExtra)

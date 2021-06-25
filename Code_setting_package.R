@@ -128,6 +128,43 @@ devtools::check()
 usethis::use_appveyor()
 
 
+install.packages("Rtools")
 
+library("Rtools")
+
+install.packages("visNetwork")
+install.packages("shinyjs")
+install.packages("DiagrammeR")
+install.packages("plyr")
+install.packages("gapminder")
+install.packages("cowplot")
+install.packages("magick")
+install.packages("StatMeasures")
+install.packages("webshot")
+install.packages("raster")
+install.packages("shinyMatrix")
+install.packages("dlm")
+install.packages("rsvg")
+install.packages("RJSONIO")
+
+
+devtools::check()
+
+library("devtools")
+
+###This may take a while
+install_github("nskourlis/MSMplus")
+
+library(MSMplus)
+browseVignettes("MSMplus")
+
+
+?ebmt
+?cav
+?MSMplus::msboxes_R
+?MSMplus::msmjson
+?MSMplus::mstatejson
+?MSMplus::flexjson
+MSMplus::runMSMplus()
 
 

@@ -37,7 +37,7 @@
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  
-#' libary(MSMjson)
+#' libary(MSMplus)
 #' library(flexsurv)
 #' head(ebmt)
 #' 
