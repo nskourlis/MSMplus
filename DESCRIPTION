@@ -8,7 +8,7 @@ Authors@R:
            email = "nikolaos.skourlis@ki.se",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Prepare input files and local deployment of MSMplus.
-License: Karolinska + file LICENSE
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -20,7 +20,6 @@ Suggests:
 Depends: 
     R (>= 2.10)
 Imports: 
-    stringi,
     msm,
     mstate,
     survival,
@@ -45,8 +44,8 @@ Imports:
     raster,
     jsonlite,
     devtools,
+        stringi,
     usethis,
-    githubinstall,
     shinyMatrix,
     dlm,
     rsvg,
