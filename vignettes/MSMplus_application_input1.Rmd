@@ -1,0 +1,340 @@
+---
+title: "MSMplus"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MSMplus_application_input}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+highlight: tango
+---
+
+
+```{r, include = FALSE}
+#---
+#title: "MSMplus"
+#output: rmarkdown::html_vignette
+#vignette: >
+#  %\VignetteIndexEntry{MSMplus_application_input}
+#  %\VignetteEngine{knitr::rmarkdown}
+#  %\VignetteEncoding{UTF-8}
+#---
+```
+
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+```{r, include=FALSE}
+#options(width = 60)
+#local({
+#  hook_output <- knitr::knit_hooks$get('output')
+#  knitr::knit_hooks$set(output = function(x, options) {
+#    if (!is.null(options$max.height)) options$attr.output <- c(
+#      options$attr.output,
+#      sprintf('style="max-height: %s;"', options$max.height)
+#    )
+#    hook_output(x, options)
+#  })
+#})
+```
+
+
+```{r setup,results = 'hide',message = FALSE, warning = FALSE}
+library("rpkg")
+library("survival")
+library("mstate")
+library("tidyverse")
+library("flexsurv")
+library("msm")
+library("mstate")
+```
+
+MSMplus is a useful tool for presentation of results from a multi-state analysis in an easy,
+comprehensible and meaningful way. It aids the user to present research findings to targeted audiences. 
+
+However, the results need to be provided to the app either as a csv/excel or a json file of specific structure. 
+
+The advisable approach is the manual creation of an excel/csv file with the analysis results by the researcher according to certain formatting and naming rules described in this [tutorial](https://nskbiostatistics.shinyapps.io/supplementary/). 
+
+Here is an example data file structure:
+
+```{r, echo = TRUE}
+load("excel_input_file_ex.rda", envir = parent.frame(), verbose = FALSE)
+
+excel_input_file_ex[104:106,1:39]
+```
+
+
+We have created an alternative way for deriving the MSMplus input files to avoid the labour. The json files can be easily derived while running the multi-state models. In Stata, this is done via the commands msboxes and predictms and in R via the current package and the use of its funtions: flexjson, msmjson, mstatejson. That being said we still advise for the manual approach as the researcher does not need to have any knowledge of R or Stata, as the analysis can be conducted via any statistical software.
+
+
+The user can locally launch the MSMplus application by writting MSMplus_prepare::runMSMplus() or access it online at https://nskbiostatistics.shinyapps.io/MSMplus/
+
+
+# Files input preparation
+
+## Function msboxes_R
+### Generating information to create a multi-state graph with updated frequencies in each state across different time points
+
+We will start by using data from the European Blood and Marrow Transplant registry. The dataset consists of 2204 patients who received bone marrow transplantation. The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death. The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old . This dataset is freely available from mstate package and you can access more information by typing ?ebmt3.
+
+```{r, echo = TRUE}
+load("ebmt.rda", envir = parent.frame(), verbose = FALSE)
+
+head(ebmt)
+```
+
+
+
+ Let's first define the transition matrix
+```{r, echo = TRUE}
+tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
+```
+
+
+We will now create dummy variables for the age categories
+```{r, echo = TRUE}
+ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
+ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
+```
+
+Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
+```{r, echo = TRUE}
+msebmt <- msprep(data = ebmt, trans = tmat, 
+                 time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
+
+head(msebmt)
+```
+
+We can now call function msboxes_R
+ 
+msboxes_R will create a json file containing parameters that will help MSMplus to automatically create 
+the multi-state graph of each specific setting. However, the user has the option to design and create the
+multistate graph within the app as well. 
+
+```{r, echo = TRUE,message = FALSE }
+
+results3_days=rpkg::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
+                        xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
+                        tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,10,by=1)),scale=365.25,
+                        jsonpath="~", name="msboxes_EBMT.json" ) 
+results3_days
+
+```
+
+
+
+
+## MSMplus Json input file of predictions: The flexjson function 
+
+ Provide time vector
+```{r, echo = TRUE}
+tgrid <- seq(1, 10, by = 1)   
+```
+Provide transition matrix
+```{r, echo = TRUE}
+tmat <- rbind(c(NA, 1, 2), c(NA, NA, 3), c(NA, NA, NA)) 
+```
+
+ Run transition specific hazard models: Clock forward approach and use of flexible parametric models
+```{r, echo = TRUE}
+
+cfwei.list<-vector(3,mode="list")
+
+for (i in 1:3) {
+  
+  cfwei.list[[i]]<-flexsurvreg(Surv(Tstart,Tstop,status)~age2+age3,subset=(trans==i),
+                               dist="weibull",data=msebmt)
+}
+
+  
+```
+
+
+ Prediction for different covariate patterns (the 3 age categories)
+```{r, echo = TRUE}
+wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
+pat1 <- msebmt[rep(wh1[1], 3), 9:10]
+attr(pat1, "trans") <- tmat
+
+
+wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
+pat2 <- msebmt[rep(wh2[1], 3), 9:10]
+attr(pat2, "trans") <- tmat
+
+wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
+pat3 <- msebmt[rep(wh3[1], 3), 9:10]
+attr(pat3, "trans") <- tmat
+```
+
+We now run the flexsurvjson function to perform the multi-state model analysis using the function 
+from package flexsurv and the pack the predictions in a json file.
+```{r, echo = TRUE}
+results_cf <- rpkg::flexsurvjson( model=cfwei.list, vartime=seq(365.25,365.25,by=365.25), 
+                                   qmat=tmat, process="Markov",
+                                   totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
+                                   Mjson=100, variance=FALSE,
+                                   covariates_list=list(pat1,pat2,pat3), 
+                                   jsonpath="~",
+                                   name="predictions_EBMT_flex.json" ) 
+```
+
+
+```{r, echo = TRUE}
+results_cf$timevar
+results_cf$Nats
+results_cf$atlist
+results_cf$tmat
+results_cf$Ntransitions
+results_cf$is.cumhaz
+results_cf[[7]]
+```
+
+If the user has used the clock reset approach they have to specify "semiMarkov" at the process argument.
+
+
+## MSMplus Json input file of predictions: The mstatejson function 
+
+
+### Semi parametric analysis
+
+Apply a Cox proportional hazard model with Markov assumption
+```{r, echo = TRUE}
+cfcox <- coxph(Surv(Tstart, Tstop, status) ~age2+age3+strata(trans), data = msebmt)
+```
+
+ Prediction for different covariate patterns (the 3 age categories)
+```{r, echo = TRUE}
+wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
+pat1 <- msebmt[rep(wh1[1], 3), 9:10]
+pat1$trans <- 1:3
+attr(pat1, "trans") <- tmat
+pat1$strata <- pat1$trans
+
+
+wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
+pat2 <- msebmt[rep(wh2[1], 3), 9:10]
+pat2$trans <- 1:3
+attr(pat2, "trans") <- tmat
+pat2$strata <- pat2$trans
+
+wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
+pat3 <- msebmt[rep(wh3[1], 3), 9:10]
+pat3$trans <- 1:3
+attr(pat3, "trans") <- tmat
+pat3$strata <- pat3$trans
+```
+
+We now run the mstatejson function to perform the multi-state model analysis using the function 
+from package mstate and the pack the predictions in a json file.
+```{r, echo = TRUE}
+results_semipar <- rpkg::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
+                                totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=100,
+                                variance=TRUE, vartype="greenwood",
+                                covariates_list=list(pat1 ,pat2, pat3 ) , M=100,
+                                jsonpath="~",
+                                name="predictions_EBMT_mstate.json")
+
+```
+
+
+
+```{r, echo = TRUE }
+#Timevar
+results_semipar$Nats
+results_semipar$atlist
+results_semipar$tmat
+results_semipar$is.cumhaz
+results_semipar[[6]]$P_1_to_1[,1:5]
+results_semipar[[6]]$P_1_to_2[,1:5]
+results_semipar[[6]]$P_1_to_3[,1:5]
+results_semipar[[6]]$P_2_to_1[,1:5]
+results_semipar[[6]]$P_2_to_2[,1:5]
+results_semipar[[6]]$P_2_to_3[,1:5]
+results_semipar[[6]]$P_3_to_1[,1:5]
+results_semipar[[6]]$P_3_to_2[,1:5]
+results_semipar[[6]]$P_3_to_3[,1:5]
+#The measures are not displayed here to save space 
+```
+
+## MSMplus Json input file of predictions: The msmjson function 
+
+```{r, echo = FALSE}
+options(scipen = 999,"digits"=10)
+```
+
+```{r, echo = TRUE}
+head(cav)
+```
+
+ Renaming variable PTNUM to id
+```{r, echo = TRUE}
+ cav$id=cav$PTNUM
+```
+
+
+ Defining the transition matrix
+```{r, echo = TRUE}
+    tmat=matrix(NA,nrow=4,ncol=4)
+    tmat[1,2]=1; tmat[1,4]=2; tmat[2,1]=3; tmat[2,3]=4
+    tmat[2,4]=5; tmat[3,2]=6; tmat[3,4]=7
+```
+
+
+ We can now call function msboxes_R  
+```{r, echo = TRUE}
+    results3_days=rpkg::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
+                            xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
+                            tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
+                            jsonpath="~", name="msboxes_msm.json" ) 
+```
+
+Defining the transition matrix with initial values under an initial assumption
+
+0 for transitions not allowed, initial values for rest of transitions under a rationale ##
+```{r, echo = TRUE}
+Q<- rbind(c(0,0.25,0,0.25),c(0.166,0,0.166,0.166),c(0,0.25,0,0.25),c(0,0,0,0))
+    
+```
+ Getting initial Q matrix in a default way- Feed the hand made matrix 
+```{r, echo = TRUE}
+    q.crude<- crudeinits.msm(state~years, id,data=cav, qmatrix=Q)
+```
+
+ Apply the msm model
+```{r, echo = TRUE,results = 'hide'}
+    cavsex.msm<- msm(state~years, covariates=~sex, id,data=cav,qmatrix=q.crude, deathexact = 4, control=list(trace=1,REPORT=1)) 
+    summary(cavsex.msm)
+```
+
+ Prediction for different covariate patterns (males and females)
+```{r, echo = TRUE}
+results <- rpkg::msmjson(msm.model=cavsex.msm, vartime=seq(1,3,1), mat.init=q.crude,
+                       totlos=TRUE, visit=TRUE, sojourn=TRUE, pnext=TRUE, efpt=TRUE, envisits=TRUE,
+                       ci.json="normal", cl.json=0.95, B.json=10,
+                       cores.json=NULL,piecewise.times.json=NULL,
+                       piecewise.covariates.json=NULL,num.integ.json=FALSE,
+                       covariates_list=list(list(sex = 1),list(sex = 0)), 
+                       jsonpath="~",
+                       name="predictions_msm.json" ) 
+
+```    
+    
+
+```{r, echo = TRUE }
+results$timevar
+results$Nats
+results$atlist
+results$tmat
+results[[7]]
+#The rest of the measures are not displayed here to save space 
+
+```
+
+    
+
+
