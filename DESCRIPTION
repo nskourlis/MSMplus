@@ -8,7 +8,7 @@ Authors@R:
            email = "nikolaos.skourlis@ki.se",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Prepare input files and local deployment of MSMplus.
-License: Karolinska
+License: Karolinska + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
@@ -55,4 +55,3 @@ Imports:
     htmltools
 Config/testthat/edition: 3
 VignetteBuilder: knitr
-
