@@ -35,13 +35,13 @@
 #' @examples 
 #' \dontrun{
 #' if(interactive()){
-#'  #EXAMPLE1
+#'  #EXAMPLE
 #'  
-#' library("MSMplus")
-#' library("mstate")
-#' library("flexsurv")
-#' library("dplyr")
-#' library("RJSONIO")
+#'  library("MSMplus")
+#'  library("mstate")
+#'  library("flexsurv")
+#'  library("dplyr")
+#'  library("RJSONIO")
 #' head(ebmt)
 #' 
 #' 
