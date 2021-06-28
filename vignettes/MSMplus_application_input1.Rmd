@@ -47,7 +47,7 @@ knitr::opts_chunk$set(
 library("MSMplus")
 library("survival")
 library("mstate")
-library("tidyverse")
+#library("tidyverse")
 library("flexsurv")
 library("msm")
 ```

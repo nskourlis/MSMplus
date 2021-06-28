@@ -112,6 +112,7 @@ usethis::use_package("miniUI", type = "Suggests")
 usethis::use_package("htmltools", type = "Suggests")
 usethis::use_package("webshot", type = "Suggests")
 
+usethis::use_package("tidyverse", type = "Imports")
 
 
 usethis::use_vignette(name = "MSMplus_application_input1")
