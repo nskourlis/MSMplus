@@ -37,12 +37,14 @@
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
-#' if(interactive()){
+#' 
 #' 
 #'# Multi-state model analysis: Using msmjson function together with msm package
 #' 
-#' library(MSMplus)
-#' library(msm)
+#' library("MSMplus")
+#' library("msm")
+#' library("RJSONIO")
+#' library("dplyr")
 #' 
 #' options(scipen = 999,"digits"=10)
 #' 
@@ -63,7 +65,7 @@
 #' results3_days=MSMplus::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
 #'                               xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
 #'                               tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
-#'                               jsonpath="C:/Users/niksko/Desktop/mstate3/datasets/json/msm/json_present_msm", name="msboxes_cav_R.json" ) 
+#'                               jsonpath="~", name="msboxes_cav_R.json" ) 
 #' 
 #' 
 #' ### Defining the transition matrix with initial values under an initial assumption
@@ -91,16 +93,12 @@
 #'                          ci.json="normal", cl.json=0.95, B.json=100,
 #'                          cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,
 #'                          covariates_list=list(list(sex = 1),list(sex = 0)), 
-#'                          jsonpath="C:/Users/niksko/Desktop/mstate3/datasets/json/msm/json_present_msm",
+#'                          jsonpath="~",
 #'                          name="predictions_cav_R.json" ) 
-#' 
-#' results$timevar[[1]][1:3]
-#' results$Nats
-#' results$atlist
-#' results$tmat
+
 #' 
 #' 
-#'  }
+#'  
 #' }
 #' @seealso 
 #'  \code{\link[stringi]{stri_sort}}

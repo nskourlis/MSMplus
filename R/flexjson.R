@@ -37,8 +37,11 @@
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  
-#' libary(MSMplus)
-#' library(flexsurv)
+#' library("MSMplus")
+#' library("mstate")
+#' library("flexsurv")
+#' library("dplyr")
+#' library("RJSONIO")
 #' head(ebmt)
 #' 
 #' 
@@ -114,11 +117,13 @@
 #' 
 #' 
 #'  
-#'  }
+#'  
+#' }
+#' 
 #' }
 #' @seealso 
 #'  \code{\link[stringi]{stri_sort}}
-#' @rdname flexsurv_json
+#' @rdname flexsurvjson
 #' @export 
 #' @importFrom stringi stri_sort
 flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
@@ -131,11 +136,6 @@ flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
   options(scipen = 999,"digits"=14)
   
 
-  
- # library("msm")
- # library("stringi")
- # library("RJSONIO")
- # library("flexsurv")
 
   
   #  vartime=time/scale

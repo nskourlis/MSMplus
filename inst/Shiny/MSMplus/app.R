@@ -1,74 +1,62 @@
 
-if (!require(visNetwork)) install.packages("visNetwork")
-
-if (!require(shiny)) install.packages("shinyjs")
-
-if (!require(shiny)) install.packages("shiny")
-
-if (!require(mstate)) install.packages("mstate")
-
-if (!require(tidyverse)) install.packages("tidyverse")
-
-if (!require(mstate)) install.packages("mstate")
-
-if (!require(mstate)) install.packages("DT")
-if (!require(mstate)) install.packages("imager")
-if (!require(mstate)) install.packages("reshape2")
-if (!require(mstate)) install.packages("shiny.semantic")
-
-
-
-if (!require(tidyr)) install.packages("tidyr")
-
-if (!require(ggplot2)) install.packages("ggplot2")
-
-if (!require(DiagrammeR)) install.packages("DiagrammeR")
-
-if (!require(stringr)) install.packages("stringr")
-
-if (!require(dplyr)) install.packages("dplyr")
-
-if (!require(RJSONIO)) install.packages("RJSONIO")
-
-if (!require(gapminder)) install.packages("gapminder")
-
-if (!require(plyr)) install.packages("plyr")
-
-if (!require(viridis)) install.packages("viridis")
-
-if (!require(cowplot)) install.packages("cowplot")
-
-if (!require(magick)) install.packages("magick")
-
-if (!require(StatMeasures)) install.packages("StatMeasures")
-
-if (!require("processx")) install.packages("processx")
-
-if (!require("webshot")) install.packages("webshot")
-
-if (!require("htmlwidgets")) install.packages("htmlwidgets")
-
-if (!require("raster")) install.packages("raster")
-
-if (!require("jsonlite")) install.packages("jsonlite")
-
-
-
-
-if (!require("devtools")) install.packages("devtools")
-if (!require("usethis")) install.packages("usethis")
-if (!require("githubinstall")) install.packages("githubinstall")
-if (!require("shinyMatrix"))  install.packages("shinyMatrix")
-if (!require("dlm"))  install.packages("dlm")
-
-if (!require("rsvg"))  install.packages("rsvg")
-if (!require("miniUI"))  install.packages("miniUI")
-if (!require("htmltools"))  install.packages("htmltools")
-
-if (!require("webshot"))  install.packages("webshot")
-
-
-
+#if (!require(visNetwork)) install.packages("visNetwork")
+#
+#if (!require(shinyjs)) install.packages("shinyjs")
+#
+#if (!require(shiny)) install.packages("shiny")
+#
+#if (!require(mstate)) install.packages("mstate")
+#
+#if (!require(tidyverse)) install.packages("tidyverse")
+#
+#if (!require(mstate)) install.packages("mstate")
+#
+#if (!require(tidyr)) install.packages("tidyr")
+#
+#if (!require(ggplot2)) install.packages("ggplot2")
+#
+#if (!require(DiagrammeR)) install.packages("DiagrammeR")
+#
+#if (!require(stringr)) install.packages("stringr")
+#
+#if (!require(dplyr)) install.packages("dplyr")
+#
+#if (!require(RJSONIO)) install.packages("RJSONIO")
+#
+#if (!require(gapminder)) install.packages("gapminder")
+#
+#if (!require(plyr)) install.packages("plyr")
+#
+#if (!require(viridis)) install.packages("viridis")
+#
+#if (!require(cowplot)) install.packages("cowplot")
+#
+#if (!require(magick)) install.packages("magick")
+#
+#if (!require(StatMeasures)) install.packages("StatMeasures")
+#
+#if (!require("processx")) install.packages("processx")
+#
+#if (!require("webshot")) install.packages("webshot")
+#
+#if (!require("htmlwidgets")) install.packages("htmlwidgets")
+#
+#if (!require("raster")) install.packages("raster")
+#
+#if (!require("jsonlite")) install.packages("jsonlite")
+#
+#if (!require("devtools")) install.packages("devtools")
+#if (!require("usethis")) install.packages("usethis")
+#if (!require("githubinstall")) install.packages("githubinstall")
+#if (!require("shinyMatrix"))  install.packages("shinyMatrix")
+#if (!require("dlm"))  install.packages("dlm")
+#
+#if (!require("rsvg"))  install.packages("rsvg")
+#if (!require("miniUI"))  install.packages("miniUI")
+#if (!require("htmltools"))  install.packages("htmltools")
+#
+#if (!require("webshot"))  install.packages("webshot")
+#
 
 #if ( !require("orca") ) {install.packages("orca")}
 
@@ -79,49 +67,44 @@ if (!require("webshot"))  install.packages("webshot")
 #if (!require(devtools)) install.packages("devtools")
 #devtools::install_github("cpsievert/plotcon17")
 
-if (!require("plotly")) install.packages("plotly")
+#if (!require("plotly")) install.packages("plotly")
 
-if (!require("gridExtra")) install.packages("gridExtra")
-library(rsvg)
-library(miniUI)
-library(htmltools)
+#if (!require("gridExtra")) install.packages("gridExtra")
+
+
+library("rsvg")
+library("miniUI")
+library("htmltools")
 library("webshot")
+library("visNetwork")
+library("plotly")
+library("tidyverse")
+library("jsonlite")
+library("webshot")
+library("htmlwidgets")
+library("raster")
+library("plyr")
+library("viridis")
+library("RJSONIO")
+library("ggplot2")
+library("plotly")
+library("dplyr")
+library("reshape2")
+library("ggplot2")
+library("gridExtra")
+library("tidyverse")
+library("DT")
+library("magrittr")
+library("cowplot")
+library("imager")
+library("StatMeasures")
+library("shinyMatrix")
+library("dlm")
+library("gapminder")
+library("gridExtra")
+library("shinyjs")
+library("shiny")
 
-library(visNetwork)
-
-library(plotly)
-
-
-library(tidyverse)
-
-library(jsonlite)
-
-library(webshot)
-library(htmlwidgets)
-library(raster)
-library(plyr)
-library(viridis)
-library('RJSONIO')
-library(ggplot2)
-library(plotly)
-library(dplyr)
-library(reshape2)
-library(ggplot2)
-library(gridExtra)
-library(tidyverse)
-library(DT)
-library(shiny.semantic)
-library(magrittr)
-library(cowplot)
-library(imager)
-library(StatMeasures)
-library(shinyMatrix)
-library(dlm)
-library(gapminder)
-library(gridExtra)
-
-library(shinyjs)
-library(shiny)
 
 #readRenviron("~/.Renviron")
 Sys.setenv("plotly_username" = "niksko")

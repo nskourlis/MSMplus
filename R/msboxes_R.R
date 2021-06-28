@@ -103,12 +103,7 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
                             names_of_transitions,values_of_transitions,
                             time, timevar,scale_inner=1) {
   
-  
-  library(viridis)
-  library(reshape2)
-  library(tidyverse)
-  library(plyr)
-  library(dplyr)
+
   
   fr=list()
   
@@ -285,9 +280,12 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
-#' if(interactive()){
+#' 
 #'  #EXAMPLE
 #'  
+#'  library("mstate")
+#'  library("dplyr")
+#'  library("RJSONIO")
 #' head(ebmt)
 #' 
 #' tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
@@ -301,22 +299,17 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
 #'                               xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
 #'                               tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
-#'                               jsonpath="data", name="msboxes_EBMT_R.json" ) 
+#'                               jsonpath="~", name="msboxes_EBMT_R.json" ) 
 #' 
 #' results
-#'  }
+#'  
 #' }
 #' @rdname msboxes_R
 #' @export 
 msboxes_R<- function(data,id,yb,xb,boxwidth=0.1,boxheight=0.1,tstop,vartime=1, tmat., scale=1, msm=FALSE,  jsonpath="~",name="msboxes_R.json" ) {
    
    
-   library(viridis)
-   library(reshape2)
-   library(tidyverse)
-   library(plyr)
-   library(dplyr)
-  
+   
 
   
   if (is.null(tmat.))  stop("You need to provide a transition matrix.")
@@ -446,7 +439,7 @@ if (msm==TRUE)  {
   names(p)[names(p) == "column_label"] <- "time_label"
   
   p$time_label= as.numeric(p$time_label)
-  options(stringsAsFactors = TRUE)
+  #options(stringsAsFactors = TRUE)
   p=as.data.frame(p)
   p=as.matrix(p)
   msm_inner=1
@@ -552,7 +545,6 @@ else{
       statenames=statename, transnames=tname,
       arrows=arrows,arrowstext=arrowstext,tmat=trmat,msm=msm_inner,frequencies=p)
  
- library(RJSONIO)
  exportJson <- toJSON(results,  dataframe = "rows",matrix="rowmajor",force=TRUE, complex="list",flatten=TRUE)
  exportJson
  write(exportJson, paste0(jsonpath ,"/", name  ) )

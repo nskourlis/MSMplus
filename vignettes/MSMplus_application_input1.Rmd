@@ -47,9 +47,12 @@ knitr::opts_chunk$set(
 library("MSMplus")
 library("survival")
 library("mstate")
-#library("tidyverse")
+library("dplyr")
+library("reshape2")
 library("flexsurv")
 library("msm")
+library("RJSONIO")
+
 ```
 
 MSMplus is a useful tool for presentation of results from a multi-state analysis in an easy,

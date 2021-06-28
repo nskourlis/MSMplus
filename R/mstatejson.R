@@ -28,14 +28,15 @@
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
-#' if(interactive()){
+#' 
 #'  #EXAMPLE
 #'  
-#'library("MSMplus")
-#'library("survival")
-#'library("mstate")
+#' library("MSMplus")
+#' library("survival")
+#' library("mstate")
+#' library("dplyr")
+#' library("RJSONIO")
 #'
-#'load("data/ebmt.rda", envir = parent.frame(), verbose = FALSE)
 #'
 #'
 #'head(ebmt)
@@ -89,12 +90,12 @@
 #'                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
 #'                                     variance=FALSE, vartype="greenwood",
 #'                                     covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
-#'                                     jsonpath="data",
+#'                                     jsonpath="~",
 #'                                     name="predictions_EBMT_mstate_fw.json")
 #' 
 #' 
 #' results_semipar
-#'  }
+#'  
 #' }
 #' @seealso 
 #'  \code{\link[stringi]{stri_sort}}
@@ -154,9 +155,9 @@ mstatejson <- function(x, qmat, process="Markov",
   
   ################################################################### 
   
-  library("msm")
-  library("stringi")
-  library("RJSONIO")
+  #library("msm")
+  ##library("stringi")
+  #library("RJSONIO")
   
   pred=list() 
   
