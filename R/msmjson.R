@@ -37,9 +37,9 @@
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
+#' if(interactive()){
 #' 
-#' 
-#'# Multi-state model analysis: Using msmjson function together with msm package
+#' # Multi-state model analysis: Using msmjson function together with msm package
 #' 
 #' library("MSMplus")
 #' library("msm")
@@ -99,6 +99,7 @@
 #' 
 #' 
 #'  
+#'   }
 #' }
 #' @seealso 
 #'  \code{\link[stringi]{stri_sort}}

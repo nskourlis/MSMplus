@@ -183,3 +183,4 @@ browseVignettes("MSMplus")
 MSMplus::runMSMplus()
 
 
+.rs.restartR()
