@@ -67,73 +67,70 @@ DETAILS
 }
 \examples{
 \dontrun{
-if(interactive()){
- #EXAMPLE
+  #EXAMPLE
+  
+ library("MSMplus")
+ library("survival")
+ library("mstate")
+ library("dplyr")
+ library("RJSONIO")
  
-library("MSMplus")
-library("survival")
-library("mstate")
+ head(ebmt)
+ ### Let's first define the transition matrix
+ 
+ tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
+ 
+ ### We will now create dummy variables for the age categories
+ ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
+ ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
+ 
+ #Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
+ msebmt <- msprep(data = ebmt, trans = tmat, 
+                 time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
+                 
+ ### Semi parametric analysis
+ #### Markov
+ ### Run the hazard models: Clock forward approach 
+ 
+ cfcox <- coxph(Surv(Tstart, Tstop, status) ~age2+age3+strata(trans), data = msebmt)
+ 
+ 
+ ### Prediction for different covariate patterns (the 3 age categories)
+ 
+ wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
+ pat1 <- msebmt[rep(wh1[1], 3), 9:10]
+ pat1$trans <- 1:3
+ attr(pat1, "trans") <- tmat
+ pat1$strata <- pat1$trans
+ 
+ 
+ wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
+ pat2 <- msebmt[rep(wh2[1], 3), 9:10]
+ pat2$trans <- 1:3
+ attr(pat2, "trans") <- tmat
+ pat2$strata <- pat2$trans
+ 
+ wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
+ pat3 <- msebmt[rep(wh3[1], 3), 9:10]
+ pat3$trans <- 1:3
+ attr(pat3, "trans") <- tmat
+ pat3$strata <- pat3$trans
+ 
+ 
+ ##We now run the mstatejson function to perform the multi-state model analysis using the function 
+ ##from package mstate and the pack the predictions in a json file.
+ results_semipar <- MSMplus::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
+                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
+                                     variance=FALSE, vartype="greenwood",
+                                     covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
+                                     jsonpath="~",
+                                     name="predictions_EBMT_mstate_fw.json")
+ 
+ 
+ results_semipar
+  
 
-load("data/ebmt.rda", envir = parent.frame(), verbose = FALSE)
-
-
-head(ebmt)
-### Let's first define the transition matrix
-
-tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
-
-### We will now create dummy variables for the age categories
-
-ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
-ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
-
-#Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
-msebmt <- msprep(data = ebmt, trans = tmat, 
-                time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
-
-### Semi parametric analysis
-
-   #### Markov
-### Run the hazard models: Clock forward approach 
-
-cfcox <- coxph(Surv(Tstart, Tstop, status) ~age2+age3+strata(trans), data = msebmt)
-
-
-### Prediction for different covariate patterns (the 3 age categories)
-
-wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
-pat1 <- msebmt[rep(wh1[1], 3), 9:10]
-pat1$trans <- 1:3
-attr(pat1, "trans") <- tmat
-pat1$strata <- pat1$trans
-
-
-wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
-pat2 <- msebmt[rep(wh2[1], 3), 9:10]
-pat2$trans <- 1:3
-attr(pat2, "trans") <- tmat
-pat2$strata <- pat2$trans
-
-wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
-pat3 <- msebmt[rep(wh3[1], 3), 9:10]
-pat3$trans <- 1:3
-attr(pat3, "trans") <- tmat
-pat3$strata <- pat3$trans
-
-
-##We now run the mstatejson function to perform the multi-state model analysis using the function 
-##from package mstate and the pack the predictions in a json file.
-
-results_semipar <- MSMplus::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
-                                    totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
-                                    variance=FALSE, vartype="greenwood",
-                                    covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
-                                    jsonpath="data",
-                                    name="predictions_EBMT_mstate_fw.json")
-
-
-results_semipar
- }
+  
 }
 }
 \seealso{

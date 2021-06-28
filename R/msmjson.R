@@ -37,7 +37,8 @@
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
-#' if(interactive()){
+#' 
+#' #Example
 #' 
 #' # Multi-state model analysis: Using msmjson function together with msm package
 #' 
@@ -95,18 +96,13 @@
 #'                          covariates_list=list(list(sex = 1),list(sex = 0)), 
 #'                          jsonpath="~",
 #'                          name="predictions_cav_R.json" ) 
-
-#' 
-#' 
-#'  
-#'   }
+#'                          
 #' }
 #' @seealso 
 #'  \code{\link[stringi]{stri_sort}}
 #' @rdname msmjson
 #' @export 
 #' @importFrom stringi stri_sort
-
 
 
 msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init, 

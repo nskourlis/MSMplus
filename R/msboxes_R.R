@@ -5,7 +5,7 @@
 #' @description FUNCTION_DESCRIPTION
 #' @param data_msm PARAM_DESCRIPTION
 #' @param id_msm PARAM_DESCRIPTION
-#' @param timevar PARAM_DESCRIPTION
+#' @param timevar PARAM_DESCRIPTION, Default: 1
 #' @param scale_msm PARAM_DESCRIPTION, Default: 1
 #' @param Ntransitions PARAM_DESCRIPTION
 #' @return OUTPUT_DESCRIPTION
@@ -18,7 +18,6 @@
 #' }
 #' @rdname freq_func_total_msm
 #' @export 
-#' 
 freq_func_total_msm<- function(data_msm, id_msm, timevar=1, scale_msm=1, Ntransitions) {
   
   freq=list()

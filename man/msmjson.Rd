@@ -90,70 +90,64 @@ DETAILS
 }
 \examples{
 \dontrun{
-if(interactive()){
-
-# Multi-state model analysis: Using msmjson function together with msm package
-
-library(MSMplus)
-library(msm)
-
-options(scipen = 999,"digits"=10)
-
-head(cav)
-
-### Renaming variable PTNUM to id
-
-cav$id=cav$PTNUM
-
-### Defining the transition matrix
-
-tmat=matrix(NA,nrow=4,ncol=4)
-tmat[1,2]=1; tmat[1,4]=2; tmat[2,1]=3; tmat[2,3]=4
-tmat[2,4]=5; tmat[3,2]=6; tmat[3,4]=7
-
-### We can now call function msboxes_R  
-
-results3_days=MSMplus::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
-                              xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
-                              tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
-                              jsonpath="C:/Users/niksko/Desktop/mstate3/datasets/json/msm/json_present_msm", name="msboxes_cav_R.json" ) 
-
-
-### Defining the transition matrix with initial values under an initial assumption
-
-#0 for transitions not allowed, initial values for rest of transitions under a rationale ##
-
-Q<- rbind(c(0,0.25,0,0.25),c(0.166,0,0.166,0.166),c(0,0.25,0,0.25),c(0,0,0,0))
-
-
-### Getting initial Q matrix in a default way- Feed the hand made matrix 
-
-q.crude<- crudeinits.msm(state~years, id,data=cav, qmatrix=Q)
-
-
-### Apply the msm model
-
-cavsex.msm<- msm(state~years, covariates=~sex, id,data=cav,qmatrix=q.crude, deathexact = 4, control=list(trace=1,REPORT=1)) 
-summary(cavsex.msm)
-
-
-### Prediction for different covariate patterns (males and females)
-
-results <- MSMplus::msmjson(msm.model=cavsex.msm, vartime=seq(1,3,1), mat.init=q.crude,
-                         totlos=TRUE, visit=TRUE, sojourn=TRUE, pnext=TRUE, efpt=TRUE, envisits=TRUE,
-                         ci.json="normal", cl.json=0.95, B.json=100,
-                         cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,
-                         covariates_list=list(list(sex = 1),list(sex = 0)), 
-                         jsonpath="C:/Users/niksko/Desktop/mstate3/datasets/json/msm/json_present_msm",
-                         name="predictions_cav_R.json" ) 
-
-results$timevar[[1]][1:3]
-results$Nats
-results$atlist
-results$tmat
-
-
- }
+ #Example
+ 
+ # Multi-state model analysis: Using msmjson function together with msm package
+ 
+ library("MSMplus")
+ library("msm")
+ library("RJSONIO")
+ library("dplyr")
+ 
+ options(scipen = 999,"digits"=10)
+ 
+ head(cav)
+ 
+ ### Renaming variable PTNUM to id
+ 
+ cav$id=cav$PTNUM
+ 
+ ### Defining the transition matrix
+ 
+ tmat=matrix(NA,nrow=4,ncol=4)
+ tmat[1,2]=1; tmat[1,4]=2; tmat[2,1]=3; tmat[2,3]=4
+ tmat[2,4]=5; tmat[3,2]=6; tmat[3,4]=7
+ 
+ ### We can now call function msboxes_R  
+ 
+ results3_days=MSMplus::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
+                               xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
+                               tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
+                               jsonpath="~", name="msboxes_cav_R.json" ) 
+ 
+ 
+ ### Defining the transition matrix with initial values under an initial assumption
+ 
+ #0 for transitions not allowed, initial values for rest of transitions under a rationale ##
+ 
+ Q<- rbind(c(0,0.25,0,0.25),c(0.166,0,0.166,0.166),c(0,0.25,0,0.25),c(0,0,0,0))
+ 
+ 
+ ### Getting initial Q matrix in a default way- Feed the hand made matrix 
+ 
+ q.crude<- crudeinits.msm(state~years, id,data=cav, qmatrix=Q)
+ 
+ 
+ ### Apply the msm model
+ 
+ cavsex.msm<- msm(state~years, covariates=~sex, id,data=cav,qmatrix=q.crude, deathexact = 4, control=list(trace=1,REPORT=1)) 
+ summary(cavsex.msm)
+ 
+ 
+ ### Prediction for different covariate patterns (males and females)
+ 
+ results <- MSMplus::msmjson(msm.model=cavsex.msm, vartime=seq(1,3,1), mat.init=q.crude,
+                          totlos=TRUE, visit=TRUE, sojourn=TRUE, pnext=TRUE, efpt=TRUE, envisits=TRUE,
+                          ci.json="normal", cl.json=0.95, B.json=100,
+                          cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,
+                          covariates_list=list(list(sex = 1),list(sex = 0)), 
+                          jsonpath="~",
+                          name="predictions_cav_R.json" ) 
 }
 }
 \seealso{

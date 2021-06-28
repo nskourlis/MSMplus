@@ -67,7 +67,12 @@ excel_input_file_ex <-  read.csv("C:/Users/niksko/Desktop/mstate4/datasets/csv/c
 # write data in correct format to data folder ----
 usethis::use_data(excel_input_file_ex, overwrite = TRUE)
 
-
+pacman::p_load(sinew)
+sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/msboxes_R.R")
+sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/msmjson.R")
+sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/flexjson.R")
+sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/mstatejson.R")
+sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/runMSMplus.R")
 
 
 #cav data
@@ -120,6 +125,7 @@ usethis::use_package("usethis", type = "Imports")
 usethis::use_package("plotly", type = "Imports")
 usethis::use_package("gridExtra", type = "Imports")
 usethis::use_package("DT", type = "Imports")
+usethis::use_package("formattable", type = "Imports")
 
 
 
@@ -179,7 +185,7 @@ browseVignettes("MSMplus")
 ?MSMplus::msboxes_R
 ?MSMplus::msmjson
 ?MSMplus::mstatejson
-?MSMplus::flexjson
+?MSMplus::flexsurvjson
 MSMplus::runMSMplus()
 
 

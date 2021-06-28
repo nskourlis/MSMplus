@@ -34,7 +34,6 @@
 #' @details DETAILS
 #' @examples 
 #' \dontrun{
-#' if(interactive()){
 #'  #EXAMPLE
 #'  
 #'  library("MSMplus")
@@ -120,7 +119,6 @@
 #'  
 #' }
 #' 
-#' }
 #' @seealso 
 #'  \code{\link[stringi]{stri_sort}}
 #' @rdname flexsurvjson

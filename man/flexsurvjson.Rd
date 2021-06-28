@@ -75,89 +75,75 @@ DETAILS
 }
 \examples{
 \dontrun{
-if(interactive()){
- #EXAMPLE1
+ #EXAMPLE
  
-libary(MSMplus)
-library(flexsurv)
-head(ebmt)
+ library("MSMplus")
+ library("mstate")
+ library("flexsurv")
+ library("dplyr")
+ library("RJSONIO")
 
+ head(ebmt)
 
-### Let's first define the transition matrix
+ ### Let's first define the transition matrix
+ tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
 
-tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
+ ### We will now create dummy variables for the age categories
+ ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
+ ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
 
-
-### We will now create dummy variables for the age categories
-
-ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
-ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
-
-
-#Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
-
-msebmt <- msprep(data = ebmt, trans = tmat, 
+ #Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
+ msebmt <- msprep(data = ebmt, trans = tmat, 
                  time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
+ 
+ head(msebmt)
 
-head(msebmt)
-
-## Multi-state model analysis: Using flexsurvjson function together with flexsurv package
-
-### Provide time vector
-
-tgrid <- seq(1, 10, by = 1)   
-
-### Provide transition matrix
-
-tmat <- rbind(c(NA, 1, 2), c(NA, NA, 3), c(NA, NA, NA)) 
-
-
-### Run transition specific hazard models: Clock forward approach
-
-
-cfwei.list<-vector(3,mode="list")
-
-for (i in 1:3) {
-  
-  cfwei.list[[i]]<-flexsurvreg(Surv(Tstart,Tstop,status)~age2+age3,subset=(trans==i),
-                               dist="weibull",data=msebmt)
-}
-
-
-
-### Prediction for different covariate patterns (the 3 age categories)
-
-wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
-pat1 <- msebmt[rep(wh1[1], 3), 9:10]
-attr(pat1, "trans") <- tmat
-
-
-wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
-pat2 <- msebmt[rep(wh2[1], 3), 9:10]
-attr(pat2, "trans") <- tmat
-
-wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
-pat3 <- msebmt[rep(wh3[1], 3), 9:10]
-attr(pat3, "trans") <- tmat
-
-
-#We now run the flexsurvjson function to perform the multi-state model analysis using the function 
-#from package flexsurv and the pack the predictions in a json file.
-
-results_cf <- MSMplus::flexsurvjson( model=cfwei.list, vartime=seq(365.25,365.25,by=365.25), qmat=tmat, process="Markov",
-                                   totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
-                                   Mjson=100, variance=FALSE,
-                                   covariates_list=list(pat1,pat2,pat3), 
-                                   jsonpath="~",
-                                   name="predictions_EBMT_flex_fw.json" ) 
-
-
-
-
+ ## Multi-state model analysis: Using flexsurvjson function together with flexsurv package
+ 
+ ### Provide time vector
+ tgrid <- seq(1, 10, by = 1)   
+ 
+ ### Provide transition matrix
+ tmat <- rbind(c(NA, 1, 2), c(NA, NA, 3), c(NA, NA, NA)) 
+ 
+ ### Run transition specific hazard models: Clock forward approach
+ 
+ cfwei.list<-vector(3,mode="list")
+ 
+ for (i in 1:3) {
+   
+   cfwei.list[[i]]<-flexsurvreg(Surv(Tstart,Tstop,status)~age2+age3,subset=(trans==i),
+                                dist="weibull",data=msebmt)
+ }
+ 
+ ### Prediction for different covariate patterns (the 3 age categories)
+ 
+ wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
+ pat1 <- msebmt[rep(wh1[1], 3), 9:10]
+ attr(pat1, "trans") <- tmat
+ 
+ wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
+ pat2 <- msebmt[rep(wh2[1], 3), 9:10]
+ attr(pat2, "trans") <- tmat
+ 
+ wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
+ pat3 <- msebmt[rep(wh3[1], 3), 9:10]
+ attr(pat3, "trans") <- tmat
+ 
+ #We now run the flexsurvjson function to perform the multi-state model analysis using the function 
+ #from package flexsurv and the pack the predictions in a json file.
+ results_cf <- MSMplus::flexsurvjson( model=cfwei.list, vartime=seq(365.25,365.25,by=365.25), qmat=tmat, process="Markov",
+                                    totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
+                                    Mjson=100, variance=FALSE,
+                                    covariates_list=list(pat1,pat2,pat3), 
+                                    jsonpath="~",
+                                    name="predictions_EBMT_flex_fw.json" ) 
+ 
+ 
+ 
  
  }
-}
-}
+ }
 \seealso{
 \code{\link[stringi]{stri_sort}}
 }

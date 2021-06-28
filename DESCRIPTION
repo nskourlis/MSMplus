@@ -57,6 +57,7 @@ Imports:
     imager,
     plotly,
     gridExtra,
-    DT
+    DT,
+    formattable
 Config/testthat/edition: 3
 VignetteBuilder: knitr
