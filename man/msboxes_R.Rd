@@ -62,32 +62,28 @@ DETAILS
 }
 \examples{
 \dontrun{
+
+ #EXAMPLE
  
-  #EXAMPLE
-  
-  library("mstate")
-  library("dplyr")
-  library("RJSONIO")
-  
-  head(ebmt)
-  
-  ###Define transition matrix
-  tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
+ library("mstate")
+ library("dplyr")
+ library("RJSONIO")
+head(ebmt)
+
+tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
+
+ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
+ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
+
+msebmt <- msprep(data = ebmt, trans = tmat, time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
+
+
+results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
+                              xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
+                              tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
+                              jsonpath="~", name="msboxes_EBMT_R.json" ) 
+
+results
  
-  ###We will now create dummy variables for the age categories
-  ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
-  ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
- 
-  ### We can first call function msboxes_R  
-  msebmt <- msprep(data = ebmt, trans = tmat, time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
- 
-  ### Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
-  results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
-                               xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
-                               tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
-                               jsonpath="~", name="msboxes_EBMT_R.json" ) 
- 
- results
-  
 }
 }

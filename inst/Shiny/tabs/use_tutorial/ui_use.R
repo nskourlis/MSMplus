@@ -1,17 +1,14 @@
-
-
-tabPanel(h1("MSMplus") ,#icon = icon("home"),
-#tabPanel( h1("Intro"),
+tabPanel( h1("MSMplus guide"),
           
           fluidRow(                  
             tags$head(
               
-#              tags$style(".checkbox-inline, .radio-inline {
-#    text-align: center;
-#    margin-left: 0px;
-#    margin-right: 0px;
-#    padding: 0px;
-#width: 20%;} "),
+              #              tags$style(".checkbox-inline, .radio-inline {
+              #    text-align: center;
+              #    margin-left: 0px;
+              #    margin-right: 0px;
+              #    padding: 0px;
+              #width: 20%;} "),
               
               tags$style(type = "text/css", ".navbar-nav {
                     display: -webkit-box;
@@ -107,35 +104,35 @@ tabPanel(h1("MSMplus") ,#icon = icon("home"),
               
             ),  
             
-            column(6,style = "text-align: left;",
-    #               h1("Type of loading and rules"),
-                    uiOutput("message_rules1"),
-                    uiOutput("message_rules2"),
-                    uiOutput("to_url1"),
-                    uiOutput("intro_tutorial"),      
-                    uiOutput("to_url2"),
-    #               uiOutput("loadtypeUI"),
-    #               uiOutput("aimtypeUI")
-    #               
-                   
-            ),
-            
-            column(6,
-                   actionButton(inputId = "examplebutton",
-                                label = "Press to see example"),
-                   conditionalPanel(condition=("input.examplebutton%2==0"),
-                                    h3("")
-                   ),
-                   conditionalPanel(condition=("input.examplebutton%2!=0"),
-                                    uiOutput("message_rules3"),
-                                    img(src = "MSM_up_to0_int.PNG")
-                                    ) 
-            #verbatimTextOutput("fileob")
-                   
+            column(12,uiOutput("to_url_backtab"),
+                   tabsetPanel(
+                     tabPanel(h2("Load tab"),
+                              uiOutput("message_use_load_1"),
+                              uiOutput("to_url3"),
+                              uiOutput("message_use_load_2")
+                              
+                     ),
+                     tabPanel(h2("Interpretation tab"),
+                              uiOutput("message_use_Inter"),
+                     ),
+                     tabPanel(h2("MSM structure tab"),
+                              uiOutput("message_use_schema"),
+                     ),
+                     tabPanel(h2("Settings for predictions tab"),           
+                              uiOutput("message_use_settings")
+                     ), 
+                     tabPanel(h2("Tabs for predictions"),           
+                              uiOutput("message_use_predictions")
+                     ),
+                     tabPanel(h2("Extra Info"),
+                              uiOutput("message_use_general"),
+                     )
+#                    tabPanel(h2("Code"),           
+#                             uiOutput("message_csv4")
+#                    )
+                   )
             )
             
             
           )
-          
-          
 )

@@ -10,15 +10,15 @@ tabPanel( h1("Interpretation"),
 
         
             column(2,
-                   h1("Interepretations"),
+                   h1("Interpretations"),
                    "What are the interpretations of measures? ",
                    
                    checkboxGroupInput(inputId = "measures", label = "Measures",
                                       choices =  c("Probability"="prob", "Transition intensity"="trans",
                                                    "Length of stay"="los", 
-                                                    "Differences and ratios"="comp","Extra measures"="extram",
-                                                    "Robustness"="robust"),
-                                      selected= c("prob","trans","los","vis","comp","extram","robust" ))
+                                                    "Differences and ratios"="comp","Extra measures"="extram"),
+                                                  #  "Robustness"="robust"),
+                                      selected= c("prob","trans"))#,"los","vis","comp","extram","robust" ))
                    
                   # "Probability of visiting a state"="vis",
                                       
@@ -45,8 +45,11 @@ tabPanel( h1("Interpretation"),
                    #uiOutput("message_vis"),
                    uiOutput("message_comp"),
                    uiOutput("message_extram"),
-                   uiOutput("message_robust")
-                   
+                   #uiOutput("message_robust"),
+                   uiOutput("msm_bib1"),
+                   uiOutput("to_url_bib1"),
+                   uiOutput("msm_bib2"),
+                   uiOutput("to_url_bib2")
             )
             
             

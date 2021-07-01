@@ -11,7 +11,7 @@ freq_func_total_msm(data_msm, id_msm, timevar = 1, scale_msm = 1, Ntransitions)
 
 \item{id_msm}{PARAM_DESCRIPTION}
 
-\item{timevar}{PARAM_DESCRIPTION}
+\item{timevar}{PARAM_DESCRIPTION, Default: 1}
 
 \item{scale_msm}{PARAM_DESCRIPTION, Default: 1}
 

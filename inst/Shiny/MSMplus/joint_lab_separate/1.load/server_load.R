@@ -7,7 +7,7 @@ output$pageupload <- renderUI({
   
   fluidRow(  
     
-    tags$style(HTML(".shiny-output-error-validation {color: green;}")),
+   # tags$style(HTML(".shiny-output-error-validation {color: green;}")),
     
       tags$style(type="text/css",
                  ".shiny-output-error { visibility: hidden; }",
@@ -53,7 +53,7 @@ output$pageupload <- renderUI({
       tags$style(type="text/css", "select.shiny-bound-input { font-size:20px; height:35px !important;}"),
       tags$style(type="text/css", "input.shiny-bound-input { font-size:20px; height:35px !important;}"),
       tags$style(type="text/css", "shiny-output-error-myClass  { font-size:20px; height:21px;}"),
-      tags$style(HTML(".shiny-output-error-validation {color: green;}" )),
+      tags$style(HTML(".shiny-output-error-validation {color: green !important;;}" )),
       tags$style(type="text/css", "select { max-width: 150px; max-height: 100px;}"),
       tags$style(type="text/css", "textarea { max-width: 150px; max-height: 100px; }"),
       tags$style(type='text/css', ".well { max-width: 200px; max-height: 100px;}"),
@@ -108,10 +108,7 @@ output$pageupload <- renderUI({
     ),
     
     column(6,
-           uiOutput("message"),
-           uiOutput("message2"),
-           uiOutput("message3"),
-           
+           uiOutput("to_url_help"), 
            conditionalPanel(condition="input.loadtype =='json' && input.aimtype =='present' && input.example=='No'",
                             uiOutput("jsonupload") 
            ) , 
@@ -127,7 +124,9 @@ output$pageupload <- renderUI({
            conditionalPanel("input.loadtype=='csv' && input.aimtype=='compare' && input.compare_approach2=='No'",
                             uiOutput("twocsvupload1"),  uiOutput("message5"), uiOutput("twocsvupload2"),   uiOutput("message7"),uiOutput("message9")
            ) ,         
-           
+           uiOutput("message"),
+           uiOutput("message2"),
+           uiOutput("message3")
         
            # uiOutput("message5")
     )
@@ -141,6 +140,16 @@ output$pageupload <- renderUI({
   
   
 })
+
+
+to_url_help <- a("here", href="https://nskbiostatistics.shinyapps.io/supplementary/")
+
+output$to_url_help <- renderUI({
+  
+  tagList("For help in producing the input files, click", to_url_help)
+})
+
+
 
 output$example_present1<- renderUI({
   
@@ -188,10 +197,10 @@ output$example_compare2<- renderUI({
 output$jsonupload <- renderUI({
   
   item_list <- list()
-  item_list[[1]] <- helpText("To derive the msboxes graph, a json file with the information on the states and transitions should be provided. msboxes command provides the json file")
-  item_list[[2]] <- fileInput("json1_pr",  h1("Upload MSM summary information json file"), accept = c(".json"))
-  item_list[[3]] <- helpText("To derive the graphs from the predictions, a json file with the information from the estimations should be provided. mspredict_adjusted command provides those estimates")
-  item_list[[4]] <- div(fileInput("json2",  h1("Upload MSM analysis results json file"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  item_list[[1]] <- helpText("To derive the multi-state graph, a json file with the information on the states and transitions should be provided.",)
+  item_list[[2]] <- fileInput("json1_pr",  h1("Upload summary information json file"), accept = c(".json"))
+  item_list[[3]] <- helpText("To derive the graphs from the predictions, a json file with the analysis results should be provided.")
+  item_list[[4]] <- div(fileInput("json2",  h1("Upload analysis results json file"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
   
   do.call(tagList, item_list)
   
@@ -201,12 +210,12 @@ output$jsonupload <- renderUI({
 output$twojsonupload <- renderUI({
   
   item_list <- list()
-  item_list[[1]] <- helpText("To derive the msboxes graph, a json file with the information on the states and transitions should be provided. msboxes command provides the json file")
-  item_list[[2]] <- fileInput("json1_cp",  h1("Upload MSM summary information json file"), accept = c(".json"))
-  item_list[[3]] <- helpText("To derive the graphs from the predictions, a json file with the information from the estimations should be provided. First approach")
-  item_list[[4]] <- div(fileInput("json2a",  h1("Upload MSM analysis results 1st approach json file"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
-  item_list[[5]] <- helpText("To derive the graphs from the predictions, a json file with the information from the estimations should be provided. Second approach")
-  item_list[[6]] <- div(fileInput("json2b",  h1("Upload MSM analysis results 2nd approach json file"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  item_list[[1]] <- helpText("To derive the multi-state graph, a json file with the information on the states and transitions should be provided.")
+  item_list[[2]] <- fileInput("json1_cp",  h1("Upload summary information json file"), accept = c(".json"))
+  item_list[[3]] <- helpText("To derive the graphs from the predictions, a json file with the analysis results should be provided. 1st approach")
+  item_list[[4]] <- div(fileInput("json2a",  h1("Upload analysis results json file 1st approach"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  item_list[[5]] <- helpText("To derive the graphs from the predictions, a json file with the analysis results should be provided. 2nd approach")
+  item_list[[6]] <- div(fileInput("json2b",  h1("Upload analysis results json file 2nd approach"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
   
   
   do.call(tagList, item_list)
@@ -222,7 +231,7 @@ output$csvupload1 <- renderUI({
   item_list <- list()
   
   item_list[[1]] <- numericInput(inputId="Nstates_pr", label= "Number of states",value=1)
-  item_list[[2]] <- fileInput("csv1_pr",  h1("Upload frequencies csv file (optional) (only comma delimited text files)"), accept = c(".csv"))
+  item_list[[2]] <- fileInput("csv1_pr",  h1("Upload frequencies csv file (optional)"), accept = c(".csv"))
   
   do.call(tagList, item_list)
   
@@ -254,7 +263,7 @@ output$csvupload2 <- renderUI({
                                 paste = FALSE,
                                 copy = FALSE)
   
-  item_list[[3]]<-  fileInput("csv2",  h1("Upload csv of analysis results following the specific naming instructions"), accept = c(".csv"))
+  item_list[[3]]<-  fileInput("csv2",  h1("Upload csv of analysis results (manual preparation)"), accept = c(".csv"))
   
   
   do.call(tagList, item_list)
@@ -267,7 +276,7 @@ output$twocsvupload1 <- renderUI({
   item_list <- list()
   
   item_list[[1]] <- numericInput(inputId="Nstates_cp", label= "Number of states",value=1)
-  item_list[[2]] <- fileInput("csv1_cp",  h1("Upload frequencies csv file (optional) (only comma delimited text files)"), accept = c(".csv"))
+  item_list[[2]] <- fileInput("csv1_cp",  h1("Upload frequencies csv file (optional)"), accept = c(".csv"))
   
   do.call(tagList, item_list)
   
@@ -709,30 +718,26 @@ json2manual<-reactive  ({
 
 output$message<- renderUI ({
   if (input$loadtype=="json"  & input$aimtype=="present") {
-    
-    if  (is.null(input$json1) & input$example=="No") {
-      return("Provide the json file with the msm box details")
-    }
-  }
-  else if (input$loadtype=="json"  & input$aimtype=="compare") {
-    
-    if  (is.null(input$json1) & input$compare_approach=="No") {
-      return("Provide the json file with the msm box details")
+    if (is.null(input$json1_pr) & input$example=="No") {
+      return(p("Warning: Please provide the json file with the multi-state summary information", style = "color:darkorange"))
     }
   }
   else if (input$loadtype=="csv" & input$aimtype=="present") { 
     if (length(which(!is.na(input$tmat_input_pr))==TRUE)==0 & input$example2=="No") {
-      return("Provide transition matrix")
+      return(p("Warning: Please provide transition matrix", style = "color:darkorange"))
     } 
+  }
+  else if (input$loadtype=="json"  & input$aimtype=="compare") {
+    if  (is.null(input$json1_cp) & input$compare_approach=="No") {
+      return(p("Warning: Please provide the json file with the multi-state summary information", style = "color:darkorange"))
+    }
   }
   else if (input$loadtype=="csv" & input$aimtype=="compare") {
     if ( length(which(!is.na(input$tmat_input_cp))==TRUE)==0 & input$compare_approach2=="No") {
-      return("Provide transition matrix")
+      return(p("Warning: Please provide transition matrix", style = "color:darkorange"))
     }
   }
-  else  {
-    return("")
-  }
+  else  {return("")}
   
 })
 
@@ -740,23 +745,23 @@ output$message<- renderUI ({
 output$message2<- renderUI ({
   if (input$loadtype=="json" & input$aimtype=="present") {
     if (is.null(input$json2) & input$example=="No") {
-      return("Provide the json file with the predictions")
+      return(p("Warning: Please provide the json file with the predictions", style = "color:darkorange"))
     }
   }
   else if (input$loadtype=="csv" & input$aimtype=="present" ) {
     if (is.null(input$csv2) & input$example2=="No") {
-      return("Provide the csv file with the predictions")
+      return(p("Warning: Please provide the csv file with the predictions", style = "color:darkorange"))
     }
   }
   
   else if (input$loadtype=="json" & input$aimtype=="compare" ) { 
     if ((is.null(input$json2a) | is.null(input$json2b))   & input$compare_approach=="No") {
-      return("Provide the json files with the predictions from the two approaches")
-    }
+      return(p("Warning: Please provide the json file with the predictions from the two approaches", style = "color:darkorange"))
+          }
   }
   else if (input$loadtype=="csv" & input$aimtype=="compare" ) { 
     if ((is.null(input$csv2a)| is.null(input$csv2b))  & input$compare_approach2=="No") {
-      return("Provide the csv files with the predictions from the two approaches")
+      return(p("Warning: Please provide the csv file with the predictions from the two approaches", style = "color:darkorange"))
     } 
   }
   else {return("")}
@@ -770,7 +775,13 @@ output$message3<- renderUI ({
       message = p(withMathJax(
         helpText(strong('Example dataset: EBMT')),
         
-        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients who received bone marrow transplantation.\nThe three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\nThe covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old .")
+        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients transplanted at the EBMT between 1995 and 1998."),
+        helpText(HTML("<ul><li>The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.</li></ul>") ),
+        helpText(HTML("<ul><li>There are 3 possible transitions: From Transplant to Platelet recovery (Transition 1), from Transplant directly to Relapse/Death (Transition 2) and from a state of Platelet Recovery to Relapse/Death (Transition 3).</li></ul>") ),
+        helpText(HTML("<ul><li>The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old.</li></ul>") ),
+        helpText("The graph of this multi-state setting example will be automatically displayed on the'Model Structure' tab.
+                 Moreover, the results of a multi-state analysis using flexible parametric models to model each transition will automatically be uploaded to the app so that the user can view
+                 the interactive graphs of all the estimated measures of interest.")
       ))
       message
     }
@@ -780,8 +791,12 @@ output$message3<- renderUI ({
       message = p(withMathJax(
         helpText(strong('Example dataset: EBMT')),
         
-        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients who received bone marrow transplantation.\nThe three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\nThe covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old .")
-      ))
+        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients transplanted at the EBMT between 1995 and 1998.\n
+                 The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\n There are 3 possible transitions: 
+        From Transplant to Platelet recovery (Transition 1), from Transplant directly to Relapse/Death (Transition 2) and from a state of Platelet Recovery to Relapse/Death (Transition 3).\n
+      The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old. The graph of this multi-state setting example will be automatically displayed on the'Model Structure' tab.
+                    Moreover, the results of a multi-state analysis using flexible parametric models to model each transition will automatically be uploaded to the app so that the user can view
+                    the interactive graphs of all the estimated measures of interest.")      ))
       message
     }
   }
@@ -790,8 +805,12 @@ output$message3<- renderUI ({
       message = p(withMathJax(
         helpText(strong('Example dataset: EBMT')),
         
-        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients who received bone marrow transplantation.\nThe three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\nThe covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old .")
-      ))
+        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients transplanted at the EBMT between 1995 and 1998.\n
+                 The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\n There are 3 possible transitions: 
+        From Transplant to Platelet recovery (Transition 1), from Transplant directly to Relapse/Death (Transition 2) and from a state of Platelet Recovery to Relapse/Death (Transition 3).\n
+      The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old. The graph of this multi-state setting example will be automatically displayed on the'Model Structure' tab.
+                    Moreover, the results of a multi-state analysis using flexible parametric models to model each transition will automatically be uploaded to the app so that the user can view
+                    the interactive graphs of all the estimated measures of interest.")      ))
       message
     }
   }
@@ -800,8 +819,12 @@ output$message3<- renderUI ({
       message = p(withMathJax(
         helpText(strong('Example dataset: EBMT')),
         
-        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients who received bone marrow transplantation.\nThe three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\nThe covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old .")
-      ))
+        helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patientsransplanted at the EBMT between 1995 and 1998.\n
+                 The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\n There are 3 possible transitions: 
+        From Transplant to Platelet recovery (Transition 1), from Transplant directly to Relapse/Death (Transition 2) and from a state of Platelet Recovery to Relapse/Death.\n
+      The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old. The graph of this multi-state setting example will be automatically displayed on the'Model Structure' tab.
+                    Moreover, the results of a multi-state analysis using flexible parametric models to model each transition will automatically be uploaded to the app so that the user can view
+                    the interactive graphs of all the estimated measures of interest.")      ))
       message
     }
   }
@@ -907,16 +930,16 @@ output$message7<-   renderUI ({
 
 output$message8<-   renderUI ({ 
   
-  p_def = withMathJax( helpText('If issues when uploading the results csv file persist, check a) That you have used . 
-                                as the decimal pointer and b) that you have put NA if whenever a variable has a missing value')
+  p_def = withMathJax( helpText('If there are issues when uploading the results csv file, check a) That you have used "." 
+                                as the decimal pointer and b) that you have put NA when a variable has a missing value.')
   )
   p_def
 })
 
 output$message9<-   renderUI ({ 
   
-  p_def = withMathJax( helpText('If issues when uploading the results csv file persist, check a) That you have used . 
-                                as the decimal pointer and b) that you have put NA if whenever a variable has a missing value')
+  p_def = withMathJax( helpText('If there are issues when uploading the results csv file, check a) That you have used "." 
+                                as the decimal pointer and b) that you have put NA when a variable has a missing value.')
   )
   p_def
 })

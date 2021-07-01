@@ -1,0 +1,12 @@
+name: tabs
+title: tabs
+username:
+account: nskbiostatistics
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3097637
+bundleId: 4773726
+url: https://nskbiostatistics.shinyapps.io/tabs/
+when: 1625069941.45367
+asMultiple: FALSE
+asStatic: FALSE

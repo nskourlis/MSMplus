@@ -1,3 +1,41 @@
+
+output$msm_bib1 <- renderUI({
+  
+  message = p(withMathJax(
+    helpText(strong('Bibliography links')),
+    helpText("A publication that serves as a useful introductory tutorial in the area of Competing risks and Multi-state models is provided  at the following link:")
+  )
+  )
+  return(list(message ))
+})  
+
+
+to_url_bib1 <- a("Tutorial in biostatistics: Competing risks and multi-state models", href="https://onlinelibrary.wiley.com/doi/10.1002/sim.2712")
+
+output$to_url_bib1 <- renderUI({
+  
+  tagList("Putter at al:", to_url_bib1)
+})
+
+
+output$msm_bib2 <- renderUI({
+  
+  message = p(withMathJax(
+    helpText("A publication where clinically useful multi-state measures are estimated with the use of flexible parametric models, is provided at the following link:")
+  )
+  )
+  return(list(message ))
+})  
+
+
+to_url_bib2 <- a("Parametric multistate survival models: Flexible modelling allowing transition-specific distributions with application to estimating clinically useful measures of effect differences", href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.7448")
+
+output$to_url_bib2 <- renderUI({
+  
+  tagList("Michael J. Crowther, Paul C. Lambert:", to_url_bib2)
+})
+
+
 output$interpret<-renderUI({ 
   
  intro = withMathJax(
@@ -61,7 +99,7 @@ output$message_trans<- renderUI ({
       helpText('For the stochastic process \\(Y(t)\\), there are \\(K\\) potential transitions \\( (k=1,.,K)\\).
       If the k-th transition is the transition between state \\(a\\) and \\(b\\) \\(a\\rightarrow b)\\) the \\(k-th\\) transition intensity
       is defined as the derivative of the (\\(a\\rightarrow b)\\) transition probability):'),
-      helpText("$$q_{k}(t)=\\lim_{\\delta t\\to0}\\frac{P(Y(t+\\delta t)=b_{k}| Y(t)=a_{k}, H_{s-})}{\\delta t}$$"),
+      helpText("$$q_{k}(t)=\\lim_{\\delta t\\to0}\\frac{P(Y(t+\\delta t)=b| Y(t)=a, H_{s-})}{\\delta t}$$"),
       helpText("Which is the instantaneous rate of moving from \\(a\\) to \\(b\\), at time \\(t\\) given that you were in state \\(a\\) at time \\(s\\) and conditional on the history of the process up to time \\(s\\).")
       )
     
@@ -95,10 +133,10 @@ output$message_los<- renderUI ({
       helpText('The residual restricted expected length of stay (or length of stay for simplicity) in state \\(a\\) during the time
        period from \\(s\\) to \\( \\tau  \\) , conditional on the patient being in state \\(a\\) (non-absorbing) at time \\(s\\),  is defined as'),
       helpText("$$e_{ab}(s)=\\int_{s}^{\\tau} P(Y(u)=b| Y(s)=a, H_{s-}) du$$"),
-      helpText("which defines the amount of time spent in state \\(b\\), starting in state \\(a\\) at time \\(s\\), up until time \\(\\tau\\) . If \\(\\tau=\\infty\\) , and state \\(a=b\\) is a healthy state and all possible next states are deaths, then this equation represents life expectancy.")
+      helpText("which defines the amount of time spent in state \\(b\\), starting in state \\(a\\) at time \\(s\\), up until time \\(\\tau\\) . If \\(\\tau=\\infty\\) , and state \\(a=b\\) is a living state and all possible next states are deaths, then this equation represents life expectancy.")
     )
     
-    los_ex  =  helpText("EBMT example: For time= 5 years since transplantation, individuals <20 years old at transplantation are expected to have stayed 1.9 years in the recovery state (state 2) while individuals >40 years old at transplantation are expected to have stayed 1.6 years in the recovery state.")
+    los_ex  =  helpText("EBMT example: For time= 5 years since transplantation, individuals <20 years old at transplantation are expected to stay 1.9 years in the recovery state (state 2) while individuals >40 years old at transplantation are expected to have stayed 1.6 years in the recovery state.")
     
   } 
   else if (!los) {los_def=NULL ; los_ex=NULL}
@@ -158,7 +196,7 @@ output$message_comp<- renderUI ({
       helpText("In order to illustrate the impact of different covariate levels on the measures of interest, we can derive differences and ratios between
       the covariate patterns of interest. Given covariate patterns \\(X_{1}\\) and \\(X_{2}\\) "),
       helpText('Example for differences in probabilities: $$ P(Y(t)=b| Y(s)=a, H_{s-},X_{1}) - P(Y(t)=b| Y(s)=a, H_{s-},X_{2})$$'),
-      helpText('Example for ratios of length of stay     : $$ \\frac{e_{ab}(s,(X_{1})}{e_{ab}(s,(X_{2})}= \\frac{\\int_{s}^{\\tau} P(Y(u)=b| Y(s)=a, H_{s-},X_{1}) du}{\\int_{s}^{\\tau} P(Y(u)=b| Y(s)=a, H_{s-},X_{2}) du} $$')
+      helpText('Example for ratios of length of stay     : $$ \\frac{e_{ab}(s|X_{1})}{e_{ab}(s|X_{2})}= \\frac{\\int_{s}^{\\tau} P(Y(u)=b| Y(s)=a, H_{s-},X_{1}) du}{\\int_{s}^{\\tau} P(Y(u)=b| Y(s)=a, H_{s-},X_{2}) du} $$')
       
     )
     
@@ -199,10 +237,10 @@ output$message_comp<- renderUI ({
              
      )
      
-     extram_ex  = withMathJax( helpText("If the mean sojourn time of state a = 1 year, that means that each time an individual visits state a, they spend an average of 1 year in that state."),
-                  helpText("If the expected number of visits for state a = 2, that means that an average individual is expected to visit state 2 times."),
+     extram_ex  = withMathJax( helpText("If the expected single period of occupancy of state a = 1 year, that means that each time an individual visits state a, they spend an average of 1 year in that state."),
+                  helpText("If the expected number of visits for state a = 2, that means that an individual is expected to visit state 2 times."),
                   helpText("If the probability that an individual next move from state a to state b is 0.5 means that the probability that an individual who is presently at state a will next move at state b is 50%."),
-                  helpText("If the first passage time to state b is 2 years, that means, that for an individual with a specific covariate pattern, the estimated first time that he/she will reach state b is 2 years.")
+                  helpText("If the first passage time to state b is 2 years, that means, that for an individual, the estimated first time that he/she will reach state b is 2 years.")
      ) 
      
      } 

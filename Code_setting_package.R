@@ -68,11 +68,12 @@ excel_input_file_ex <-  read.csv("C:/Users/niksko/Desktop/mstate4/datasets/csv/c
 usethis::use_data(excel_input_file_ex, overwrite = TRUE)
 
 pacman::p_load(sinew)
-sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/msboxes_R.R")
-sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/msmjson.R")
-sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/flexjson.R")
-sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/mstatejson.R")
-sinew::makeOxyFile("C:/Users/ilias/Desktop/MSMplus/R/runMSMplus.R")
+sinew::makeOxyFile("C:/Users/niksko/Desktop/MSMplus/R/msboxes_R.R")
+sinew::makeOxyFile("C:/Users/niksko/Desktop/MSMplus/R/msmjson.R")
+sinew::makeOxyFile("C:/Users/niksko/Desktop/MSMplus/R/flexsurvjson.R")
+sinew::makeOxyFile("C:/Users/niksko/Desktop/MSMplus/R/mstatejson.R")
+sinew::makeOxyFile("C:/Users/niksko/Desktop/MSMplus/R/runMSMplus_sup.R")
+sinew::makeOxyFile("C:/Users/niksko/Desktop/MSMplus/R/runMSMplus_help.R")
 
 
 #cav data

@@ -2,10 +2,9 @@
 title: "MSMplus"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{MSMplus_application_input}
+  %\VignetteIndexEntry{MSMplus_application_input1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
-highlight: tango
 ---
 
 

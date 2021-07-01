@@ -272,10 +272,10 @@ output$is_showbox <- renderUI({
   
   item_list <- list()  
   
-  item_list[[1]] <-radioButtons("showbox2", "Show state and transition names MSM",
+  item_list[[1]] <-radioButtons("showbox2", "State and transition names",
                  choices = list("No" = "No","Yes" = "Yes"), selected = "No")
   
-  item_list[[2]] <-radioButtons("showbox", "Show customisation adjustments for MSM",
+  item_list[[2]] <-radioButtons("showbox", "Customisation adjustments",
                choices = list("No" = "No","Yes" = "Yes"), selected = "No")
   
  # item_list[[3]] <- radioButtons("showbox3", "Choose scale and resolution of graph",
@@ -348,7 +348,7 @@ output$network1 <- renderUI({
 
 output$boxtitle <- renderUI({
   
-  if (is.null((myjson1())))  return("Provide msboxes json file")
+  if (is.null((myjson1())))  return(p("Warning: You have not provided multi-state summary information. The multi-state graph will not be formed.", style = "color:darkorange"))
   
   # create some text inputs
   item_list <- list()

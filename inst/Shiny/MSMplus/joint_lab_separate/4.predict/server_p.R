@@ -1472,29 +1472,33 @@ output$statecov <- renderPrint({
 
 output$afterstacked <- renderPrint({
   
-  helpText("The transition probabilities for each timepoint are given stacked. They will always sum to 1 ") 
+  helpText("The stacked plot above depicts the probability of transitioning from the selected starting state towards the other states (or remaining in the same state) across time over the different
+           covariate patterns (displayed as a grid or frames). The sum of the probabilities will sum to 1 at each time point.") 
   
 })
 
 output$afterstackedbp <- renderPrint({
   
-  helpText("The transition probabilities for each covariate pattern are given stacked over states. They will always sum to 1. 
-           The estimates across time are given through a slide bar underneath the graph.") 
+  helpText("The graph above has a number of stacked bar plots equal to the number of covariate patterns we have predictions for.
+            Each stacked bar depicts the probabilities of transitioning from the  conditional starting state specified at the 'Settings' tab towards the other states (or remaining in the same state) for the specific covariate pattern.
+            The slider input underneath the graph allows the user to observe the change of these probabilities as a function of time (series of snapshots resembling a video).
+            ") 
   
 })
 
 output$aftermsm <- renderPrint({
   
-  helpText("The transition probabilities for each covariate pattern over states, depicted in boxes accordingly 
-           to the multi-state graph. The estimates across time are given through a slide bar underneath the graph.") 
+  helpText("The illustration above has the same structure of the multi-state graph created at the 'Model Structure' tab. In each state-box there is a number of bars that are equal to the number of covariate patterns
+           we have predictions for. Each bar depicts the probability of transitioning from the conditional starting state specified at the 'Settings' tab towards the current box-state.
+            The slider input at the right the graph allows the user to observe the change of these probabilities as a function of time") 
   
   
 })
 
 output$afterbp <- renderPrint({
   
-  helpText("The transition probabilities for each covariate pattern depicted as bar plots. The estimates for diffent
-           states are presented either in frames or grids. The estimates across time are given through a slide bar beside the graph.") 
+  helpText("The bar plots above depict the probability of transitioning from the selected starting state towards the other states (or remaining in the same state) 
+           for each covariate pattern (different bars) over the different states (in frames or grid) and across time (slider input on the left).") 
   
 })
 
