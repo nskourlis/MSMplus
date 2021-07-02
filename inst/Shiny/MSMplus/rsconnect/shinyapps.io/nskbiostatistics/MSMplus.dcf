@@ -1,0 +1,12 @@
+name: MSMplus
+title: MSMplus
+username:
+account: nskbiostatistics
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3272664
+bundleId: 4773719
+url: https://nskbiostatistics.shinyapps.io/MSMplus/
+when: 1625069877.3174
+asMultiple: FALSE
+asStatic: FALSE

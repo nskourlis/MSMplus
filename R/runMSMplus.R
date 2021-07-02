@@ -17,6 +17,11 @@
 #' @export 
 #' @importFrom shiny runApp
 runMSMplus <- function() {
+  
+  #plotly_username="niksko",plotly_api_key="32EnvMNc76IU4ybqXMDL"
+ # shiny::shinyOptions(plotly_username1 = plotly_username)
+  #shiny::shinyOptions(plotly_api_key1 = plotly_api_key)
+  
   appDir <- system.file("Shiny", "MSMplus", package = "MSMplus")
   if (appDir == "") {
     stop("Could not find example directory. Try re-installing `mypackage`.", call. = FALSE)
@@ -24,3 +29,5 @@ runMSMplus <- function() {
   
   shiny::runApp(appDir, display.mode = "normal")
 }
+
+
