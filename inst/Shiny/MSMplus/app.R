@@ -145,45 +145,62 @@ appCSS <- "
 "
 
 
-ui <- navbarPage(id="tabs_start", h1("MSMplus"),  fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css", 
-                 
-                 
-                 
-                 #tags$style(css),
-                 #inlineCSS(css),
-                 
-                 source( "joint_lab_separate/0b.load_options/ui_load_options.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/5.interpretation/ui_interpret.R", local=T)$value,
-                 
-                 
-                 source( "joint_lab_separate/1.load/ui_load.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/2.box/ui_box.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/3.main_input/ui_input.R", local=T)$value,
-                 
-                 
-                 source( "joint_lab_separate/4.predict/ui_p.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/4.predict/ui_h.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/4.predict/ui_los.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/4.predict/ui_visit.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/4.predict/ui_user.R", local=T)$value,
-                 
-                 source( "joint_lab_separate/4.predict/ui_extra.R", local=T)$value
-                 
-                 
+
+jscode <- "shinyjs.refresh = function() { location.reload(); }"
+ui = tagList(
+  useShinyjs(),
+  extendShinyjs(text = jscode, functions = "refresh"),
+  navbarPage(id="tabs_start", fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css",
+             "",
+             # blank title
+             # Font Awesome icon
+             
+             
+             #id="tabs_start", h1("MSMplus"),  fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css", 
+             
+             
+             
+             #tags$style(css),
+             #inlineCSS(css),
+             
+             source( "joint_lab_separate/0b.load_options/ui_load_options.R", local=T)$value,
+             
+             source( "joint_lab_separate/5.interpretation/ui_interpret.R", local=T)$value,
+             
+             
+             source( "joint_lab_separate/1.load/ui_load.R", local=T)$value,
+             
+             source( "joint_lab_separate/2.box/ui_box.R", local=T)$value,
+             
+             source( "joint_lab_separate/3.main_input/ui_input.R", local=T)$value,
+             
+             
+             source( "joint_lab_separate/4.predict/ui_p.R", local=T)$value,
+             
+             source( "joint_lab_separate/4.predict/ui_h.R", local=T)$value,
+             
+             source( "joint_lab_separate/4.predict/ui_los.R", local=T)$value,
+             
+             source( "joint_lab_separate/4.predict/ui_visit.R", local=T)$value,
+             
+             source( "joint_lab_separate/4.predict/ui_user.R", local=T)$value,
+             
+             source( "joint_lab_separate/4.predict/ui_extra.R", local=T)$value,
+             
+             tabPanel(title = h1(""), value = "refresh",icon = icon("refresh"))
+             
+             
+  )
+  
 )
-
-
 
 server <- function(input, output, session) {
   
-  
+  observe({
+    if (input$tabs_start == "refresh") {
+      js$refresh();
+    }
+  })
   
   
   source( "joint_lab_separate/0b.load_options/server_load_options.R", local=T)$value
