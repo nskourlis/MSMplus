@@ -395,21 +395,38 @@ output$shouldloadnetwork <- renderUI({
 
 output$down <- downloadHandler(
   
-  filename= function() {
-    paste(paste0("MSM","_up_to",input$uptime),"png", sep=".") 
-  },
-  content= function(file) {
+ # filename= function() {
+ #   paste(paste0("MSM","_up_to",input$uptime),"png", sep=".") 
+ # },
+ # content= function(file) {
+    
+    
+    
+    filename = function(){paste(paste0("MSM","_up_to",input$uptime,"_network"),'pdf',sep='.')},
+    content = function(file){
+      
+      cairo_pdf(filename = file,
+                width = 12, height =8, pointsize = 12, family = "sans", bg = "transparent",
+                antialias = "subpixel",fallback_resolution = 600)
+      
+      
+      contentType = "application/pdf"  
+      
+      
+ 
+    
+    
     #if (input$save=="png")
     heightbox= 800#*input$figscalebox
     widthbox=  800#*input$figscalebox
-    png(file, width = heightbox, height = heightbox, units = "px")#, res=input$resbox)
+    #png(file, width = heightbox, height = heightbox, units = "px")#, res=input$resbox)
     #else pdf(file, width = 700, height = 700, units = "px")
     
     ntransitions=myjson1()$Ntransitions
     nstates= myjson1()$Nstates
     xvaluesb=labels_x()  #+boxwidth/2
     yvaluesb=labels_y()  #-boxheight/2
-    boxes=msboxes_R_nofreq_inner(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
+    boxes=msboxes_R_nofreq(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
     #Read through json from msboxes or through a new function 
     x1=boxes$arrows$x1
     y1=boxes$arrows$y1
@@ -426,7 +443,7 @@ output$down <- downloadHandler(
     
     plotit<-function(){
       plot(c(0, 1), c(0, 1), type = "n", ylab='',xlab='', xaxt='n', yaxt='n', pch=30)
-      title(main = input$title,  line = -1, cex.main =input$cex)
+      title(main = input$title,  line = -2, cex.main =input$cex)
       text(0.05, 1, paste0("At time"," ",input$uptime),cex = input$cex)
       ### Call the box function
       recttext(xcenter=xvaluesb, ycenter=yvaluesb, 
@@ -466,10 +483,15 @@ output$down <- downloadHandler(
       
       
     } 
+    
+    
+    
     z.plot1<-function(){plotit()}
     par(mar=c(0, 0, 0, 0)) 
     p=z.plot1()
     dev.off()
+    
+    
   }
 )   
 
@@ -480,6 +502,8 @@ output$downnetwork <- downloadHandler(
     paste(paste0("MSM","_up_to",input$uptime,"_network"),"html", sep=".") 
   },
   content= function(file) {
+    
+    
     #if (input$save=="png")
     #png(file, width = 700, height = 700, units = "px")
     #else pdf(file, width = 700, height = 700, units = "px")
@@ -844,7 +868,7 @@ output$msm_scheme_interactive <- renderPlot ({
   xvaluesb=labels_x()  #+boxwidth/2
   yvaluesb=labels_y()  #-boxheight/2
   
-  boxes=msboxes_R_nofreq_inner(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
+  boxes=msboxes_R_nofreq(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
   
   
   #Read through json from msboxes or through a new function 
@@ -872,7 +896,7 @@ output$msm_scheme_interactive <- renderPlot ({
     plotit<-function(){
       
       plot(c(0, 1), c(0, 1), type = "n", ylab='',xlab='', xaxt='n', yaxt='n', pch=30)
-      title(main = input$title,  line = -1, cex.main =input$cex)
+      title(main = input$title,  line = -2, cex.main =input$cex)
       #text(0.05, 1, paste0("At time"," ",input$uptime),cex = input$cex)
       ### Call the box function
       recttext(xcenter=xvaluesb, ycenter=yvaluesb, 
@@ -898,7 +922,7 @@ output$msm_scheme_interactive <- renderPlot ({
     ###################################################################################
     plotit<-function(){
       plot(c(0, 1), c(0, 1), type = "n", ylab='',xlab='', xaxt='n', yaxt='n', pch=30)
-      title(main = input$title,  line = -1, cex.main =input$cex)
+      title(main = input$title,  line = -2, cex.main =input$cex)
       text(0.05, 1, paste0("At time"," ",input$uptime),cex = input$cex)
       ### Call the box function
       recttext(xcenter=xvaluesb, ycenter=yvaluesb, 

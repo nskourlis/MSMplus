@@ -76,7 +76,7 @@ output$pageupload <- renderUI({
     
     
     
-    column(6,
+    column(6,useShinyjs(),
            h1("Upload datasets"),
            
            radioButtons(inputId="loadtype", label= "File type (csv or json)",
@@ -101,6 +101,9 @@ output$pageupload <- renderUI({
            conditionalPanel("input.loadtype=='csv' && input.aimtype=='compare'",
                             uiOutput("example_compare2")
            )
+          #actionButton("hideTab", "Show settings tab")
+           #a(id = "toggleSettingstab", "Show/hide Settings tab"),
+          # shinyjs::onclick("toggleSettingstab", shinyjs::toggle(id = "mytab_set", anim = TRUE))
            
            
            
@@ -126,7 +129,8 @@ output$pageupload <- renderUI({
            ) ,         
            uiOutput("message"),
            uiOutput("message2"),
-           uiOutput("message3")
+           uiOutput("message3"),
+           uiOutput("message_rules_grey")
         
            # uiOutput("message5")
     )
@@ -140,6 +144,7 @@ output$pageupload <- renderUI({
   
   
 })
+
 
 
 to_url_help <- a("here", href="https://nskbiostatistics.shinyapps.io/supplementary/")

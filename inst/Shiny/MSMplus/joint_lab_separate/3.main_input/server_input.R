@@ -1,3 +1,4 @@
+
 #### Hide and show colour options ####
 timerinput <- reactiveVal(1.5)
 
@@ -105,11 +106,13 @@ output$pageinput1 <- renderUI({
 
              useShinyjs(),
              uiOutput("select")
+             #verbatimTextOutput("fileob")
       ),
       column(9,
              useShinyjs(),
              uiOutput("includecov"),
-             uiOutput("selectcov")
+             uiOutput("selectcov"), 
+             uiOutput("message_input")
       )
     )
 })
@@ -124,8 +127,8 @@ output$pageinput2 <- renderUI({
     ),
     column(2,
            useShinyjs(),
-           uiOutput("is_smooth"),
-           verbatimTextOutput("fileob")
+           uiOutput("is_smooth")
+           
            ),
     column(2,
            useShinyjs(),
@@ -177,7 +180,7 @@ output$is_smooth<- renderUI ({
 output$is_textinput<- renderUI ({
  # if (is.null(myjson2())) return()
   
-  radioButtons("istext", "Choose size and color of labels",
+  radioButtons("istext", "Choose size of labels and graphs",
                choices = list("No" = "No", "Yes" = "Yes"), selected = "No")
 })
 
@@ -706,14 +709,30 @@ output$selectcov<- renderUI ({
                                              selected = myjson1_5()$atlist[-1] )
     }
     
-    else return("You have included only one covariate pattern in your analysis")
+    if (length(myjson1_5()$atlist)==1) {return("You have included only one covariate pattern in your analysis")}
   }
   do.call(tagList, item_list)
   
 })
 
 
+output$message_input<- renderUI ({
+  
+  if (length(input$selectcov)!=0) {message=""}
+  if (length(input$selectcov)==0 & input$includecov=="Yes") {
+  message = withMathJax(
 
+    helpText(p("Warning: For the visualization of the results for a single covariate pattern, 
+               please provide an input file with the results from a single covariate pattern.", style = "color:darkorange")),
+    helpText(p("Select a second covariate pattern otherwise the following tabs will remain inactive", style = "color:darkorange"))
+  )
+  }
+  
+  message
+  
+  return(list(message ))
+  
+})
 
 
 
@@ -726,6 +745,7 @@ covselect_char<- reactive ({
   )
   
   final_list=vector()
+  
   
   
   myList<- input[['selectcov']]
@@ -749,10 +769,18 @@ covselect<- reactive ({
   
   # else if (!is.null(input$selectcov)) {
   
-  for (i in 1:length(covselect_char())) {
-    tonumber[i]= which(myjson1_5()$atlist==covselect_char()[i])
+  
+  if (!is.null(covselect_char())) {
+    for (i in 1:length(covselect_char())) {
+      tonumber[i]= which(myjson1_5()$atlist==covselect_char()[i])
+    }
   }
-  #}
+  
+  if (is.null(covselect_char())) {
+
+      tonumber=NULL
+    
+  }
   tonumber
 })
 
@@ -770,7 +798,28 @@ covselectcontr<- reactive ({
     tonumber=as.integer(tonumber)
   }
   
+  if (length(covselect_char())==0) {
+    
+    tonumber=NULL
+    
+  }
+  
   tonumber
 })
 
-
+  selectend_h<-reactive ({
+    
+    if (is.null(myjson1_5() )) return()
+    
+    cond_select<-which(startsWith(names(myjson1_5()), paste0('Haz_',input$select))  & 
+                         !startsWith(names(myjson1_5()), 'Haz_diff' ) &  !startsWith(names(myjson1_5()), 'Haz_ratio' ) &
+                         !endsWith(names(myjson1_5()), 'uci' ) & !endsWith(names(myjson1_5()), 'lci') )
+    
+    names=names(myjson1_5()[cond_select])
+    
+    v=vector()
+    for (i in 1:length(cond_select)) {
+      v[i]=sub("Haz_[[:digit:]]+","",names[i])  
+    }
+    v
+  })

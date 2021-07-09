@@ -1,5 +1,31 @@
 
 
+observeEvent(input$json2, {
+  if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))==0  ) {
+    js$disableTab("mytab_h")
+    
+  } 
+}) 
+
+observeEvent(input$csv2, {
+  if( length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Haz')))==0 ) {
+    js$disableTab("mytab_h")
+    
+  } 
+}) 
+
+
+
+observeEvent(input$aimtype, {
+  if( input$aimtype=="compare" ) {
+    js$disableTab("mytab_h")
+  } 
+  else if( input$aimtype=="present" & value1()>0) {
+    js$enableTab("mytab_h")
+  } 
+  
+}) 
+
 
 ###### Show and hide transition names option, and tick inputs ####
 
@@ -322,31 +348,7 @@ radioButtons("showtickh", "Show axis tick options",
 
 
 
-observeEvent(input$json2, {
-  if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))==0  ) {
-    js$disableTab("mytab_h")
-    
-  } 
-}) 
 
-observeEvent(input$csv2, {
-  if( length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Haz')))==0 ) {
-    js$disableTab("mytab_h")
-    
-  } 
-}) 
-
-
-
-observeEvent(input$aimtype, {
-  if( input$aimtype=="compare" ) {
-    js$disableTab("mytab_h")
-  } 
-  else if( input$aimtype=="present" ) {
-    js$enableTab("mytab_h")
-  } 
-  
-}) 
 ##############################################################################
 ##  Transition input ########################################################
 ##############################################################################

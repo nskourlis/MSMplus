@@ -54,6 +54,9 @@ observeEvent(input$aimtype, {
   if( input$aimtype=="compare" ) {
     js$disableTab("mytab_extra")
   } 
+  else if( input$aimtype=="present" & value1()>0) {
+    js$enableTab("mytab_extra")
+  } 
 }) 
 
 #observeEvent(input$json2, {

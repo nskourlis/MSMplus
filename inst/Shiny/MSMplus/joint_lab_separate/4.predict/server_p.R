@@ -9,7 +9,6 @@
 observeEvent(input$json2, {
   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'P')))==0  ) {
     js$disableTab("mytab_p")
-    
   } 
 }) 
 
@@ -24,6 +23,36 @@ observeEvent(input$csv2, {
     
   } 
 }) 
+
+
+
+#observeEvent(input$example, {
+#  #  x=0
+#  #  if(input$tab_start=="mytab_set") {
+#  #    x=x+1
+#  #  }
+#  #  else if(input$tabs_start!="mytab_set") { 
+#  #  x=x+0
+#  # } 
+#  
+#  #  if(x==0) {
+#  if( input$example=="Yes" ) {
+#    js$disableTab("mytab_p")
+#  }
+#}) 
+#
+
+
+#output$messagep1<- renderUI ({
+#  if (input$loadtype=="json" & input$aimtype=="present") {
+#      return(p("Warning: Please provide the json file with the predictions", style = "color:darkorange"))
+#    
+#  }
+#  else {return("")}
+#})
+#
+#answer0 <- reactive({0})      # rv <- reactiveValues(value = 0)
+
 
 
 ##### Hide or show ticks axis ####
@@ -128,7 +157,6 @@ output$pagep <- renderUI({
                                 || input.tabsp =='#panel8p' ||input.tabsp =='#panel9p'",
                                 uiOutput("confp")
                )  ,   
-            
         ),
         
         column(2,
@@ -259,7 +287,6 @@ output$pagep <- renderUI({
                                 || input.tabsp =='#panel9p' ||input.tabsp =='#panel9p'",
                                 uiOutput("confp")
                )  ,   
-               
         ),
         
         column(2,
@@ -387,8 +414,7 @@ output$pagep <- renderUI({
                                 || input.tabsp =='#panel9p' ||input.tabsp =='#panel9p'",
                                 uiOutput("confp")
                )  ,   
-               
-               
+
         ),
         
         column(2,
@@ -516,8 +542,6 @@ output$pagep <- renderUI({
                                 || input.tabsp =='#panel9p' ||input.tabsp =='#panel9p'",
                                 uiOutput("confp")
                )  ,   
-               
-               
         ),
         
         column(2,
@@ -2353,7 +2377,18 @@ output$probability_bars_stacked <- renderPlotly ({datap6_re() })
 output$downplotp6 <- downloadHandler(
   filename = function(){paste("p6",'.png',sep='')},
   content = function(file){
-    plotly_IMAGE( datap6_re(),width = 3000, height = 3000, format = "png", scale = 1,  out_file = file )
+  plotly_IMAGE( datap6_re(),width = 3000, height = 3000, format = "png", scale = 1,  out_file = file )
+  
+    #  filename = function(){paste("p6",'pdf',sep='.')},
+  #  content = function(file){
+  #    
+  #    cairo_pdf(filename = file,
+  #              width = 12, height =8, pointsize = 12, family = "sans", bg = "transparent",
+  #              antialias = "subpixel",fallback_resolution = 600)
+  #    z.plot2<-function(){datap6_re() }
+  #    par(mar=c(0, 0, 0, 0)) 
+  #    p=z.plot2()
+  #    dev.off()
   }
 )
 
@@ -2382,7 +2417,7 @@ else {
   xvaluesb=labels_x()  #+boxwidth/2
   yvaluesb=labels_y()  #-boxheight/2
   
-  boxes=msboxes_R_nofreq_inner(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
+  boxes=msboxes_R_nofreq(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
   #Read through json from msboxes or through a new function 
   x1=boxes$arrows$x1
   y1=boxes$arrows$y1
@@ -2483,9 +2518,16 @@ else {
 output$probability_msm_box <- renderPlot ({datap7_re() })
 
 output$downplotp7 <- downloadHandler(
-  filename = function(){paste("p7",'.tiff',sep='')},
+  filename = function(){paste("p7",'pdf',sep='.')},
   content = function(file){
-      tiff(file, width = 10, height = 10, units = "cm",res=600)
+      
+    cairo_pdf(filename = file,
+             width = 12, height =8, pointsize = 12, family = "sans", bg = "transparent",
+             antialias = "subpixel",fallback_resolution = 600)
+    
+
+    contentType = "application/pdf"
+    #tiff(file, width =12, height = 8, units = "cm",res=600, compression = 'lzw')
     
     ntransitions=myjson1()$Ntransitions
     nstates= myjson1()$Nstates
@@ -2493,7 +2535,7 @@ output$downplotp7 <- downloadHandler(
     xvaluesb=labels_x()  #+boxwidth/2
     yvaluesb=labels_y()  #-boxheight/2
     
-    boxes=msboxes_R_nofreq_inner(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
+    boxes=msboxes_R_nofreq(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
     #Read through json from msboxes or through a new function 
     x1=boxes$arrows$x1
     y1=boxes$arrows$y1

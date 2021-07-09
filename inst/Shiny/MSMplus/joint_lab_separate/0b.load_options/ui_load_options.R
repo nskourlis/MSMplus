@@ -121,15 +121,19 @@ tabPanel(h1("MSMplus") ,#icon = icon("home"),
             ),
             
             column(6,
+    
+                   
                    actionButton(inputId = "examplebutton",
                                 label = "Click to see example"),
                    conditionalPanel(condition=("input.examplebutton%2==0"),
                                     h3("")
                    ),
+                   
                    conditionalPanel(condition=("input.examplebutton%2!=0"),
                                     uiOutput("message_rules3"),
                                     img(src = "MSM_up_to0_int.PNG")
                                     ) 
+                   #uiOutput("message_rules_grey")
             #verbatimTextOutput("fileob")
                    
             )

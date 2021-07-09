@@ -35,8 +35,7 @@ output$message_rules1<- renderUI ({
     helpText("Examples"),
    helpText(HTML("<ul><li> An intermediate state of Platelet recovery between the starting state of the bone marrow transplantation and the absorbing state of Relapse/Death </li></ul>")),   
    helpText(HTML("<ul><li> Recurrent intermediate states of hospitalizations between the starting and the absorbing state </li></ul>")), 
-   helpText(HTML("<ul><li> Intermediate stages of renal disease (Stages II-IV) between the starting state (early stage of renal dysfunction) and the absorbing state (death) </li></ul>")),  
-   helpText(HTML("<ul><li> Local recurrences and distant metastases between the starting state (cancer diagnosis) and the absorbing state (death) </li></ul>"))
+   helpText(HTML("<ul><li> Intermediate stages of renal disease (Stages II-IV) between the starting state (early stage of renal dysfunction) and the absorbing state (death) </li></ul>")) 
   )
   )
    message
@@ -54,7 +53,7 @@ output$message_rules2<- renderUI ({
     
     
     helpText("The presentation of multi-state analyses results can be challenging due to the variety of measures that can describe the multi-state process (e.g transition probabilities, 
-    transition intensities, length of stay in each state, probability of visiting each state, expected first passage time from each state). In addition, many of these measures tend to be 
+    transition intensities, length of stay in each state, probability of visiting each state etc). In addition, many of these measures tend to be 
     functions of time, adding to the challenge of the presentation of results." ),
     
    helpText(HTML("<ul><li>MSMplus aims to help the user to present multi-state analysis results in an easy, comprehensible and meaningful way as well as compare results from two different multi-state
@@ -103,9 +102,7 @@ output$intro_tutorial <- renderUI({
     message = p(withMathJax(
       helpText(strong('How to upload your results')),
       helpText("The multi-state graph summary information and the analysis results of the multi-state analysis can be supplied to MSMplus either as
-             Json files automatically derived via specific packages in Stata and R, or as manually provided csv/excel files with specific naming and formatting rules.
-             A tutorial for preparing the input files including examples
-             in Stata and R, is provided at the following link:")
+             Json files automatically derived via specific packages in Stata and R, or as manually provided csv/excel files with specific naming and formatting rules.")
     )
     )
     return(list(message ))
@@ -122,6 +119,21 @@ output$to_url2 <- renderUI({
 
 
 
+output$message_rules_grey<- renderUI({
+  
+  message = p(withMathJax(
+    #helpText("The tabs related to the multi-state measures remain grey/disabled until the 'Settings' tab is selected. If no estimation has been provided for a measure, the respective tab will remain disabled.")),
+    helpText(p("Attention: After loading the results input file, the user has to visit the Settings tab before proceeding to the tabs with the measures, otherwise the tabs will stay empty.", style = "color:red"))
+    )
+  
+  
+  )
+  
+  message
+  
+  return(list(message))
+  
+})
 
 
 

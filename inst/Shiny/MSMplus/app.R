@@ -58,57 +58,47 @@ if (!require("webshot"))  install.packages("webshot", INSTALL_opts = '--no-lock'
 if (!require("formattable"))  install.packages("formattable", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 
-
-if (!require(devtools)) install.packages("devtools")
-
 if (!require("plotly")) install.packages("plotly")
 
 if (!require("gridExtra")) install.packages("gridExtra")
 
-library("usethis")
-library("devtools")
-library("githubinstall")
-library("rsvg")
-library("miniUI")
-library("htmltools")
+
+
+
+library(rsvg)
+library(miniUI)
+library(htmltools)
 library("webshot")
-
-library("visNetwork")
-
-library("plotly")
-
-
+library(visNetwork)
+library(plotly)
 #library(tidyverse)
-
-library("jsonlite")
-
-library("webshot")
-library("htmlwidgets")
-library("raster")
-library("plyr")
-library("viridis")
+library(jsonlite)
+library(webshot)
+library(htmlwidgets)
+library(raster)
+library(plyr)
+library(viridis)
 library('RJSONIO')
-library("ggplot2")
-library("plotly")
-library("dplyr")
-library("formattable")
-library("reshape2")
-library("ggplot2")
-library("gridExtra")
-library("tidyverse")
-#library(DT)
+library(ggplot2)
+library(plotly)
+library(dplyr)
+library(formattable)
+library(reshape2)
+library(ggplot2)
+library(gridExtra)
+library(tidyverse)
+library(DT)
 #library(shiny.semantic)
-library("magrittr")
-library("cowplot")
-library("imager")
-library("StatMeasures")
-library("shinyMatrix")
-library("dlm")
-library("gapminder")
-library("gridExtra")
-
-library("shinyjs")
-library("shiny")
+library(magrittr)
+library(cowplot)
+library(imager)
+library(StatMeasures)
+library(shinyMatrix)
+library(dlm)
+library(gapminder)
+library(gridExtra)
+library(shinyjs)
+library(shiny)
 
 #readRenviron("~/.Renviron")
 Sys.setenv("plotly_username" = "niksko")
@@ -158,10 +148,10 @@ appCSS <- "
 "
 
 #jscode <- "shinyjs.refresh = function() { location.reload(); }"
-#ui = tagList(
+# tagList(
 #  useShinyjs(),
 #  extendShinyjs(text = jscode, functions = "refresh"),
-ui =  navbarPage(id="tabs_start", fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css",
+  ui =  navbarPage(id="tabs_start", fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css",
   "",
   # blank title
  # Font Awesome icon
@@ -198,29 +188,49 @@ ui =  navbarPage(id="tabs_start", fluid = TRUE, inverse=TRUE,theme = "bootstrap2
                   
                   source( "joint_lab_separate/4.predict/ui_extra.R", local=T)$value
                   
-               #  tabPanel(title = h1(""), value = "refresh",icon = icon("refresh"))
+         #        tabPanel(title = h1(""), value = "refresh",icon = icon("refresh"))
                   
                   
-#)
-
 )
+
+#)
 
 server <- function(input, output, session) {
   
 #  observe({
- #   if (input$tabs_start == "refresh") {
- #     js$refresh();
- #   }
- # })
+#    if (input$tabs_start == "refresh") {
+#      js$refresh();
+#    }
+#  })
+#  
   
+  
+
+# answer1 <- reactive({ 
+#   x=0
+#   if (input$tabs_start=="mytab_set") {
+#     x <- x + 1     # newValue <- rv$value - 1
+#     answer0(newValue)             
+#   }
+#   
+#   else if (input$tabs_start!="mytab_set") {
+#     x <- x + 0  
+#   }          
+#   x
+# })
+  
+  #
+  
+  
+
   
   
   value1 <- reactiveVal(0)       
   
   observeEvent(input$tabs_start, {
     if (input$tabs_start!="mytab_set") {
-      newValue <- value1() + 0   
-      value1(newValue)  
+    newValue <- value1() + 0   
+    value1(newValue)  
     }
   })
   observeEvent(input$tabs_start, {
@@ -230,72 +240,150 @@ server <- function(input, output, session) {
     }
   })
   
+ # toListen <- reactive({
+ #   list(input$aimtype,input$compare_approach2,input$example2,input$compare_approach,input$example)
+ # })
   
-  
-  observeEvent(input$tabs_start, {
+ # observeEvent(reactiveValuesToList(input),{
+ #   
+ #   if(value1()==0) {
+ #     js$disableTab("mytab_p")
+ #     js$disableTab("mytab_h")
+ #     js$disableTab("mytab_los")
+ #     js$disableTab("mytab_vis")
+ #     js$disableTab("mytab_extra")
+ #     js$disableTab("mytab_user")
+ #   }
+ #   
+ #   if(value1()>0) {
+ #     
+ #     js$enableTab("mytab_p")
+ #     js$enableTab("mytab_h")
+ #     js$enableTab("mytab_los")
+ #     js$enableTab("mytab_vis")
+ #     js$enableTab("mytab_extra")
+ #     js$enableTab("mytab_user")
+ #   }
+ #   
     
-    if(value1()==0) {
-      js$disableTab("mytab_p")
-      js$disableTab("mytab_h")
-      js$disableTab("mytab_los")
-      js$disableTab("mytab_vis")
-      js$disableTab("mytab_extra")
-      js$disableTab("mytab_user")
-    }
-    else if(value1()>0) {
-      js$enableTab("mytab_p")
-      js$enableTab("mytab_h")
-      js$enableTab("mytab_los")
-      js$enableTab("mytab_vis")
-      js$enableTab("mytab_extra")
-      js$enableTab("mytab_user")
-    }
-  }) 
+    
+  
+    
+   
+ # if(value1()>0) {
+ #  
+ #  if( length(which(startsWith(names(myjson2()), 'P')))!=0 ) { 
+ #  js$enableTab("mytab_p")
+ #  
+
+ #  }  
+ #   
+ #}
+    
+ # }) 
+      
+   #   js$enableTab("mytab_h")
+   #   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))==0 | 
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Haz')))==0 | input$aimtype=="compare" ) {
+   #     js$disableTab("mytab_h")
+   #   } 
+   #   
+#
+   #   
+   #   
+   #   js$enableTab("mytab_los")
+   #   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Los')))==0 | 
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Los')))==0 ) {
+   #     js$disableTab("mytab_los")
+   #   } 
+   #   
+   #   
+   #   js$enableTab("mytab_vis")
+   #   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Visit')))==0 | 
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Visit')))==0 ) {
+   #     js$disableTab("mytab_vis")
+   #   } 
+   #   
+   #   
+   #   js$enableTab("mytab_user")
+   #   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'User')))==0 | 
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'User')))==0 ) {
+   #     js$disableTab("mytab_user")
+   #   }      
+   #   
+   #   
+   #   js$enableTab("mytab_extra")
+   #   
+   #   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Number')))==0 &
+   #       length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Next')))==0 &
+   #       length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Soj')))==0 &
+   #       length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'First')))==0 ) {
+   #     js$disableTab("mytab_extra")
+   #   } 
+   #   if( length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Number')))==0 &
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Next')))==0 &
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Soj')))==0 &
+   #       length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'First')))==0 ) {
+   #     js$disableTab("mytab_extra")
+   #     
+   #   } 
+   #     if( input$example=="Yes"|input$example2=="Yes"|input$aimtype=="compare") {
+   #       js$disableTab("mytab_extra")
+   #     } 
+#
+
+    
+ 
+ #   }
+
+  
+
   
   
   
-  #
+
+#
   #observeEvent({trigger2(); trigger1()}, print('hello'), ignoreInit = T)
   
   source( "joint_lab_separate/0b.load_options/server_load_options.R", local=T)$value
   
   source( "joint_lab_separate/1.load/server_load.R", local=T)$value
+    
   
   
   
-  
-  # observeEvent(input$hideTab, {
-  #   hideTab(inputId = "tabs_start", target = "mytab_set")
-  # })
-  
+ # observeEvent(input$hideTab, {
+ #   hideTab(inputId = "tabs_start", target = "mytab_set")
+ # })
   
   
-  # timer_hideset <- reactiveVal(1.5)
-  # 
-  # observeEvent(c(input$hideTab,invalidateLater(1000, session)), { 
-  #   
-  #   if(input$hideTab==0){
-  #     
-  #     showTab(inputId = "tabs_start", target = "mytab_set")
-  #     
-  #   }
-  #   
-  #   if(input$hideTab!=0){
-  #     
-  #     hideTab(inputId = "tabs_start", target = "mytab_set")
-  #     
-  #   }
-  #   
-  #   isolate({
-  #     
-  #     timer_hideset(timer_hideset()-1)
-  #     if(timer_hideset()>1 & input$hideTab==0)
-  #     {
-  #       showTab(inputId = "tabs_start", target = "mytab_set")
-  #     }
-  #     
-  #   })
-  # })
+  
+# timer_hideset <- reactiveVal(1.5)
+# 
+# observeEvent(c(input$hideTab,invalidateLater(1000, session)), { 
+#   
+#   if(input$hideTab==0){
+#     
+#     showTab(inputId = "tabs_start", target = "mytab_set")
+#     
+#   }
+#   
+#   if(input$hideTab!=0){
+#     
+#     hideTab(inputId = "tabs_start", target = "mytab_set")
+#     
+#   }
+#   
+#   isolate({
+#     
+#     timer_hideset(timer_hideset()-1)
+#     if(timer_hideset()>1 & input$hideTab==0)
+#     {
+#       showTab(inputId = "tabs_start", target = "mytab_set")
+#     }
+#     
+#   })
+# })
   
   
   
@@ -334,7 +422,7 @@ server <- function(input, output, session) {
   
   source("joint_lab_separate/2.box/server_box.R", local=T)$value
   
-  
+
   
   
   
@@ -348,57 +436,57 @@ server <- function(input, output, session) {
   
   myjson1 <- reactive ({
     
-    if (input$loadtype=="json") {
+      if (input$loadtype=="json") {
+        
+         if (input$aimtype=="present") {
       
-      if (input$aimtype=="present") {
+            if (is.null(input$json1_pr) & input$example=="No")  return()
+            
+            else if (!is.null(input$json1_pr) & input$example=="No" ) {
+              
+              data= fromJSON(input$json1_pr$datapath, flatten=TRUE)
+              
+            }
+            
+            else if (input$example=="Yes" & is.null(input$json1_pr) )  {  
+              data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
+            }
+            
+            
+            
+         #   if (is.null(data$msm)==FALSE) {
+         #     if  (data$msm!=1) {data$msm_box=0}
+         #     else if (data$msm==1)  {data$msm_box=1}
+         #   }
+         #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
+            
+            data
+         }
         
-        if (is.null(input$json1_pr) & input$example=="No")  return()
         
-        else if (!is.null(input$json1_pr) & input$example=="No" ) {
-          
-          data= fromJSON(input$json1_pr$datapath, flatten=TRUE)
-          
-        }
-        
-        else if (input$example=="Yes" & is.null(input$json1_pr) )  {  
-          data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
-        }
-        
-        
-        
-        #   if (is.null(data$msm)==FALSE) {
-        #     if  (data$msm!=1) {data$msm_box=0}
-        #     else if (data$msm==1)  {data$msm_box=1}
-        #   }
-        #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
-        
-        data
-      }
-      
-      
       else if (input$aimtype=="compare") {
-        
-        if (is.null(input$json1_cp) & input$compare_approach=="No")  return()
-        
-        else if (!is.null(input$json1_cp) & input$compare_approach=="No" ) {
           
-          data= fromJSON(input$json1_cp$datapath, flatten=TRUE)
+          if (is.null(input$json1_cp) & input$compare_approach=="No")  return()
           
-        }
-        
-        else if (input$compare_approach=="Yes" & is.null(input$json1_cp) )  {  
-          data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
-        }
-        
-        
-        
-        #      if (is.null(data$msm)==FALSE) {
-        #        if  (data$msm!=1) {data$msm_box=0}
-        #        else if (data$msm==1)  {data$msm_box=1}
-        #       }
-        #      if (is.null(data$msm)==TRUE) {data$msm_box=0}
-        
-        data
+          else if (!is.null(input$json1_cp) & input$compare_approach=="No" ) {
+            
+            data= fromJSON(input$json1_cp$datapath, flatten=TRUE)
+            
+          }
+          
+          else if (input$compare_approach=="Yes" & is.null(input$json1_cp) )  {  
+            data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
+          }
+          
+          
+          
+    #      if (is.null(data$msm)==FALSE) {
+    #        if  (data$msm!=1) {data$msm_box=0}
+    #        else if (data$msm==1)  {data$msm_box=1}
+    #       }
+    #      if (is.null(data$msm)==TRUE) {data$msm_box=0}
+          
+          data
       }
     }
     
@@ -407,26 +495,26 @@ server <- function(input, output, session) {
     else if (input$loadtype=="csv") {
       
       if (input$aimtype=="present") {
-        
+     
         if (length(which(!is.na(input$tmat_input_pr))==TRUE)==0  & input$example2=="No")  return()
-        
+     
         else if (input$example2=="No" & length(which(!is.na(input$tmat_input_pr))==TRUE)!=0 ) {
-          data=  fromJSON(json1manual(), flatten=TRUE)
+            data=  fromJSON(json1manual(), flatten=TRUE)
         }
-        
+     
         else if (input$example2=="Yes"  )  { #& is.null(json1manual())
           data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
         }
-        
+      
         else if (input$example2=="Yes" & length(which(!is.na(input$tmat_input_pr))==TRUE)!=0 ) return("Not both") #& !is.null(json1manual())
-        
-        # if (is.null(data$msm)==FALSE) {
-        #   if  (data$msm!=1) {data$msm_box=0}
-        #   else if (data$msm==1)  {data$msm_box=1}
-        # }
-        # if (is.null(data$msm)==TRUE) {data$msm_box=0}
-        
-        data
+
+     # if (is.null(data$msm)==FALSE) {
+     #   if  (data$msm!=1) {data$msm_box=0}
+     #   else if (data$msm==1)  {data$msm_box=1}
+     # }
+    # if (is.null(data$msm)==TRUE) {data$msm_box=0}
+      
+      data
       }
       
       
@@ -444,11 +532,11 @@ server <- function(input, output, session) {
         
         else if (input$compare_approach2=="Yes" &  length(which(!is.na(input$tmat_input_cp))==TRUE)!=0  ) return("Not both") #& !is.null(json1manual())
         
-        #  if (is.null(data$msm)==FALSE) {
-        #    if  (data$msm!=1) {data$msm_box=0}
-        #    else if (data$msm==1)  {data$msm_box=1}
-        #  }
-        #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
+      #  if (is.null(data$msm)==FALSE) {
+      #    if  (data$msm!=1) {data$msm_box=0}
+      #    else if (data$msm==1)  {data$msm_box=1}
+      #  }
+      #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
         
         data
       }  
@@ -468,104 +556,104 @@ server <- function(input, output, session) {
     if (input$loadtype=="json") {
       
       if (input$aimtype=="present") {
-        
-        
+      
+      
         if (is.null(input$json2) & input$example=="No" ) return("Provide the json file with the predictions")
-        
+      
         else if (!is.null(input$json2) ) {
-          
+        
           data= fromJSON(input$json2$datapath, flatten=TRUE)
-          
-        }
+        
+         }
         
         else if ( input$example=="Yes"   & is.null(input$json2)) {  #is.null(input$json2) &
-          
+        
           data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_merlin.json", flatten=TRUE)
-          
+        
         }
-        
-        
+      
+
       }
       
       else if (input$aimtype=="compare") {
         
-        if (  (is.null(input$json2a) | is.null(input$json2b)) & input$compare_approach=="No" )  {return("Provide two json files with the predictions approaches")}
+         if (  (is.null(input$json2a) | is.null(input$json2b)) & input$compare_approach=="No" )  {return("Provide two json files with the predictions approaches")}
         
-        else if (!is.null(input$json2a) & !is.null(input$json2b)  ) {
+         else if (!is.null(input$json2a) & !is.null(input$json2b)  ) {
           
-          list2a=fromJSON(input$json2a$datapath, flatten=TRUE)
-          list2b=fromJSON(input$json2b$datapath, flatten=TRUE)
-          
-          
-          Nstates=ncol(list2b$tmat)
-          Ntransitions=max(list2b$tmat[which(!is.na(list2b$tmat))])
-          
-          y=vector()
-          
-          for (i in 1:Nstates) {
-            
-            for (k in 1:Nstates) {
-              
+           list2a=fromJSON(input$json2a$datapath, flatten=TRUE)
+           list2b=fromJSON(input$json2b$datapath, flatten=TRUE)
+           
+           
+           Nstates=ncol(list2b$tmat)
+           Ntransitions=max(list2b$tmat[which(!is.na(list2b$tmat))])
+           
+           y=vector()
+           
+           for (i in 1:Nstates) {
+             
+             for (k in 1:Nstates) {
+               
               # if (i<=k) {
-              j=i+Nstates
-              g=k+Nstates
-              
-              y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
-              names(list2b)=y
-              #  }
-            }
-          }
-          
-          is.integer0 <- function(x)
-          {
-            is.integer(x) && length(x) == 0L
-          }
-          
-          
-          if (  !is.integer0(which(startsWith(names(list2b),"User")) ) == TRUE )   {
-            
-            list2b=list2b[-which(startsWith(names(list2b),"User") == TRUE)]   
-            
-            names(list2b)
-            
-          }
-          
-          #  list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
-          #  names(list2b)
-          
-          for (i in 1:Ntransitions) {
-            k= i+ Ntransitions
-            names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
-          }
-          
-          
-          ### Create a hypertmatrix####
-          
-          list2b$tmat2= list2b$tmat+Ntransitions
-          
-          l <- list(list2b$tmat,list2b$tmat2)
-          
-          list2b$hypertmat<- as.matrix(bdiag(l))
-          list2b$hypertmat[which(list2b$hypertmat==0)]=NA
-          
-          list2b$hypertmat
-          
-          list2a=list2a[names(list2a) %in% "tmat" == FALSE] 
-          list2b=list2b[names(list2b) %in% "tmat" == FALSE] 
-          list2b=list2b[names(list2b) %in% "tmat2" == FALSE] 
-          
-          list2b$tmat=list2b$hypertmat
-          
-          data=c(list2a,list2b)
-        }
+                 j=i+Nstates
+                 g=k+Nstates
+                 
+                 y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
+                 names(list2b)=y
+             #  }
+             }
+           }
+           
+           is.integer0 <- function(x)
+           {
+             is.integer(x) && length(x) == 0L
+           }
+           
+           
+           if (  !is.integer0(which(startsWith(names(list2b),"User")) ) == TRUE )   {
+             
+             list2b=list2b[-which(startsWith(names(list2b),"User") == TRUE)]   
+             
+             names(list2b)
+             
+           }
+           
+         #  list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
+         #  names(list2b)
+           
+           for (i in 1:Ntransitions) {
+             k= i+ Ntransitions
+             names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
+           }
+           
+           
+           ### Create a hypertmatrix####
+           
+           list2b$tmat2= list2b$tmat+Ntransitions
+           
+           l <- list(list2b$tmat,list2b$tmat2)
+           
+           list2b$hypertmat<- as.matrix(bdiag(l))
+           list2b$hypertmat[which(list2b$hypertmat==0)]=NA
+           
+           list2b$hypertmat
+           
+           list2a=list2a[names(list2a) %in% "tmat" == FALSE] 
+           list2b=list2b[names(list2b) %in% "tmat" == FALSE] 
+           list2b=list2b[names(list2b) %in% "tmat2" == FALSE] 
+           
+           list2b$tmat=list2b$hypertmat
+           
+           data=c(list2a,list2b)
+         }
         
         
-        else if ( input$compare_approach=="Yes" ) { #(is.null(input$json2a) | is.null(input$json2b)) &
+         else if ( input$compare_approach=="Yes" ) { #(is.null(input$json2a) | is.null(input$json2b)) &
           
-          data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_both_approaches.json", flatten=TRUE)
+           data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_both_approaches.json", flatten=TRUE)
           
-        }
-        
+         }
+      
         else if (!is.null(input$json2a) & !is.null(input$json2b) & input$compare_approach=="Yes" ) return("Not both")
       }
     }
@@ -573,25 +661,25 @@ server <- function(input, output, session) {
     
     else if (input$loadtype=="csv") {
       
-      if (input$aimtype=="present") {
+       if (input$aimtype=="present") {
+      
+      
+          if (is.null(json2manual()) & input$example2=="No") return("Provide the csv file with the predictions")
+      
+          else if (!is.null(json2manual())  & input$example2=="No") { #& input$example=="No"
         
+           data= fromJSON(json2manual(), flatten=TRUE)
         
-        if (is.null(json2manual()) & input$example2=="No") return("Provide the csv file with the predictions")
+         }
+      
+          else if ( input$example2=="Yes"  & is.null(json2manual())) {  #& is.null(json2manual())
         
-        else if (!is.null(json2manual())  & input$example2=="No") { #& input$example=="No"
-          
-          data= fromJSON(json2manual(), flatten=TRUE)
-          
-        }
-        
-        else if ( input$example2=="Yes"  & is.null(json2manual())) {  #& is.null(json2manual())
-          
-          data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_merlin.json", flatten=TRUE)
-          
-          data
-        }
-        
-        else if ( input$example2=="Yes" & !is.null(json2manual())) return("Not both")
+            data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_merlin.json", flatten=TRUE)
+
+            data
+         }
+      
+         else if ( input$example2=="Yes" & !is.null(json2manual())) return("Not both")
       }
       
       
@@ -605,7 +693,7 @@ server <- function(input, output, session) {
           data= fromJSON(json2manual(), flatten=TRUE)
           data
         }
-        
+      
         
         else if (  input$compare_approach2=="Yes" & is.null(json2manual()) ) { 
           
@@ -640,150 +728,150 @@ server <- function(input, output, session) {
   #y
   # })
   
-  #### Isolate the from state probability fragment so that you can choose the cluster of probabilities you are going to use
-  output$select<- renderUI ({
-    
-    if (is.null(myjson1_5())) return()
-    
-    radioButtons(inputId="select", label="Select conditional starting state", 
-                 choices=unique(sub("_to_.*","", sub("P_","",names(myjson1_5()$select) )) ),
-                 selected = unique(sub("_to_.*","", sub("P_","",names(myjson1_5()$select) ))  )[1]   )
-  })
-  
-  ### Reconbine the isolated input of from state to define the ending of names specifind the end states  
-  selectend<-reactive ({
-    
-    if (is.null(myjson1_5() )) return()
-    
-    cond_select<-which(startsWith(names(myjson1_5()), paste0('P_',input$select))  & 
-                         !startsWith(names(myjson1_5()), 'P_diff' ) &  !startsWith(names(myjson1_5()), 'P_ratio' ) &
-                         !endsWith(names(myjson1_5()), 'uci' ) & !endsWith(names(myjson1_5()), 'lci') )
-    
-    names=names(myjson1_5()[cond_select])
-    
-    v=vector()
-    for (i in 1:length(cond_select)) {
-      v[i]=sub("P_[[:digit:]]+","",names[i])  
-    }
-    v
-  })
-  
-  
-  selectend_h<-reactive ({
-    
-    if (is.null(myjson1_5() )) return()
-    
-    cond_select<-which(startsWith(names(myjson1_5()), paste0('Haz_',input$select))  & 
-                         !startsWith(names(myjson1_5()), 'Haz_diff' ) &  !startsWith(names(myjson1_5()), 'Haz_ratio' ) &
-                         !endsWith(names(myjson1_5()), 'uci' ) & !endsWith(names(myjson1_5()), 'lci') )
-    
-    names=names(myjson1_5()[cond_select])
-    
-    v=vector()
-    for (i in 1:length(cond_select)) {
-      v[i]=sub("Haz_[[:digit:]]+","",names[i])  
-    }
-    v
-  })
-  
-  #### select which of the defined covariate patterns you want
-  output$includecov<- renderUI ({
-    if (is.null(myjson1_5() )) return()
-    
-    radioButtons(inputId="includecov", label="Manually select covariate patterns", 
-                 choices=c("Yes","No") ,
-                 selected = "No"   )
-  })
-  
-  
-  
-  
-  
-  output$selectcov<- renderUI ({
-    if (is.null(myjson1_5() )) return("Provide the json file with the predictions")
-    
-    item_list <- list()
-    
-    item_list[[1]] <- paste0("Reference covariate pattern","  :  ",myjson1_5()$atlist[1])
-    
-    if (input$includecov == 'Yes')  {
-      
-      
-      if (length(myjson1_5()$atlist)>1) {
-        item_list[[2]] <-   checkboxGroupInput("selectcov","Select extra covariate patterns 
-                                             (at least one)",
-                                               choices= myjson1_5()$atlist[-1] ,
-                                               selected = myjson1_5()$atlist[-1] )
-      }
-      
-      else return("You have included only one covariate pattern in your analysis")
-    }
-    do.call(tagList, item_list)
-    
-  })
-  
-  
-  
-  
-  
-  
-  #### Turn the selected covariate patterns into a vector of numbers corresponding
-  #### to the order of the covariate patterns element in the atlist
-  covselect_char<- reactive ({
-    
-    shiny::validate(
-      need(!is.null(input$selectcov) , "Please select at least 1 covariate pattern")
-    )
-    
-    final_list=vector()
-    
-    
-    myList<- input[['selectcov']]
-    
-    final_list=unlist(myList, recursive = TRUE, use.names = TRUE)
-    
-    final_list
-    
-  })
-  
-  
-  covselect<- reactive ({
-    
-    tonumber=vector()
-    
-    shiny::validate(
-      need(!is.null(input$selectcov) , "Please select at least 1 covariate pattern")
-    )
-    
-    # if (is.null(input$selectcov)) {tonumber=0}
-    
-    # else if (!is.null(input$selectcov)) {
-    
-    for (i in 1:length(covselect_char())) {
-      tonumber[i]= which(myjson1_5()$atlist==covselect_char()[i])
-    }
-    #}
-    tonumber
-  })
-  
-  covselectcontr<- reactive ({
-    
-    
-    tonumber=vector()
-    
-    if (length(covselect_char())!=0) {
-      
-      
-      for (i in 1:length(covselect_char())) {
-        tonumber[i]= which(myjson1_5()$atlist[-1]==covselect_char()[i])
-      }
-      tonumber=as.integer(tonumber)
-    }
-    
-    tonumber
-  })
-  
-  
+ # #### Isolate the from state probability fragment so that you can choose the cluster of probabilities you are going to use
+ # output$select<- renderUI ({
+ #   
+ #   if (is.null(myjson1_5())) return()
+ #   
+ #   radioButtons(inputId="select", label="Select conditional starting state", 
+ #                choices=unique(sub("_to_.*","", sub("P_","",names(myjson1_5()$select) )) ),
+ #                selected = unique(sub("_to_.*","", sub("P_","",names(myjson1_5()$select) ))  )[1]   )
+ # })
+ # 
+ # ### Reconbine the isolated input of from state to define the ending of names specifind the end states  
+ # selectend<-reactive ({
+ #   
+ #   if (is.null(myjson1_5() )) return()
+ #   
+ #   cond_select<-which(startsWith(names(myjson1_5()), paste0('P_',input$select))  & 
+ #                        !startsWith(names(myjson1_5()), 'P_diff' ) &  !startsWith(names(myjson1_5()), 'P_ratio' ) &
+ #                        !endsWith(names(myjson1_5()), 'uci' ) & !endsWith(names(myjson1_5()), 'lci') )
+ #   
+ #   names=names(myjson1_5()[cond_select])
+ #   
+ #   v=vector()
+ #   for (i in 1:length(cond_select)) {
+ #     v[i]=sub("P_[[:digit:]]+","",names[i])  
+ #   }
+ #   v
+ # })
+ # 
+ # 
+ # selectend_h<-reactive ({
+ #   
+ #   if (is.null(myjson1_5() )) return()
+ #   
+ #   cond_select<-which(startsWith(names(myjson1_5()), paste0('Haz_',input$select))  & 
+ #                        !startsWith(names(myjson1_5()), 'Haz_diff' ) &  !startsWith(names(myjson1_5()), 'Haz_ratio' ) &
+ #                        !endsWith(names(myjson1_5()), 'uci' ) & !endsWith(names(myjson1_5()), 'lci') )
+ #   
+ #   names=names(myjson1_5()[cond_select])
+ #   
+ #   v=vector()
+ #   for (i in 1:length(cond_select)) {
+ #     v[i]=sub("Haz_[[:digit:]]+","",names[i])  
+ #   }
+ #   v
+ # })
+ # 
+ # #### select which of the defined covariate patterns you want
+ # output$includecov<- renderUI ({
+ #   if (is.null(myjson1_5() )) return()
+ #   
+ #   radioButtons(inputId="includecov", label="Manually select covariate patterns", 
+ #                choices=c("Yes","No") ,
+ #                selected = "No"   )
+ # })
+ # 
+ # 
+ # 
+ # 
+ # 
+ # output$selectcov<- renderUI ({
+ #   if (is.null(myjson1_5() )) return("Provide the json file with the predictions")
+ #   
+ #   item_list <- list()
+ #   
+ #   item_list[[1]] <- paste0("Reference covariate pattern","  :  ",myjson1_5()$atlist[1])
+ #   
+ #   if (input$includecov == 'Yes')  {
+ #     
+ #     
+ #     if (length(myjson1_5()$atlist)>1) {
+ #       item_list[[2]] <-   checkboxGroupInput("selectcov","Select extra covariate patterns 
+ #                                            (at least one)",
+ #                                              choices= myjson1_5()$atlist[-1] ,
+ #                                              selected = myjson1_5()$atlist[-1] )
+ #     }
+ #     
+ #     else return("You have included only one covariate pattern in your analysis")
+ #   }
+ #   do.call(tagList, item_list)
+ #   
+ # })
+ # 
+ # 
+ # 
+ # 
+ # 
+ # 
+ # #### Turn the selected covariate patterns into a vector of numbers corresponding
+ # #### to the order of the covariate patterns element in the atlist
+ # covselect_char<- reactive ({
+ #   
+ #   shiny::validate(
+ #     need(!is.null(input$selectcov) , "Please select at least 1 covariate pattern")
+ #   )
+ #   
+ #   final_list=vector()
+ #   
+ #   
+ #   myList<- input[['selectcov']]
+ #   
+ #   final_list=unlist(myList, recursive = TRUE, use.names = TRUE)
+ #   
+ #   final_list
+ #   
+ # })
+ # 
+ # 
+ # covselect<- reactive ({
+ #   
+ #   tonumber=vector()
+ #   
+ #   shiny::validate(
+ #     need(!is.null(input$selectcov) , "Please select at least 1 covariate pattern")
+ #   )
+ #   
+ #   # if (is.null(input$selectcov)) {tonumber=0}
+ #   
+ #   # else if (!is.null(input$selectcov)) {
+ #   
+ #   for (i in 1:length(covselect_char())) {
+ #     tonumber[i]= which(myjson1_5()$atlist==covselect_char()[i])
+ #   }
+ #   #}
+ #   tonumber
+ # })
+ # 
+ # covselectcontr<- reactive ({
+ #   
+ #   
+ #   tonumber=vector()
+ #   
+ #   if (length(covselect_char())!=0) {
+ #     
+ #     
+ #     for (i in 1:length(covselect_char())) {
+ #       tonumber[i]= which(myjson1_5()$atlist[-1]==covselect_char()[i])
+ #     }
+ #     tonumber=as.integer(tonumber)
+ #   }
+ #   
+ #   tonumber
+ # })
+ # 
+ # 
   
   
   myjson2 <- reactive ({
@@ -940,202 +1028,202 @@ server <- function(input, output, session) {
     #### Old way of reading hazards into the app
     
     ##Save all transistion intensities as a separate list
-    # cond_h<-which(startsWith(names(data), 'h') & endsWith(names(data), paste0('from_',input$select)) &
-    #                !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
+   # cond_h<-which(startsWith(names(data), 'h') & endsWith(names(data), paste0('from_',input$select)) &
+   #                !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
     
-    #    cond_h<-which(startsWith(names(data), 'h') &
-    #                    !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
-    #    
-    #    if (length(cond_h)==0) {
-    #      data$h=NULL
-    #    }
-    #    
-    #    else {
-    #      
-    #      if (input$includecov == 'No')  {
-    #        data$h=data[cond_h]
-    #      }
-    #      
-    #      if (input$includecov == 'Yes')  {
-    #        data$h=data[cond_h]
-    #        for (i in 1:data$Ntransitions) {
-    #          data$h[[i]]     =as.data.frame(as.matrix(data$h[[i]])[c(1,covselect()),])
-    #        }
-    #      }
-    #    }
+#    cond_h<-which(startsWith(names(data), 'h') &
+#                    !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
+#    
+#    if (length(cond_h)==0) {
+#      data$h=NULL
+#    }
+#    
+#    else {
+#      
+#      if (input$includecov == 'No')  {
+#        data$h=data[cond_h]
+#      }
+#      
+#      if (input$includecov == 'Yes')  {
+#        data$h=data[cond_h]
+#        for (i in 1:data$Ntransitions) {
+#          data$h[[i]]     =as.data.frame(as.matrix(data$h[[i]])[c(1,covselect()),])
+#        }
+#      }
+#    }
     
     
     ##Save all los as a separate list
     cond_haz_all<-which(startsWith(names(data), 'Haz_')  
-                        & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-                          !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+                      & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
+                        !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
     
-    if (length(cond_haz_all)==0) {
-      data$haz_all=NULL
-    }
-    else {  
-      
-      if (input$includecov == 'No')  {
-        data$haz_all=data[cond_haz_all]
-      }
-      
-      if (input$includecov == 'Yes')  {
-        data$haz_all=data[cond_haz_all]
-        for (i in 1:data$Ntransitions) {
-          data$haz_all[[i]]     =as.data.frame(as.matrix(data$haz_all[[i]])[c(1,covselect()),])
+        if (length(cond_haz_all)==0) {
+            data$haz_all=NULL
         }
+        else {  
+          
+                if (input$includecov == 'No')  {
+                  data$haz_all=data[cond_haz_all]
+                }
+                
+                if (input$includecov == 'Yes')  {
+                  data$haz_all=data[cond_haz_all]
+                  for (i in 1:data$Ntransitions) {
+                    data$haz_all[[i]]     =as.data.frame(as.matrix(data$haz_all[[i]])[c(1,covselect()),])
+                  }
+                }
       }
-    }
+
     
     
-    
-    cond_select_haz<-which(startsWith(names(data), paste0('Haz_',input$select))  &
-                             !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-    
-    cond_select_haz_diff<-which(startsWith(names(data), paste0('Haz_diff_',input$select))  &
+   cond_select_haz<-which(startsWith(names(data), paste0('Haz_',input$select))  &
+                            !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+   
+   cond_select_haz_diff<-which(startsWith(names(data), paste0('Haz_diff_',input$select))  &
+                                 !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+   
+   cond_select_haz_ratio<-which(startsWith(names(data), paste0('Haz_ratio_',input$select))  &
                                   !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+   
+   cond_exists_haz_ci<- which(startsWith(names(data), paste0('Haz_',input$select))  &
+                                (endsWith(names(data), 'uci' ) | endsWith(names(data), 'lci')) )
+   
+   data$ci_haz=cond_exists_haz_ci
+   
+   if (length(cond_select_haz)==0) {
+     cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
+     data$haz=NULL;data$haz_uci=NULL;data$haz_lci=NULL
+   }
+   
+   else if (length(cond_select_haz)!=0) { 
+     
+     if (length(cond_exists_haz_ci)!=0) { 
+       
+       ##Save all probabilities as a separate list
+       cond_haz=vector()
+       for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) 
+                                                                 & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
+                                                                   !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') ) }
+       
+       cond_haz_uci=vector()
+       for (i in 1:length(cond_select_haz)) { cond_haz_uci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
+                                                                       !startsWith(names(data), 'Haz_diff') &  !startsWith(names(data),'Haz_ratio') &  endsWith(names(data), 'uci' ))}
+       
+       cond_haz_lci=vector()
+       for (i in 1:length(cond_select_haz)) { cond_haz_lci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
+                                                                       !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &  endsWith(names(data),'lci'))   }
+     }
+     
+     else if (length(cond_exists_haz_ci)==0) { 
+       
+       cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
+       
+       for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) &
+                                                                   !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') & !endsWith(names(data), 'uci' ) &
+                                                                   !endsWith(names(data), 'lci') ) }
+     }
+   }
+   
+   
+   if (length(cond_select_haz_diff)==0) {
+     cond_haz_diff=vector();cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
+     data$hazd=NULL;data$hazd_uci=NULL;data$hazd_lci=NULL
+   }
+   
+   else if (length(cond_select_haz_diff)!=0) { 
+     
+     if (length(cond_exists_haz_ci)!=0) { 
+       
+       cond_haz_diff=vector()
+       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
+                                                                              !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+       cond_haz_diff_uci=vector()
+       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_uci[i]<- which(startsWith(names(data), 
+                                                                                           paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
+       
+       cond_haz_diff_lci=vector()
+       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_lci[i]<- which(startsWith(names(data), 
+                                                                                           paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
+     }
+     
+     else if (length(cond_exists_haz_ci)==0) { 
+       
+       cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
+       cond_haz_diff=vector()
+       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
+                                                                              !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+     }
+   }
+   
+   if (length(cond_select_haz_ratio)==0) {
+     cond_haz_ratio=vector();cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
+     data$hazr=NULL;data$hazr_uci=NULL;data$hazr_lci=NULL
+   }
+   
+   else if (length(cond_select_haz_ratio)!=0) { 
+     
+     if (length(cond_exists_haz_ci)!=0) { 
+       
+       cond_haz_ratio=vector()
+       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) & 
+                                                                                !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+       cond_haz_ratio_uci=vector()
+       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_uci[i]<- which(startsWith(names(data),
+                                                                                             paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
+       
+       cond_haz_ratio_lci=vector()
+       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_lci[i]<- which(startsWith(names(data), 
+                                                                                             paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
+     }
+     
+     else if (length(cond_exists_haz_ci)==0) { 
+       
+       cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
+       cond_haz_ratio=vector()
+       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) &
+                                                                                !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+     }
+   }
+   
+   
+   data$haz=data[cond_haz]
+   data$haz_uci=data[cond_haz_uci]
+   data$haz_lci=data[cond_haz_lci] 
+   
+   data$hazd=data[cond_haz_diff]
+   data$hazd_uci=data[cond_haz_diff_uci]
+   data$hazd_lci=data[cond_haz_diff_lci]
+   
+   data$hazr=data[cond_haz_ratio]
+   data$hazr_uci=data[cond_haz_ratio_uci]
+   data$hazr_lci=data[cond_haz_ratio_lci]
+   
+   if (input$includecov == 'Yes')  {
+     
+     for (i in 1:length(cond_select_haz)) {
+       data$haz[[i]]     =as.data.frame(as.matrix(data$haz[[i]])[c(1,covselect()),])
+       data$haz_uci[[i]] =as.data.frame(as.matrix(data$haz_uci[[i]])[c(1,covselect()),])
+       data$haz_lci[[i]] =as.data.frame(as.matrix(data$haz_lci[[i]])[c(1,covselect()),])
+     }
+     for (i in 1:length(cond_select_haz_diff)) {
+       data$hazd[[i]]    =as.data.frame(as.matrix(data$hazd[[i]])[covselectcontr(),])
+       data$hazd_uci[[i]]=as.data.frame(as.matrix(data$hazd_uci[[i]])[covselectcontr(),])
+       data$hazd_lci[[i]]=as.data.frame(as.matrix(data$hazd_lci[[i]])[covselectcontr(),])
+     }
+     for (i in 1:length(cond_select_haz_ratio)) {
+       data$hazr[[i]]    =as.data.frame(as.matrix(data$hazr[[i]])[covselectcontr(),])
+       data$hazr_uci[[i]]=as.data.frame(as.matrix(data$hazr_uci[[i]])[covselectcontr(),])
+       data$hazr_lci[[i]]=as.data.frame(as.matrix(data$hazr_lci[[i]])[covselectcontr(),])
+     }
+   }
+  
+  
+  
+  
+  
     
-    cond_select_haz_ratio<-which(startsWith(names(data), paste0('Haz_ratio_',input$select))  &
-                                   !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-    
-    cond_exists_haz_ci<- which(startsWith(names(data), paste0('Haz_',input$select))  &
-                                 (endsWith(names(data), 'uci' ) | endsWith(names(data), 'lci')) )
-    
-    data$ci_haz=cond_exists_haz_ci
-    
-    if (length(cond_select_haz)==0) {
-      cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
-      data$haz=NULL;data$haz_uci=NULL;data$haz_lci=NULL
-    }
-    
-    else if (length(cond_select_haz)!=0) { 
-      
-      if (length(cond_exists_haz_ci)!=0) { 
-        
-        ##Save all probabilities as a separate list
-        cond_haz=vector()
-        for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) 
-                                                                  & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-                                                                    !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') ) }
-        
-        cond_haz_uci=vector()
-        for (i in 1:length(cond_select_haz)) { cond_haz_uci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
-                                                                        !startsWith(names(data), 'Haz_diff') &  !startsWith(names(data),'Haz_ratio') &  endsWith(names(data), 'uci' ))}
-        
-        cond_haz_lci=vector()
-        for (i in 1:length(cond_select_haz)) { cond_haz_lci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
-                                                                        !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &  endsWith(names(data),'lci'))   }
-      }
-      
-      else if (length(cond_exists_haz_ci)==0) { 
-        
-        cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
-        
-        for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) &
-                                                                    !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') & !endsWith(names(data), 'uci' ) &
-                                                                    !endsWith(names(data), 'lci') ) }
-      }
-    }
-    
-    
-    if (length(cond_select_haz_diff)==0) {
-      cond_haz_diff=vector();cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
-      data$hazd=NULL;data$hazd_uci=NULL;data$hazd_lci=NULL
-    }
-    
-    else if (length(cond_select_haz_diff)!=0) { 
-      
-      if (length(cond_exists_haz_ci)!=0) { 
-        
-        cond_haz_diff=vector()
-        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
-                                                                               !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-        cond_haz_diff_uci=vector()
-        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_uci[i]<- which(startsWith(names(data), 
-                                                                                            paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
-        
-        cond_haz_diff_lci=vector()
-        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_lci[i]<- which(startsWith(names(data), 
-                                                                                            paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
-      }
-      
-      else if (length(cond_exists_haz_ci)==0) { 
-        
-        cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
-        cond_haz_diff=vector()
-        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
-                                                                               !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-      }
-    }
-    
-    if (length(cond_select_haz_ratio)==0) {
-      cond_haz_ratio=vector();cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
-      data$hazr=NULL;data$hazr_uci=NULL;data$hazr_lci=NULL
-    }
-    
-    else if (length(cond_select_haz_ratio)!=0) { 
-      
-      if (length(cond_exists_haz_ci)!=0) { 
-        
-        cond_haz_ratio=vector()
-        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) & 
-                                                                                 !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-        cond_haz_ratio_uci=vector()
-        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_uci[i]<- which(startsWith(names(data),
-                                                                                              paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
-        
-        cond_haz_ratio_lci=vector()
-        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_lci[i]<- which(startsWith(names(data), 
-                                                                                              paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
-      }
-      
-      else if (length(cond_exists_haz_ci)==0) { 
-        
-        cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
-        cond_haz_ratio=vector()
-        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) &
-                                                                                 !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-      }
-    }
-    
-    
-    data$haz=data[cond_haz]
-    data$haz_uci=data[cond_haz_uci]
-    data$haz_lci=data[cond_haz_lci] 
-    
-    data$hazd=data[cond_haz_diff]
-    data$hazd_uci=data[cond_haz_diff_uci]
-    data$hazd_lci=data[cond_haz_diff_lci]
-    
-    data$hazr=data[cond_haz_ratio]
-    data$hazr_uci=data[cond_haz_ratio_uci]
-    data$hazr_lci=data[cond_haz_ratio_lci]
-    
-    if (input$includecov == 'Yes')  {
-      
-      for (i in 1:length(cond_select_haz)) {
-        data$haz[[i]]     =as.data.frame(as.matrix(data$haz[[i]])[c(1,covselect()),])
-        data$haz_uci[[i]] =as.data.frame(as.matrix(data$haz_uci[[i]])[c(1,covselect()),])
-        data$haz_lci[[i]] =as.data.frame(as.matrix(data$haz_lci[[i]])[c(1,covselect()),])
-      }
-      for (i in 1:length(cond_select_haz_diff)) {
-        data$hazd[[i]]    =as.data.frame(as.matrix(data$hazd[[i]])[covselectcontr(),])
-        data$hazd_uci[[i]]=as.data.frame(as.matrix(data$hazd_uci[[i]])[covselectcontr(),])
-        data$hazd_lci[[i]]=as.data.frame(as.matrix(data$hazd_lci[[i]])[covselectcontr(),])
-      }
-      for (i in 1:length(cond_select_haz_ratio)) {
-        data$hazr[[i]]    =as.data.frame(as.matrix(data$hazr[[i]])[covselectcontr(),])
-        data$hazr_uci[[i]]=as.data.frame(as.matrix(data$hazr_uci[[i]])[covselectcontr(),])
-        data$hazr_lci[[i]]=as.data.frame(as.matrix(data$hazr_lci[[i]])[covselectcontr(),])
-      }
-    }
-    
-    
-    
-    
-    
-    
-    #    
+#    
     ##Save all los as a separate list
     
     
@@ -1513,7 +1601,7 @@ server <- function(input, output, session) {
       
     }
     
-    
+
     
     if (length(cond_U_ratio)==0) {
       cond_user_ratio=vector();cond_user_ratio_uci=vector();cond_user_ratio_lci=vector()
@@ -1848,7 +1936,7 @@ server <- function(input, output, session) {
   source("joint_lab_separate/function/stacked_bars.R",local=T)$value
   
   
-  
+
   
   source( "joint_lab_separate/5.interpretation/server_interpret.R", local=T)$value
   
@@ -1864,16 +1952,14 @@ server <- function(input, output, session) {
   
   source("joint_lab_separate/4.predict/server_extra.R", local=T)$value
   
-  
-  #outputOptions(output, "covarinputp", suspendWhenHidden = FALSE)
-  
-  #output$fileob<- renderPrint({
-  #
-  #  json2manual()
-  #})
-  #
-  
-}
+
+ #outputOptions(output, "covarinputp", suspendWhenHidden = FALSE)
+output$fileob<- renderPrint({
+
+value1()
+})
+
+   }
 
 shinyApp(ui = ui, server = server)
 
