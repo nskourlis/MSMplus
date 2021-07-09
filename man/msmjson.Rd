@@ -64,7 +64,8 @@ specified using explicit time-dependent covariates, and should not be used for m
 
 \item{num.integ.json}{Use numerical integration instead of analytic solution (see below).}
 
-\item{covariates_list}{The covariate values to estimate for. This can either be a list of lists:, Default: NULL}
+\item{covariates_list}{The user can specify different covariate patterns
+for which predictions will be made, Default: list()}
 
 \item{jsonpath}{specify the path of the folder that the json file should be saved, Default: "~"}
 

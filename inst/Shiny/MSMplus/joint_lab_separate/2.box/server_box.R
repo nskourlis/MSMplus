@@ -409,7 +409,7 @@ output$down <- downloadHandler(
     nstates= myjson1()$Nstates
     xvaluesb=labels_x()  #+boxwidth/2
     yvaluesb=labels_y()  #-boxheight/2
-    boxes=msboxes_R_nofreq(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
+    boxes=msboxes_R_nofreq_inner(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
     #Read through json from msboxes or through a new function 
     x1=boxes$arrows$x1
     y1=boxes$arrows$y1
@@ -844,7 +844,7 @@ output$msm_scheme_interactive <- renderPlot ({
   xvaluesb=labels_x()  #+boxwidth/2
   yvaluesb=labels_y()  #-boxheight/2
   
-  boxes=msboxes_R_nofreq(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
+  boxes=msboxes_R_nofreq_inner(yb=yvaluesb, xb=xvaluesb, boxwidth=input$boxwidth , boxheight=input$boxheight, tmat.= myjson1()$tmat)
   
   
   #Read through json from msboxes or through a new function 

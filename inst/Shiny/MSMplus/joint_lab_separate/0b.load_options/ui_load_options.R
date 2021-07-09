@@ -122,7 +122,7 @@ tabPanel(h1("MSMplus") ,#icon = icon("home"),
             
             column(6,
                    actionButton(inputId = "examplebutton",
-                                label = "Press to see example"),
+                                label = "Click to see example"),
                    conditionalPanel(condition=("input.examplebutton%2==0"),
                                     h3("")
                    ),

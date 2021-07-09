@@ -1,11 +1,11 @@
-msboxes_R_nofreq<- function(yb,xb,boxwidth,boxheight,tmat.) {
+msboxes_R_nofreq_inner<- function(yb,xb,boxwidth,boxheight,tmat.) {
   
-  library(plyr)
-  library(viridis)
-  library(dplyr)
-  library(reshape2)
-  library(tidyverse)
-  
+ # library(plyr)
+ # library(viridis)
+ # library(dplyr)
+ # library(reshape2)
+ # library(tidyverse)
+ # 
   
   ##########Read info from transition matrix #############################
   ####Number of transitions and number of states##############

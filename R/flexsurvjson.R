@@ -133,8 +133,14 @@ flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
   
   options(scipen = 999,"digits"=14)
   
-
-
+#
+#  if (is.null(covariate_patterns)) {covariates_list=list()}
+#  
+#  else if ( !is.null(covariate_patterns) ) {
+#    covariates_list=list()
+#    for (i in 1:nrow(covariate_patterns)) {covariates_list[[i]]=covariate_patterns[i,]}
+#  }
+  
   
   #  vartime=time/scale
   
@@ -598,7 +604,10 @@ flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
                      los=loslist,los_lci=loslist_lci,los_uci=loslist_uci)
     
   }
-  
+  #############################################################################################################
+  #############################################################################################################
+  #############################################################################################################
+  #############################################################################################################
   
 if (length(covariates_list) != 0) {
 

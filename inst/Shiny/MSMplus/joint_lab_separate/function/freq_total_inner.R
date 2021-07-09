@@ -1,16 +1,16 @@
 
 
-freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
+freq_func_total_inner <- function(msdata,msid,names_of_ststates, values_ststates,
                             names_of_nastates, values_nastates,
                             names_of_abstates,values_abstates,
                             names_of_transitions,values_of_transitions,
                             time, timevar,scale_inner=1) {
   
-  library(plyr)
-  library(viridis)
-  library(dplyr)
-  library(reshape2)
-  library(tidyverse)
+  #library(plyr)
+  #library(viridis)
+  #library(dplyr)
+  #library(reshape2)
+  #library(tidyverse)
   
   fr=list()
   
@@ -20,8 +20,8 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
  # data<- read.csv("C:/Users/niksko/Desktop/mstate/jsonread/msset_ebmt.csv",header=TRUE, sep=";")
   options(scipen = 999)  
   data=msdata
-  attach(data)
-  names(data)
+  #attach(data)
+ # names(data)
   
   data$time_tot=time       #######################################
   

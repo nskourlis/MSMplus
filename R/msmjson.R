@@ -26,7 +26,8 @@
 #' specified using explicit time-dependent covariates, and should not be used for models specified using "pci"., Default: NULL
 #' @param piecewise.covariates.json Covariates on which the piecewise-constant intensities depend. See pmatrix.piecewise.msm for how to specify this., Default: NULL
 #' @param num.integ.json Use numerical integration instead of analytic solution (see below).
-#' @param covariates_list The covariate values to estimate for. This can either be a list of lists:, Default: NULL
+#' @param covariates_list The user can specify different covariate patterns
+#' for which predictions will be made, Default: list()
 #' @param jsonpath specify the path of the folder that the json file should be saved, Default: "~"
 #' @param name Specify the name of the output json file, Default: 'predictions.json'
 #' @return returns a list of objects: the time variable
@@ -115,6 +116,15 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
   
   ###  Default for jsonpath is user's home directory ####
   options(scipen = 999,"digits"=10)
+  
+  
+#  
+#  if (is.null(covariate_patterns)) {covariates_list=list()}
+#  
+#  else if ( !is.null(covariate_patterns) ) {
+#    covariates_list=list()
+#    for (i in 1:nrow(covariate_patterns)) {covariates_list[[i]]=covariate_patterns[i,]}
+ # }
   ################################################################  
   nstates=ncol(mat.init)
   

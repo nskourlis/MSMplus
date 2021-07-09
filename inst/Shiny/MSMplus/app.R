@@ -1,115 +1,114 @@
 
-#if (!require(visNetwork)) install.packages("visNetwork", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(shiny)) install.packages("shinyjs", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(shiny)) install.packages("shiny", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-##if (!require(tidyverse)) install.packages("tidyverse")
-#
-#if (!require(mstate)) install.packages("mstate", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(tidyr)) install.packages("tidyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(ggplot2)) install.packages("ggplot2", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(DiagrammeR)) install.packages("DiagrammeR", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(stringr)) install.packages("stringr", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(dplyr)) install.packages("dplyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(RJSONIO)) install.packages("RJSONIO", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(gapminder)) install.packages("gapminder", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(plyr)) install.packages("plyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(viridis)) install.packages("viridis", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(cowplot)) install.packages("cowplot", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(magick)) install.packages("magick", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require(StatMeasures)) install.packages("StatMeasures", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("processx")) install.packages("processx", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("webshot")) install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("htmlwidgets")) install.packages("htmlwidgets", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("raster")) install.packages("raster", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("jsonlite")) install.packages("jsonlite", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("devtools")) install.packages("devtools", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if (!require("usethis")) install.packages("usethis", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if (!require("githubinstall")) install.packages("githubinstall", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if (!require("shinyMatrix"))  install.packages("shinyMatrix", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if (!require("dlm"))  install.packages("dlm", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("rsvg"))  install.packages("rsvg", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if (!require("miniUI"))  install.packages("miniUI", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if (!require("htmltools"))  install.packages("htmltools", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("webshot"))  install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#
-#if (!require("formattable"))  install.packages("formattable", INSTALL_opts = '--no-lock',dependencies = TRUE)
-#if ( !require("orca") ) {install.packages("orca")}
+if (!require(visNetwork)) install.packages("visNetwork", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-#library("usethis")
-#library("devtools")
-#library("githubinstall")
+if (!require(shiny)) install.packages("shinyjs", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-#if (!require(devtools)) install.packages("devtools")
-#devtools::install_github("cpsievert/plotcon17")
+if (!require(shiny)) install.packages("shiny", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+#if (!require(tidyverse)) install.packages("tidyverse")
+
+if (!require(mstate)) install.packages("mstate", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(tidyr)) install.packages("tidyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(ggplot2)) install.packages("ggplot2", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(DiagrammeR)) install.packages("DiagrammeR", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(stringr)) install.packages("stringr", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(dplyr)) install.packages("dplyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(RJSONIO)) install.packages("RJSONIO", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(gapminder)) install.packages("gapminder", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(plyr)) install.packages("plyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(viridis)) install.packages("viridis", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(cowplot)) install.packages("cowplot", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(magick)) install.packages("magick", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(StatMeasures)) install.packages("StatMeasures", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("processx")) install.packages("processx", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("webshot")) install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("htmlwidgets")) install.packages("htmlwidgets", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("raster")) install.packages("raster", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("jsonlite")) install.packages("jsonlite", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("devtools")) install.packages("devtools", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("usethis")) install.packages("usethis", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("githubinstall")) install.packages("githubinstall", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("shinyMatrix"))  install.packages("shinyMatrix", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("dlm"))  install.packages("dlm", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("rsvg"))  install.packages("rsvg", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("miniUI"))  install.packages("miniUI", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("htmltools"))  install.packages("htmltools", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("webshot"))  install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("formattable"))  install.packages("formattable", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+
+
+if (!require(devtools)) install.packages("devtools")
 
 if (!require("plotly")) install.packages("plotly")
 
 if (!require("gridExtra")) install.packages("gridExtra")
-#library("orca")
-library(rsvg)
-library(miniUI)
-library(htmltools)
+
+library("usethis")
+library("devtools")
+library("githubinstall")
+library("rsvg")
+library("miniUI")
+library("htmltools")
 library("webshot")
 
-library(visNetwork)
+library("visNetwork")
 
-library(plotly)
+library("plotly")
 
 
 #library(tidyverse)
 
-library(jsonlite)
+library("jsonlite")
 
-library(webshot)
-library(htmlwidgets)
-library(raster)
-library(plyr)
-library(viridis)
+library("webshot")
+library("htmlwidgets")
+library("raster")
+library("plyr")
+library("viridis")
 library('RJSONIO')
-library(ggplot2)
-library(plotly)
-library(dplyr)
-library(formattable)
-library(reshape2)
-library(ggplot2)
-library(gridExtra)
-library(tidyverse)
-library(DT)
+library("ggplot2")
+library("plotly")
+library("dplyr")
+library("formattable")
+library("reshape2")
+library("ggplot2")
+library("gridExtra")
+library("tidyverse")
+#library(DT)
 #library(shiny.semantic)
-library(magrittr)
-library(cowplot)
-library(imager)
-library(StatMeasures)
-library(shinyMatrix)
-library(dlm)
-library(gapminder)
-library(gridExtra)
+library("magrittr")
+library("cowplot")
+library("imager")
+library("StatMeasures")
+library("shinyMatrix")
+library("dlm")
+library("gapminder")
+library("gridExtra")
 
-library(shinyjs)
-library(shiny)
+library("shinyjs")
+library("shiny")
 
 #readRenviron("~/.Renviron")
 Sys.setenv("plotly_username" = "niksko")
@@ -158,11 +157,11 @@ appCSS <- "
 
 "
 
-jscode <- "shinyjs.refresh = function() { location.reload(); }"
-ui = tagList(
-  useShinyjs(),
-  extendShinyjs(text = jscode, functions = "refresh"),
-  navbarPage(id="tabs_start", fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css",
+#jscode <- "shinyjs.refresh = function() { location.reload(); }"
+#ui = tagList(
+#  useShinyjs(),
+#  extendShinyjs(text = jscode, functions = "refresh"),
+ui =  navbarPage(id="tabs_start", fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css",
   "",
   # blank title
  # Font Awesome icon
@@ -197,28 +196,111 @@ ui = tagList(
                   
                   source( "joint_lab_separate/4.predict/ui_user.R", local=T)$value,
                   
-                  source( "joint_lab_separate/4.predict/ui_extra.R", local=T)$value,
+                  source( "joint_lab_separate/4.predict/ui_extra.R", local=T)$value
                   
-                 tabPanel(title = h1(""), value = "refresh",icon = icon("refresh"))
+               #  tabPanel(title = h1(""), value = "refresh",icon = icon("refresh"))
                   
                   
-)
+#)
 
 )
 
 server <- function(input, output, session) {
   
-  observe({
-    if (input$tabs_start == "refresh") {
-      js$refresh();
+#  observe({
+ #   if (input$tabs_start == "refresh") {
+ #     js$refresh();
+ #   }
+ # })
+  
+  
+  
+  value1 <- reactiveVal(0)       
+  
+  observeEvent(input$tabs_start, {
+    if (input$tabs_start!="mytab_set") {
+      newValue <- value1() + 0   
+      value1(newValue)  
+    }
+  })
+  observeEvent(input$tabs_start, {
+    if (input$tabs_start=="mytab_set") {
+      newValue <- value1() + 1   
+      value1(newValue)  
     }
   })
   
   
+  
+  observeEvent(input$tabs_start, {
+    
+    if(value1()==0) {
+      js$disableTab("mytab_p")
+      js$disableTab("mytab_h")
+      js$disableTab("mytab_los")
+      js$disableTab("mytab_vis")
+      js$disableTab("mytab_extra")
+      js$disableTab("mytab_user")
+    }
+    else if(value1()>0) {
+      js$enableTab("mytab_p")
+      js$enableTab("mytab_h")
+      js$enableTab("mytab_los")
+      js$enableTab("mytab_vis")
+      js$enableTab("mytab_extra")
+      js$enableTab("mytab_user")
+    }
+  }) 
+  
+  
+  
+  #
+  #observeEvent({trigger2(); trigger1()}, print('hello'), ignoreInit = T)
+  
   source( "joint_lab_separate/0b.load_options/server_load_options.R", local=T)$value
   
   source( "joint_lab_separate/1.load/server_load.R", local=T)$value
-    
+  
+  
+  
+  
+  # observeEvent(input$hideTab, {
+  #   hideTab(inputId = "tabs_start", target = "mytab_set")
+  # })
+  
+  
+  
+  # timer_hideset <- reactiveVal(1.5)
+  # 
+  # observeEvent(c(input$hideTab,invalidateLater(1000, session)), { 
+  #   
+  #   if(input$hideTab==0){
+  #     
+  #     showTab(inputId = "tabs_start", target = "mytab_set")
+  #     
+  #   }
+  #   
+  #   if(input$hideTab!=0){
+  #     
+  #     hideTab(inputId = "tabs_start", target = "mytab_set")
+  #     
+  #   }
+  #   
+  #   isolate({
+  #     
+  #     timer_hideset(timer_hideset()-1)
+  #     if(timer_hideset()>1 & input$hideTab==0)
+  #     {
+  #       showTab(inputId = "tabs_start", target = "mytab_set")
+  #     }
+  #     
+  #   })
+  # })
+  
+  
+  
+  
+  
   
   #Functions
   ### Function deriving the frequencies over time
@@ -252,7 +334,7 @@ server <- function(input, output, session) {
   
   source("joint_lab_separate/2.box/server_box.R", local=T)$value
   
-
+  
   
   
   
@@ -266,57 +348,57 @@ server <- function(input, output, session) {
   
   myjson1 <- reactive ({
     
-      if (input$loadtype=="json") {
-        
-         if (input$aimtype=="present") {
+    if (input$loadtype=="json") {
       
-            if (is.null(input$json1_pr) & input$example=="No")  return()
-            
-            else if (!is.null(input$json1_pr) & input$example=="No" ) {
-              
-              data= fromJSON(input$json1_pr$datapath, flatten=TRUE)
-              
-            }
-            
-            else if (input$example=="Yes" & is.null(input$json1_pr) )  {  
-              data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
-            }
-            
-            
-            
-         #   if (is.null(data$msm)==FALSE) {
-         #     if  (data$msm!=1) {data$msm_box=0}
-         #     else if (data$msm==1)  {data$msm_box=1}
-         #   }
-         #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
-            
-            data
-         }
+      if (input$aimtype=="present") {
+        
+        if (is.null(input$json1_pr) & input$example=="No")  return()
+        
+        else if (!is.null(input$json1_pr) & input$example=="No" ) {
+          
+          data= fromJSON(input$json1_pr$datapath, flatten=TRUE)
+          
+        }
+        
+        else if (input$example=="Yes" & is.null(input$json1_pr) )  {  
+          data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
+        }
         
         
+        
+        #   if (is.null(data$msm)==FALSE) {
+        #     if  (data$msm!=1) {data$msm_box=0}
+        #     else if (data$msm==1)  {data$msm_box=1}
+        #   }
+        #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
+        
+        data
+      }
+      
+      
       else if (input$aimtype=="compare") {
+        
+        if (is.null(input$json1_cp) & input$compare_approach=="No")  return()
+        
+        else if (!is.null(input$json1_cp) & input$compare_approach=="No" ) {
           
-          if (is.null(input$json1_cp) & input$compare_approach=="No")  return()
+          data= fromJSON(input$json1_cp$datapath, flatten=TRUE)
           
-          else if (!is.null(input$json1_cp) & input$compare_approach=="No" ) {
-            
-            data= fromJSON(input$json1_cp$datapath, flatten=TRUE)
-            
-          }
-          
-          else if (input$compare_approach=="Yes" & is.null(input$json1_cp) )  {  
-            data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
-          }
-          
-          
-          
-    #      if (is.null(data$msm)==FALSE) {
-    #        if  (data$msm!=1) {data$msm_box=0}
-    #        else if (data$msm==1)  {data$msm_box=1}
-    #       }
-    #      if (is.null(data$msm)==TRUE) {data$msm_box=0}
-          
-          data
+        }
+        
+        else if (input$compare_approach=="Yes" & is.null(input$json1_cp) )  {  
+          data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
+        }
+        
+        
+        
+        #      if (is.null(data$msm)==FALSE) {
+        #        if  (data$msm!=1) {data$msm_box=0}
+        #        else if (data$msm==1)  {data$msm_box=1}
+        #       }
+        #      if (is.null(data$msm)==TRUE) {data$msm_box=0}
+        
+        data
       }
     }
     
@@ -325,26 +407,26 @@ server <- function(input, output, session) {
     else if (input$loadtype=="csv") {
       
       if (input$aimtype=="present") {
-     
+        
         if (length(which(!is.na(input$tmat_input_pr))==TRUE)==0  & input$example2=="No")  return()
-     
+        
         else if (input$example2=="No" & length(which(!is.na(input$tmat_input_pr))==TRUE)!=0 ) {
-            data=  fromJSON(json1manual(), flatten=TRUE)
+          data=  fromJSON(json1manual(), flatten=TRUE)
         }
-     
+        
         else if (input$example2=="Yes"  )  { #& is.null(json1manual())
           data= fromJSON("joint_lab_separate/0.example_data/msboxes.json", flatten=TRUE)
         }
-      
+        
         else if (input$example2=="Yes" & length(which(!is.na(input$tmat_input_pr))==TRUE)!=0 ) return("Not both") #& !is.null(json1manual())
-
-     # if (is.null(data$msm)==FALSE) {
-     #   if  (data$msm!=1) {data$msm_box=0}
-     #   else if (data$msm==1)  {data$msm_box=1}
-     # }
-    # if (is.null(data$msm)==TRUE) {data$msm_box=0}
-      
-      data
+        
+        # if (is.null(data$msm)==FALSE) {
+        #   if  (data$msm!=1) {data$msm_box=0}
+        #   else if (data$msm==1)  {data$msm_box=1}
+        # }
+        # if (is.null(data$msm)==TRUE) {data$msm_box=0}
+        
+        data
       }
       
       
@@ -362,11 +444,11 @@ server <- function(input, output, session) {
         
         else if (input$compare_approach2=="Yes" &  length(which(!is.na(input$tmat_input_cp))==TRUE)!=0  ) return("Not both") #& !is.null(json1manual())
         
-      #  if (is.null(data$msm)==FALSE) {
-      #    if  (data$msm!=1) {data$msm_box=0}
-      #    else if (data$msm==1)  {data$msm_box=1}
-      #  }
-      #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
+        #  if (is.null(data$msm)==FALSE) {
+        #    if  (data$msm!=1) {data$msm_box=0}
+        #    else if (data$msm==1)  {data$msm_box=1}
+        #  }
+        #  if (is.null(data$msm)==TRUE) {data$msm_box=0}
         
         data
       }  
@@ -386,104 +468,104 @@ server <- function(input, output, session) {
     if (input$loadtype=="json") {
       
       if (input$aimtype=="present") {
-      
-      
+        
+        
         if (is.null(input$json2) & input$example=="No" ) return("Provide the json file with the predictions")
-      
+        
         else if (!is.null(input$json2) ) {
-        
+          
           data= fromJSON(input$json2$datapath, flatten=TRUE)
-        
-         }
+          
+        }
         
         else if ( input$example=="Yes"   & is.null(input$json2)) {  #is.null(input$json2) &
-        
+          
           data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_merlin.json", flatten=TRUE)
-        
+          
         }
-      
-
+        
+        
       }
       
       else if (input$aimtype=="compare") {
         
-         if (  (is.null(input$json2a) | is.null(input$json2b)) & input$compare_approach=="No" )  {return("Provide two json files with the predictions approaches")}
+        if (  (is.null(input$json2a) | is.null(input$json2b)) & input$compare_approach=="No" )  {return("Provide two json files with the predictions approaches")}
         
-         else if (!is.null(input$json2a) & !is.null(input$json2b)  ) {
+        else if (!is.null(input$json2a) & !is.null(input$json2b)  ) {
           
-           list2a=fromJSON(input$json2a$datapath, flatten=TRUE)
-           list2b=fromJSON(input$json2b$datapath, flatten=TRUE)
-           
-           
-           Nstates=ncol(list2b$tmat)
-           Ntransitions=max(list2b$tmat[which(!is.na(list2b$tmat))])
-           
-           y=vector()
-           
-           for (i in 1:Nstates) {
-             
-             for (k in 1:Nstates) {
-               
+          list2a=fromJSON(input$json2a$datapath, flatten=TRUE)
+          list2b=fromJSON(input$json2b$datapath, flatten=TRUE)
+          
+          
+          Nstates=ncol(list2b$tmat)
+          Ntransitions=max(list2b$tmat[which(!is.na(list2b$tmat))])
+          
+          y=vector()
+          
+          for (i in 1:Nstates) {
+            
+            for (k in 1:Nstates) {
+              
               # if (i<=k) {
-                 j=i+Nstates
-                 g=k+Nstates
-                 
-                 y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
-                 names(list2b)=y
-             #  }
-             }
-           }
-           
-           is.integer0 <- function(x)
-           {
-             is.integer(x) && length(x) == 0L
-           }
-           
-           
-           if (  !is.integer0(which(startsWith(names(list2b),"User")) ) == TRUE )   {
-             
-             list2b=list2b[-which(startsWith(names(list2b),"User") == TRUE)]   
-             
-             names(list2b)
-             
-           }
-           
-         #  list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
-         #  names(list2b)
-           
-           for (i in 1:Ntransitions) {
-             k= i+ Ntransitions
-             names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
-           }
-           
-           
-           ### Create a hypertmatrix####
-           
-           list2b$tmat2= list2b$tmat+Ntransitions
-           
-           l <- list(list2b$tmat,list2b$tmat2)
-           
-           list2b$hypertmat<- as.matrix(bdiag(l))
-           list2b$hypertmat[which(list2b$hypertmat==0)]=NA
-           
-           list2b$hypertmat
-           
-           list2a=list2a[names(list2a) %in% "tmat" == FALSE] 
-           list2b=list2b[names(list2b) %in% "tmat" == FALSE] 
-           list2b=list2b[names(list2b) %in% "tmat2" == FALSE] 
-           
-           list2b$tmat=list2b$hypertmat
-           
-           data=c(list2a,list2b)
-         }
+              j=i+Nstates
+              g=k+Nstates
+              
+              y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
+              names(list2b)=y
+              #  }
+            }
+          }
+          
+          is.integer0 <- function(x)
+          {
+            is.integer(x) && length(x) == 0L
+          }
+          
+          
+          if (  !is.integer0(which(startsWith(names(list2b),"User")) ) == TRUE )   {
+            
+            list2b=list2b[-which(startsWith(names(list2b),"User") == TRUE)]   
+            
+            names(list2b)
+            
+          }
+          
+          #  list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
+          #  names(list2b)
+          
+          for (i in 1:Ntransitions) {
+            k= i+ Ntransitions
+            names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
+          }
+          
+          
+          ### Create a hypertmatrix####
+          
+          list2b$tmat2= list2b$tmat+Ntransitions
+          
+          l <- list(list2b$tmat,list2b$tmat2)
+          
+          list2b$hypertmat<- as.matrix(bdiag(l))
+          list2b$hypertmat[which(list2b$hypertmat==0)]=NA
+          
+          list2b$hypertmat
+          
+          list2a=list2a[names(list2a) %in% "tmat" == FALSE] 
+          list2b=list2b[names(list2b) %in% "tmat" == FALSE] 
+          list2b=list2b[names(list2b) %in% "tmat2" == FALSE] 
+          
+          list2b$tmat=list2b$hypertmat
+          
+          data=c(list2a,list2b)
+        }
         
         
-         else if ( input$compare_approach=="Yes" ) { #(is.null(input$json2a) | is.null(input$json2b)) &
+        else if ( input$compare_approach=="Yes" ) { #(is.null(input$json2a) | is.null(input$json2b)) &
           
-           data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_both_approaches.json", flatten=TRUE)
+          data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_both_approaches.json", flatten=TRUE)
           
-         }
-      
+        }
+        
         else if (!is.null(input$json2a) & !is.null(input$json2b) & input$compare_approach=="Yes" ) return("Not both")
       }
     }
@@ -491,25 +573,25 @@ server <- function(input, output, session) {
     
     else if (input$loadtype=="csv") {
       
-       if (input$aimtype=="present") {
-      
-      
-          if (is.null(json2manual()) & input$example2=="No") return("Provide the csv file with the predictions")
-      
-          else if (!is.null(json2manual())  & input$example2=="No") { #& input$example=="No"
+      if (input$aimtype=="present") {
         
-           data= fromJSON(json2manual(), flatten=TRUE)
         
-         }
-      
-          else if ( input$example2=="Yes"  & is.null(json2manual())) {  #& is.null(json2manual())
+        if (is.null(json2manual()) & input$example2=="No") return("Provide the csv file with the predictions")
         
-            data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_merlin.json", flatten=TRUE)
-
-            data
-         }
-      
-         else if ( input$example2=="Yes" & !is.null(json2manual())) return("Not both")
+        else if (!is.null(json2manual())  & input$example2=="No") { #& input$example=="No"
+          
+          data= fromJSON(json2manual(), flatten=TRUE)
+          
+        }
+        
+        else if ( input$example2=="Yes"  & is.null(json2manual())) {  #& is.null(json2manual())
+          
+          data= fromJSON("joint_lab_separate/0.example_data/predictions_stata_merlin.json", flatten=TRUE)
+          
+          data
+        }
+        
+        else if ( input$example2=="Yes" & !is.null(json2manual())) return("Not both")
       }
       
       
@@ -523,7 +605,7 @@ server <- function(input, output, session) {
           data= fromJSON(json2manual(), flatten=TRUE)
           data
         }
-      
+        
         
         else if (  input$compare_approach2=="Yes" & is.null(json2manual()) ) { 
           
@@ -858,369 +940,202 @@ server <- function(input, output, session) {
     #### Old way of reading hazards into the app
     
     ##Save all transistion intensities as a separate list
-   # cond_h<-which(startsWith(names(data), 'h') & endsWith(names(data), paste0('from_',input$select)) &
-   #                !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
+    # cond_h<-which(startsWith(names(data), 'h') & endsWith(names(data), paste0('from_',input$select)) &
+    #                !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
     
-#    cond_h<-which(startsWith(names(data), 'h') &
-#                    !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
-#    
-#    if (length(cond_h)==0) {
-#      data$h=NULL
-#    }
-#    
-#    else {
-#      
-#      if (input$includecov == 'No')  {
-#        data$h=data[cond_h]
-#      }
-#      
-#      if (input$includecov == 'Yes')  {
-#        data$h=data[cond_h]
-#        for (i in 1:data$Ntransitions) {
-#          data$h[[i]]     =as.data.frame(as.matrix(data$h[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }
+    #    cond_h<-which(startsWith(names(data), 'h') &
+    #                    !endsWith(names(data), 'lci') & !endsWith(names(data), 'uci'))
+    #    
+    #    if (length(cond_h)==0) {
+    #      data$h=NULL
+    #    }
+    #    
+    #    else {
+    #      
+    #      if (input$includecov == 'No')  {
+    #        data$h=data[cond_h]
+    #      }
+    #      
+    #      if (input$includecov == 'Yes')  {
+    #        data$h=data[cond_h]
+    #        for (i in 1:data$Ntransitions) {
+    #          data$h[[i]]     =as.data.frame(as.matrix(data$h[[i]])[c(1,covselect()),])
+    #        }
+    #      }
+    #    }
     
     
     ##Save all los as a separate list
     cond_haz_all<-which(startsWith(names(data), 'Haz_')  
-                      & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-                        !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+                        & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
+                          !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
     
-        if (length(cond_haz_all)==0) {
-            data$haz_all=NULL
-        }
-        else {  
-          
-                if (input$includecov == 'No')  {
-                  data$haz_all=data[cond_haz_all]
-                }
-                
-                if (input$includecov == 'Yes')  {
-                  data$haz_all=data[cond_haz_all]
-                  for (i in 1:data$Ntransitions) {
-                    data$haz_all[[i]]     =as.data.frame(as.matrix(data$haz_all[[i]])[c(1,covselect()),])
-                  }
-                }
+    if (length(cond_haz_all)==0) {
+      data$haz_all=NULL
+    }
+    else {  
+      
+      if (input$includecov == 'No')  {
+        data$haz_all=data[cond_haz_all]
       }
-          
-          #############Experimental#######################
-    
-#    cond_h<-which(startsWith(names(data), 'Haz_')  
-#                        & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-#                          !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_h)==0) data$h=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$h=data[cond_h]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$h=data[cond_h]
-#        for (i in 1:data$Ntransitions) {
-#          data$h[[i]]     =as.data.frame(as.matrix(data$h[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    } 
-#    
-#    cond_h_uci<-which(startsWith(names(data), 'Haz_')  
-#                    & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-#                      endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_h_uci)==0) data$h_uci=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$h_uci=data[cond_h_uci]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$h_uci=data[cond_h_uci]
-#        for (i in 1:data$Ntransitions) {
-#          data$h_uci[[i]]     =as.data.frame(as.matrix(data$h_uci[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }    
-#    
-#    cond_h_lci<-which(startsWith(names(data), 'Haz_')  
-#                      & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-#                        !endsWith(names(data), 'uci' ) & endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_h_lci)==0) data$h_lci=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$h_lci=data[cond_h_lci]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$h_lci=data[cond_h_lci]
-#        for (i in 1:data$Ntransitions) {
-#          data$h_lci[[i]]     =as.data.frame(as.matrix(data$h_lci[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }  
-#    
-#    cond_hd<-which(startsWith(names(data), 'Haz_')  
-#                  & startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-#                    !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_hd)==0) data$h=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$hd=data[cond_hd]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$hd=data[cond_hd]
-#        for (i in 1:data$Ntransitions) {
-#          data$hd[[i]]     =as.data.frame(as.matrix(data$hd[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    } 
-#    
-#    cond_hd_uci<-which(startsWith(names(data), 'Haz_')  
-#                      & startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-#                        endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_hd_uci)==0) data$hd_uci=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$hd_uci=data[cond_hd_uci]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$hd_uci=data[cond_hd_uci]
-#        for (i in 1:data$Ntransitions) {
-#          data$hd_uci[[i]]     =as.data.frame(as.matrix(data$hd_uci[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }    
-#    
-#    cond_hd_lci<-which(startsWith(names(data), 'Haz_')  
-#                      & startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-#                        !endsWith(names(data), 'uci' ) & endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_hd_lci)==0) data$hd_lci=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$hd_lci=data[cond_hd_lci]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$hd_lci=data[cond_hd_lci]
-#        for (i in 1:data$Ntransitions) {
-#          data$hd_lci[[i]]     =as.data.frame(as.matrix(data$hd_lci[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }  
-#    
-#    cond_hr<-which(startsWith(names(data), 'Haz_')  
-#                   & !startsWith(names(data), 'Haz_diff') & startsWith(names(data),'Haz_ratio') &
-#                     !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_hr)==0) data$h=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$hr=data[cond_hr]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$hr=data[cond_hr]
-#        for (i in 1:data$Ntransitions) {
-#          data$hr[[i]]     =as.data.frame(as.matrix(data$hr[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    } 
-#    
-#    cond_hr_uci<-which(startsWith(names(data), 'Haz_')  
-#                       & !startsWith(names(data), 'Haz_diff') & startsWith(names(data),'Haz_ratio') &
-#                         endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_hr_uci)==0) data$hr_uci=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$hr_uci=data[cond_hr_uci]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$hr_uci=data[cond_hr_uci]
-#        for (i in 1:data$Ntransitions) {
-#          data$hr_uci[[i]]     =as.data.frame(as.matrix(data$hr_uci[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }    
-#    
-#    cond_hr_lci<-which(startsWith(names(data), 'Haz_')  
-#                       & !startsWith(names(data), 'Haz_diff') & startsWith(names(data),'Haz_ratio') &
-#                         !endsWith(names(data), 'uci' ) & endsWith(names(data), 'lci') )
-#    
-#    if (length(cond_hr_lci)==0) data$hr_lci=NULL
-#    
-#    else {  
-#      if (input$includecov == 'No')  {
-#        data$hr_lci=data[cond_hr_lci]
-#      }
-#      if (input$includecov == 'Yes')  {
-#        data$hr_lci=data[cond_hr_lci]
-#        for (i in 1:data$Ntransitions) {
-#          data$hr_lci[[i]]     =as.data.frame(as.matrix(data$hr_lci[[i]])[c(1,covselect()),])
-#        }
-#      }
-#    }  
-#    
-#    if (length(cond_h_lci)!=0) {
-#        data$ci_h=1 
-#    }
+      
+      if (input$includecov == 'Yes')  {
+        data$haz_all=data[cond_haz_all]
+        for (i in 1:data$Ntransitions) {
+          data$haz_all[[i]]     =as.data.frame(as.matrix(data$haz_all[[i]])[c(1,covselect()),])
+        }
+      }
+    }
     
     
-   cond_select_haz<-which(startsWith(names(data), paste0('Haz_',input$select))  &
-                            !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-   
-   cond_select_haz_diff<-which(startsWith(names(data), paste0('Haz_diff_',input$select))  &
-                                 !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-   
-   cond_select_haz_ratio<-which(startsWith(names(data), paste0('Haz_ratio_',input$select))  &
+    
+    cond_select_haz<-which(startsWith(names(data), paste0('Haz_',input$select))  &
+                             !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+    
+    cond_select_haz_diff<-which(startsWith(names(data), paste0('Haz_diff_',input$select))  &
                                   !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
-   
-   cond_exists_haz_ci<- which(startsWith(names(data), paste0('Haz_',input$select))  &
-                                (endsWith(names(data), 'uci' ) | endsWith(names(data), 'lci')) )
-   
-   data$ci_haz=cond_exists_haz_ci
-   
-   if (length(cond_select_haz)==0) {
-     cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
-     data$haz=NULL;data$haz_uci=NULL;data$haz_lci=NULL
-   }
-   
-   else if (length(cond_select_haz)!=0) { 
-     
-     if (length(cond_exists_haz_ci)!=0) { 
-       
-       ##Save all probabilities as a separate list
-       cond_haz=vector()
-       for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) 
-                                                                 & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
-                                                                   !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') ) }
-       
-       cond_haz_uci=vector()
-       for (i in 1:length(cond_select_haz)) { cond_haz_uci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
-                                                                       !startsWith(names(data), 'Haz_diff') &  !startsWith(names(data),'Haz_ratio') &  endsWith(names(data), 'uci' ))}
-       
-       cond_haz_lci=vector()
-       for (i in 1:length(cond_select_haz)) { cond_haz_lci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
-                                                                       !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &  endsWith(names(data),'lci'))   }
-     }
-     
-     else if (length(cond_exists_haz_ci)==0) { 
-       
-       cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
-       
-       for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) &
-                                                                   !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') & !endsWith(names(data), 'uci' ) &
-                                                                   !endsWith(names(data), 'lci') ) }
-     }
-   }
-   
-   
-   if (length(cond_select_haz_diff)==0) {
-     cond_haz_diff=vector();cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
-     data$hazd=NULL;data$hazd_uci=NULL;data$hazd_lci=NULL
-   }
-   
-   else if (length(cond_select_haz_diff)!=0) { 
-     
-     if (length(cond_exists_haz_ci)!=0) { 
-       
-       cond_haz_diff=vector()
-       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
-                                                                              !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-       cond_haz_diff_uci=vector()
-       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_uci[i]<- which(startsWith(names(data), 
-                                                                                           paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
-       
-       cond_haz_diff_lci=vector()
-       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_lci[i]<- which(startsWith(names(data), 
-                                                                                           paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
-     }
-     
-     else if (length(cond_exists_haz_ci)==0) { 
-       
-       cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
-       cond_haz_diff=vector()
-       for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
-                                                                              !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-     }
-   }
-   
-   if (length(cond_select_haz_ratio)==0) {
-     cond_haz_ratio=vector();cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
-     data$hazr=NULL;data$hazr_uci=NULL;data$hazr_lci=NULL
-   }
-   
-   else if (length(cond_select_haz_ratio)!=0) { 
-     
-     if (length(cond_exists_haz_ci)!=0) { 
-       
-       cond_haz_ratio=vector()
-       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) & 
-                                                                                !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-       cond_haz_ratio_uci=vector()
-       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_uci[i]<- which(startsWith(names(data),
-                                                                                             paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
-       
-       cond_haz_ratio_lci=vector()
-       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_lci[i]<- which(startsWith(names(data), 
-                                                                                             paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
-     }
-     
-     else if (length(cond_exists_haz_ci)==0) { 
-       
-       cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
-       cond_haz_ratio=vector()
-       for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) &
-                                                                                !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
-     }
-   }
-   
-   
-   data$haz=data[cond_haz]
-   data$haz_uci=data[cond_haz_uci]
-   data$haz_lci=data[cond_haz_lci] 
-   
-   data$hazd=data[cond_haz_diff]
-   data$hazd_uci=data[cond_haz_diff_uci]
-   data$hazd_lci=data[cond_haz_diff_lci]
-   
-   data$hazr=data[cond_haz_ratio]
-   data$hazr_uci=data[cond_haz_ratio_uci]
-   data$hazr_lci=data[cond_haz_ratio_lci]
-   
-   if (input$includecov == 'Yes')  {
-     
-     for (i in 1:length(cond_select_haz)) {
-       data$haz[[i]]     =as.data.frame(as.matrix(data$haz[[i]])[c(1,covselect()),])
-       data$haz_uci[[i]] =as.data.frame(as.matrix(data$haz_uci[[i]])[c(1,covselect()),])
-       data$haz_lci[[i]] =as.data.frame(as.matrix(data$haz_lci[[i]])[c(1,covselect()),])
-     }
-     for (i in 1:length(cond_select_haz_diff)) {
-       data$hazd[[i]]    =as.data.frame(as.matrix(data$hazd[[i]])[covselectcontr(),])
-       data$hazd_uci[[i]]=as.data.frame(as.matrix(data$hazd_uci[[i]])[covselectcontr(),])
-       data$hazd_lci[[i]]=as.data.frame(as.matrix(data$hazd_lci[[i]])[covselectcontr(),])
-     }
-     for (i in 1:length(cond_select_haz_ratio)) {
-       data$hazr[[i]]    =as.data.frame(as.matrix(data$hazr[[i]])[covselectcontr(),])
-       data$hazr_uci[[i]]=as.data.frame(as.matrix(data$hazr_uci[[i]])[covselectcontr(),])
-       data$hazr_lci[[i]]=as.data.frame(as.matrix(data$hazr_lci[[i]])[covselectcontr(),])
-     }
-   }
-  
-  
-  
-  
-  
     
-#    
+    cond_select_haz_ratio<-which(startsWith(names(data), paste0('Haz_ratio_',input$select))  &
+                                   !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') )
+    
+    cond_exists_haz_ci<- which(startsWith(names(data), paste0('Haz_',input$select))  &
+                                 (endsWith(names(data), 'uci' ) | endsWith(names(data), 'lci')) )
+    
+    data$ci_haz=cond_exists_haz_ci
+    
+    if (length(cond_select_haz)==0) {
+      cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
+      data$haz=NULL;data$haz_uci=NULL;data$haz_lci=NULL
+    }
+    
+    else if (length(cond_select_haz)!=0) { 
+      
+      if (length(cond_exists_haz_ci)!=0) { 
+        
+        ##Save all probabilities as a separate list
+        cond_haz=vector()
+        for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) 
+                                                                  & !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &
+                                                                    !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci') ) }
+        
+        cond_haz_uci=vector()
+        for (i in 1:length(cond_select_haz)) { cond_haz_uci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
+                                                                        !startsWith(names(data), 'Haz_diff') &  !startsWith(names(data),'Haz_ratio') &  endsWith(names(data), 'uci' ))}
+        
+        cond_haz_lci=vector()
+        for (i in 1:length(cond_select_haz)) { cond_haz_lci[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i])) & 
+                                                                        !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') &  endsWith(names(data),'lci'))   }
+      }
+      
+      else if (length(cond_exists_haz_ci)==0) { 
+        
+        cond_haz=vector();cond_haz_uci=vector();cond_haz_lci=vector()
+        
+        for (i in 1:length(cond_select_haz)) { cond_haz[i]<-which(startsWith(names(data), paste0('Haz_',input$select,selectend_h()[i]) ) &
+                                                                    !startsWith(names(data), 'Haz_diff') & !startsWith(names(data),'Haz_ratio') & !endsWith(names(data), 'uci' ) &
+                                                                    !endsWith(names(data), 'lci') ) }
+      }
+    }
+    
+    
+    if (length(cond_select_haz_diff)==0) {
+      cond_haz_diff=vector();cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
+      data$hazd=NULL;data$hazd_uci=NULL;data$hazd_lci=NULL
+    }
+    
+    else if (length(cond_select_haz_diff)!=0) { 
+      
+      if (length(cond_exists_haz_ci)!=0) { 
+        
+        cond_haz_diff=vector()
+        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
+                                                                               !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+        cond_haz_diff_uci=vector()
+        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_uci[i]<- which(startsWith(names(data), 
+                                                                                            paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
+        
+        cond_haz_diff_lci=vector()
+        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff_lci[i]<- which(startsWith(names(data), 
+                                                                                            paste0('Haz_diff_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
+      }
+      
+      else if (length(cond_exists_haz_ci)==0) { 
+        
+        cond_haz_diff_uci=vector();cond_haz_diff_lci=vector()
+        cond_haz_diff=vector()
+        for (i in 1:length(cond_select_haz_diff)) { cond_haz_diff[i]<- which(startsWith(names(data), paste0('Haz_diff_',input$select,selectend_h()[i])) &
+                                                                               !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+      }
+    }
+    
+    if (length(cond_select_haz_ratio)==0) {
+      cond_haz_ratio=vector();cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
+      data$hazr=NULL;data$hazr_uci=NULL;data$hazr_lci=NULL
+    }
+    
+    else if (length(cond_select_haz_ratio)!=0) { 
+      
+      if (length(cond_exists_haz_ci)!=0) { 
+        
+        cond_haz_ratio=vector()
+        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) & 
+                                                                                 !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+        cond_haz_ratio_uci=vector()
+        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_uci[i]<- which(startsWith(names(data),
+                                                                                              paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'uci' ) ) }
+        
+        cond_haz_ratio_lci=vector()
+        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio_lci[i]<- which(startsWith(names(data), 
+                                                                                              paste0('Haz_ratio_',input$select,selectend_h()[i])) & endsWith(names(data), 'lci' ) ) }
+      }
+      
+      else if (length(cond_exists_haz_ci)==0) { 
+        
+        cond_haz_ratio_uci=vector();cond_haz_ratio_lci=vector()
+        cond_haz_ratio=vector()
+        for (i in 1:length(cond_select_haz_ratio)) { cond_haz_ratio[i]<- which(startsWith(names(data), paste0('Haz_ratio_',input$select,selectend_h()[i])) &
+                                                                                 !endsWith(names(data), 'uci' ) & !endsWith(names(data), 'lci')  ) }
+      }
+    }
+    
+    
+    data$haz=data[cond_haz]
+    data$haz_uci=data[cond_haz_uci]
+    data$haz_lci=data[cond_haz_lci] 
+    
+    data$hazd=data[cond_haz_diff]
+    data$hazd_uci=data[cond_haz_diff_uci]
+    data$hazd_lci=data[cond_haz_diff_lci]
+    
+    data$hazr=data[cond_haz_ratio]
+    data$hazr_uci=data[cond_haz_ratio_uci]
+    data$hazr_lci=data[cond_haz_ratio_lci]
+    
+    if (input$includecov == 'Yes')  {
+      
+      for (i in 1:length(cond_select_haz)) {
+        data$haz[[i]]     =as.data.frame(as.matrix(data$haz[[i]])[c(1,covselect()),])
+        data$haz_uci[[i]] =as.data.frame(as.matrix(data$haz_uci[[i]])[c(1,covselect()),])
+        data$haz_lci[[i]] =as.data.frame(as.matrix(data$haz_lci[[i]])[c(1,covselect()),])
+      }
+      for (i in 1:length(cond_select_haz_diff)) {
+        data$hazd[[i]]    =as.data.frame(as.matrix(data$hazd[[i]])[covselectcontr(),])
+        data$hazd_uci[[i]]=as.data.frame(as.matrix(data$hazd_uci[[i]])[covselectcontr(),])
+        data$hazd_lci[[i]]=as.data.frame(as.matrix(data$hazd_lci[[i]])[covselectcontr(),])
+      }
+      for (i in 1:length(cond_select_haz_ratio)) {
+        data$hazr[[i]]    =as.data.frame(as.matrix(data$hazr[[i]])[covselectcontr(),])
+        data$hazr_uci[[i]]=as.data.frame(as.matrix(data$hazr_uci[[i]])[covselectcontr(),])
+        data$hazr_lci[[i]]=as.data.frame(as.matrix(data$hazr_lci[[i]])[covselectcontr(),])
+      }
+    }
+    
+    
+    
+    
+    
+    
+    #    
     ##Save all los as a separate list
     
     
@@ -1598,7 +1513,7 @@ server <- function(input, output, session) {
       
     }
     
-
+    
     
     if (length(cond_U_ratio)==0) {
       cond_user_ratio=vector();cond_user_ratio_uci=vector();cond_user_ratio_lci=vector()
@@ -1933,7 +1848,7 @@ server <- function(input, output, session) {
   source("joint_lab_separate/function/stacked_bars.R",local=T)$value
   
   
-
+  
   
   source( "joint_lab_separate/5.interpretation/server_interpret.R", local=T)$value
   
@@ -1949,16 +1864,16 @@ server <- function(input, output, session) {
   
   source("joint_lab_separate/4.predict/server_extra.R", local=T)$value
   
-
- #outputOptions(output, "covarinputp", suspendWhenHidden = FALSE)
-
-#output$fileob<- renderPrint({
-#
-#  json2manual()
-#})
-#
   
-  }
+  #outputOptions(output, "covarinputp", suspendWhenHidden = FALSE)
+  
+  #output$fileob<- renderPrint({
+  #
+  #  json2manual()
+  #})
+  #
+  
+}
 
 shinyApp(ui = ui, server = server)
 
