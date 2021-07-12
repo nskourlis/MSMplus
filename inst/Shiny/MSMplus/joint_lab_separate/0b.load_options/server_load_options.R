@@ -27,13 +27,13 @@ output$message_rules1<- renderUI ({
   message = p(withMathJax(
     helpText(strong('Introduction')),
     
-    helpText("A regular survival analysis setting consists of two states, a starting state (e.g bone marrow transplantation) and an absorbing state (e.g relapse or death).
+    helpText("A regular survival analysis setting consists of two states, a starting state and an absorbing state.
              Multi-state models are complex survival analysis settings with one or more intermediate states between the starting state(s) and the absorbing state(s) that allow us
              to study a real-world issue  with sufficient complexity and provide useful and meaningful predictions."),
   
     helpText("\n"),
     helpText("Examples"),
-   helpText(HTML("<ul><li> An intermediate state of Platelet recovery between the starting state of the bone marrow transplantation and the absorbing state of Relapse/Death </li></ul>")),   
+   helpText(HTML("<ul><li> An intermediate state of Platelet recovery between the starting state of the bone marrow transplantation and the absorbing state of Relapse/Death (see example) </li></ul>")),   
    helpText(HTML("<ul><li> Recurrent intermediate states of hospitalizations between the starting and the absorbing state </li></ul>")), 
    helpText(HTML("<ul><li> Intermediate stages of renal disease (Stages II-IV) between the starting state (early stage of renal dysfunction) and the absorbing state (death) </li></ul>")) 
   )
@@ -56,7 +56,7 @@ output$message_rules2<- renderUI ({
     transition intensities, length of stay in each state, probability of visiting each state etc). In addition, many of these measures tend to be 
     functions of time, adding to the challenge of the presentation of results." ),
     
-   helpText(HTML("<ul><li>MSMplus aims to help the user to present multi-state analysis results in an easy, comprehensible and meaningful way as well as compare results from two different multi-state
+   helpText(HTML("<ul><li>MSMplus aims to help the user to present multi-state analysis results in an easy, comprehensible and meaningful way as well as to compare results from two different multi-state
                  approaches. </li></ul>") )
   )
 )
@@ -73,10 +73,10 @@ output$message_rules3<- renderUI ({
     helpText(strong('Example dataset: EBMT')),
     
     
-    helpText("The data originate from the European Blood and Marrow Transplant registry.\nThe dataset consists of 2204 patients transplanted at the EBMT between 1995 and 1998.\n
+    helpText("The data originate from the European Blood and Marrow Transplant registry and is available with the R mstate package.\nThe dataset consists of 2204 patients transplanted at the EBMT between 1995 and 1998.\n
              The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death.\n There are 3 possible transitions: 
              From Transplant to Platelet recovery (Transition 1), from Transplant directly to Relapse/Death (Transition 2) and from a state of Platelet Recovery to Relapse/Death (Transition 3).\n
-             The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40 y.old and >40 y.old."),
+             The covariate patterns used in this example are the 3 age categories, namely <20, 20-40 and >40 years old."),
     
     helpText('If the user clicks "Yes" on the Example option of the "Load" tab, the graph of this multi-state setting example will be automatically displayed on the "Model Structure" tab.
                     Moreover, the results of a multi-state analysis using flexible parametric models to model each transition will automatically be uploaded to the app so that the user can view
@@ -117,23 +117,6 @@ output$to_url2 <- renderUI({
   tagList("URL link:", to_url2)
 })
 
-
-
-output$message_rules_grey<- renderUI({
-  
-  message = p(withMathJax(
-    #helpText("The tabs related to the multi-state measures remain grey/disabled until the 'Settings' tab is selected. If no estimation has been provided for a measure, the respective tab will remain disabled.")),
-    helpText(p("Attention: After loading the results input file, the user has to visit the Settings tab before proceeding to the tabs with the measures, otherwise the tabs will stay empty.", style = "color:red"))
-    )
-  
-  
-  )
-  
-  message
-  
-  return(list(message))
-  
-})
 
 
 

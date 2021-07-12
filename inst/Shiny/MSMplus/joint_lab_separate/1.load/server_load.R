@@ -949,6 +949,25 @@ output$message9<-   renderUI ({
   p_def
 })
 
+
+output$message_rules_grey<- renderUI({
+  
+  message = p(withMathJax(
+    #helpText("The tabs related to the multi-state measures remain grey/disabled until the 'Settings' tab is selected. If no estimation has been provided for a measure, the respective tab will remain disabled.")),
+    helpText(strong("Attention: After loading the results input file, the user has to visit the Settings tab before proceeding to the tabs with the measures, otherwise the tabs will stay empty."))#, style = "color:blue"))
+  )
+  
+  
+  )
+  
+  message
+  
+  return(list(message))
+  
+})
+
+
+
 #output$message10<-   renderPrint ({ 
 #  
 #  data<- read.table(input$csv2$datapath,header=TRUE, sep=",")

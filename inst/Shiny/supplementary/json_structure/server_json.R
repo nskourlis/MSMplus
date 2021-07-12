@@ -28,8 +28,8 @@ output$message_json <- renderUI({
     helpText(HTML('<ul><li>For R, we developed an R package in Github (nskourlis/MSMplus), which contains R wrapper functions that can be used to derive the json input files. Function msboxes_R
               creates the "Descriptives Json file" needed for creating the multi-state graph. If the user wish to use the flexsurv package for his analysis, flexsurvjon() calls the functions of the flexsurv
               package internally and produces the analysis results as a json file. The same can be done if the user wishes to use the mstate package or the msm package by calling functions 
-              mstatejson() and msmjson(). However, we strongly support the manual preparation of a csv file for the use of the MSMplus app, as it does not impose any limitations 
-              regarding the statistical analysis, in comparison with the automatically derived functions which impose on the user specific R packages </li></ul>')),
+              mstatejson() and msmjson(). We also strongly support the manual preparation of a csv file for the use of the MSMplus app, as it does not impose any limitations 
+              regarding the statistical software that is used for the statistical analysis </li></ul>')),
     helpText("Examples of how to conduct the analysis and derive the Json files are given the 'Analysis example' tabs.")
     
     

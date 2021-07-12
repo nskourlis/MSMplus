@@ -13,24 +13,24 @@ output$message_csv <- renderUI({
   
   
   message = withMathJax(
-    helpText(strong("What is a csv file?")),
+    helpText(strong("Csv input files")),
     helpText("A Comma Separated Values (CSV) file is a plain text file that contains a list of data. 
-              These files are often used for exchanging data between different applications.
-              A user can prepare an excel file and save it easily as a semicolon delimited csv."),
+             We generally recommend using the tools to automatically generate the JSON file. However, in case the user has no knowledge of R and Stata,
+             or the multi-state analysis is conducted with packages other than msm, mstate, flexsurv in R (or multi-state in Stata), then the results 
+             can be supplied through a csv file."),
   helpText(strong("Csv files to be uploaded at MSMplus- Manual approach")),
-  helpText("The results from a multistate analysis can be packed up into one csv file that will serve as input to the MSMplus app."),
+  helpText("The results from a multi-state analysis can be packed up into one csv file that will serve as input to the MSMplus app."),
   helpText(HTML("<ul><li>The advisable approach of preparing the MSMplus input is the manual creation of an excel/csv file containing the analysis results 
              according to certain formatting and naming rules. More details about its contents can be found in the 'results csv file' tab. </li></ul>")),
   helpText(HTML("<ul><li>Regarding the creation of the multi-state graph, the user can specify the number of states and the transition matrix on the app platform. 
              Optionally, one can choose to also upload a csv semicolon delimited file containing information about the number of individuals across time 
-             and the cummulative number of individuals that have experienced each transition across time, easily derived through msboxes command in Stata or msboxes_R function in R (Github: nskourlis/MSMplus).
+             and the cumulative number of individuals that have experienced each transition across time, easily derived through msboxes command in Stata or msboxes_R function in R (Github: nskourlis/MSMplus).
              More details can be found in the 'Frequency csv file' tab. </li></ul>")),
   helpText(strong("How to derive the csv files needed for the app")),
   helpText("Unlike the json files which can be automatically derived using specific commands in Stata or specific functions in R (Github: nskourlis/MSMplus), 
            the csv file with the analysis results needs to be manually created, following certain formatting and 
            naming rules for the variables (rules described in detail in the following tabs). Even though this option may seem to be laborious, it offers great flexibility
-           as it allows the user to fit any type of multi-state model, in any of the available statistical software and then upload the results as a csv file on MSMplus. This is why, 
-           we advise users to prefer the manual approach.")
+           as it allows the user to fit any type of multi-state model, in any of the available statistical software and then upload the results as a csv file on MSMplus..")
   )
   message
   
@@ -42,16 +42,16 @@ output$message_csv1 <- renderUI({
   
   
   message = withMathJax(
-    helpText("The optional 'Frequency file' contains the information about the number of individuals in each state across time and the cummulative number of individuals
+    helpText("The optional 'Frequency file' contains the information about the number of individuals in each state across time and the cumulative number of individuals
                 that have experienced each transition across time.") ,
     helpText(strong('Variables of the "Frequency csv file"')),
     helpText(HTML('<ul><li> Time_label: The row number of the dataset </li></ul>')),
     helpText(HTML('<ul><li> The variables representing the number of individuals in each state at each time point. 
-                  The user can name them as "State\\(i\\)" where \\(i\\)  is the index of the state</li></ul>')),
+                  The user should name them as "State\\(i\\)" where \\(i\\)  is the index of the state</li></ul>')),
     helpText(HTML('<ul><li> The variables representing the number of individuals that have experienced each transition at each time point. 
-                  The user can name them as "h\\(i\\)" where \\(i\\) is the index of the transition.</li></ul>')),
+                  The user should name them as "h\\(i\\)" where \\(i\\) is the index of the transition.</li></ul>')),
     helpText(HTML('<ul><li> timevar: The time points at which we assess the number of individuals in each state and number of
-                  individuals having exprienced each transition.</li></ul>')),
+                  individuals having experienced each transition.</li></ul>')),
     helpText(strong("Example of 'Frequency csv file'"))
     
   )
@@ -65,12 +65,12 @@ output$message_csv1 <- renderUI({
 output$message_csv2 <- renderUI({
   
   message = withMathJax(
-    helpText(strong("The 'Results csv file'  contains the results of the multistate analysis ")),
+    helpText(strong("The 'Results csv file'  contains the results of the multi-state analysis ")),
     helpText(" The analysis results csv file provides the statistical results of the MSM analysis to the application. 
                It should contain  some mandatory elements while the rest are optional, and depend on the analysis. 
                The time points and a list of the covariate patterns (and number) for which the predictions were made is mandatory.
-               The rest of the estimates are optional, meaning that the application will be able to run, only visualizing the 
-               information that it is being given. Differences and ratios of the estimated measures as well as 
+               The rest of the estimates are optional, meaning that the application will be able to run, creating graphs for the measures for which 
+               estimations have biin provided. Differences and ratios of the estimated measures as well as 
                confidence intervals are also supported by MSMplus. "),
     helpText(strong('Naming rules for the "Results csv file"')),
     helpText(HTML('<ul><li> Time points of prediction ("timevar") </li></ul>')),
@@ -95,7 +95,7 @@ output$message_csv2 <- renderUI({
                   <ul><li> diff stands for "Difference". The difference in the specified measure between the present covariate pattern and the covariate pattern of reference is stored in this variable.</li></ul>
                   <ul><li> ratio stands for "Ratio". The ratio of the specified measure between the present covariate pattern and the covariate pattern of reference is stored in this variable.</li></ul>
                   <ul><li>*_to_* : The first asterisk specifies the starting state at time s and the second asterisk specifies the landing state at time t. If a measure has only one asterisk then it is a measure that refers to a specific state that does not entail a sense of transition between states.</li></ul>
-                  </li></ul>')),    helpText(strong("Below all possible names are given for a multistate setting illness-death model of 3 states (EBMT example). "))
+                  </li></ul>')),    helpText(strong("Below all possible names are given for a multi-state setting illness-death model of 3 states (EBMT example). "))
     
   )
   
@@ -111,7 +111,7 @@ output$message_csv3 <- renderUI({
   
   
   message = withMathJax(
-    helpText(strong("The 'Results csv file'  contains the results of the multistate analysis ")),
+    helpText(strong("The 'Results csv file'  contains the results of the multi-state analysis ")),
     helpText(" The analysis results csv file provides the statistical results of the MSM analysis to the application. 
                It should contain  some mandatory elements while the rest are optional, and depend on the analysis. 
                The time points and a list of the covariate patterns (and number) for which the predictions were made is mandatory.
@@ -139,7 +139,7 @@ output$message_csv3 <- renderUI({
                   </li></ul>')),
     helpText(strong('Important note: Note that the predictions are sorted by covariate pattern and within each covariate pattern they are 
                     sorted by ascending timevar value.')),
-    helpText(strong("Below an example for the structure of the 'results csv'is given for the multistate setting illness-death
+    helpText(strong("Below an example for the structure of the 'results csv'is given for the multi-state setting illness-death
                     model of 3 states (EBMT example) for the transition probabilities  "))
     
   )

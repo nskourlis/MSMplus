@@ -10,11 +10,11 @@ output$msm_bib1 <- renderUI({
 })  
 
 
-to_url_bib1 <- a("Tutorial in biostatistics: Competing risks and multi-state models", href="https://onlinelibrary.wiley.com/doi/10.1002/sim.2712")
+to_url_bib1 <- a('Putter, Hein, Marta Fiocco, and Ronald B. Geskus. Tutorial in biostatistics: competing risks and multi-state models." Statistics in medicine 26.11 (2007): 2389-2430.', href="https://onlinelibrary.wiley.com/doi/10.1002/sim.2712")
 
 output$to_url_bib1 <- renderUI({
   
-  tagList("Putter at al:", to_url_bib1)
+  tagList(to_url_bib1)
 })
 
 
@@ -28,11 +28,11 @@ output$msm_bib2 <- renderUI({
 })  
 
 
-to_url_bib2 <- a("Parametric multistate survival models: Flexible modelling allowing transition-specific distributions with application to estimating clinically useful measures of effect differences", href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.7448")
+to_url_bib2 <- a('Crowther, Michael J., and Paul C. Lambert. "Parametric multistate survival models: Flexible modelling allowing transition-specific distributions with application to estimating clinically useful measures of effect differences." Statistics in medicine 36.29 (2017): 4719-4742', href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.7448")
 
 output$to_url_bib2 <- renderUI({
   
-  tagList("Michael J. Crowther, Paul C. Lambert:", to_url_bib2)
+  tagList(to_url_bib2)
 })
 
 
@@ -68,7 +68,7 @@ output$message_prob<- renderUI ({
     p_def = withMathJax(
       helpText(strong("Transition probabilities")),
       helpText('The transition probabilities can be defined as $$P(Y(t)=b| Y(s)=a, H_{s-})$$ with $$a,b \\in L, s; t \\in T ; s <=t$$'),
-      helpText("The equation above depicts the probability of being in state b at time t given that you were in state a at time s and conditional on the history of the process up to time s.")
+      helpText("The equation above depicts the probability of being in state  \\(b\\) at time  \\(t\\) given that you were in state  \\(a\\) at time  \\(s\\) and conditional on the history of the process up to time  \\(s\\).")
     )
     p_ex  = helpText("\nEBMT example: For time= 2 years since transplantation an individual <20 years old at transplantation has 39% probability of having experienced
             platelet recovery (transition from state 1 to state 2). On the other hand, an individual >40 years old at transplantation has 32% probability 
@@ -97,7 +97,7 @@ output$message_trans<- renderUI ({
     trans_def = withMathJax(
       helpText(strong("Transition intensity")),
       helpText('For the stochastic process \\(Y(t)\\), there are \\(K\\) potential transitions \\( (k=1,.,K)\\).
-      If the k-th transition is the transition between state \\(a\\) and \\(b\\) \\(a\\rightarrow b)\\) the \\(k-th\\) transition intensity
+      If the \\(k-th\\) transition is the transition between state \\(a\\) and \\(b\\) \\(a\\rightarrow b)\\) the \\(k-th\\) transition intensity
       is defined as the derivative of the (\\(a\\rightarrow b)\\) transition probability):'),
       helpText("$$q_{k}(t)=\\lim_{\\delta t\\to0}\\frac{P(Y(t+\\delta t)=b| Y(t)=a, H_{s-})}{\\delta t}$$"),
       helpText("Which is the instantaneous rate of moving from \\(a\\) to \\(b\\), at time \\(t\\) given that you were in state \\(a\\) at time \\(s\\) and conditional on the history of the process up to time \\(s\\).")

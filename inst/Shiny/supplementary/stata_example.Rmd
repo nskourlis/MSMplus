@@ -1,0 +1,148 @@
+---
+title: "Multi-state analysis and creation of the MSMplus input files with Stata"
+output: html_document
+---
+
+
+```{r setup,results = 'hide',message = FALSE, warning = FALSE}
+library("MSMplus")
+library("survival")
+library("mstate")
+library("dplyr")
+library("reshape2")
+library("flexsurv")
+library("msm")
+library("RJSONIO")
+library("shiny")
+library("knitr")
+
+
+```
+
+
+The advisable approach is the manual creation of an excel/csv file with the analysis results by the researcher according to certain formatting and naming rules described in this [tutorial](https://nskbiostatistics.shinyapps.io/supplementary/). We have created an alternative way for deriving the MSMplus input files to avoid the labour. The json files can be easily derived while running the multi-state models. In Stata, this is done via the commands msboxes and predictms and in R via the current package and the use of its funtions: flexjson, msmjson, mstatejson. That being said we still advise for the manual approach as the researcher does not need to have any knowledge of R or Stata, as the analysis can be conducted via any statistical software.
+
+
+The user can locally launch the MSMplus application by writting MSMplus_prepare::runMSMplus() or access it online at https://nskbiostatistics.shinyapps.io/MSMplus/
+
+
+# Files input preparation
+
+## Function msboxes_R
+### Generating information to create a multi-state graph with updated frequencies in each state across different time points
+
+We will start by using data from the European Blood and Marrow Transplant registry. The dataset consists of 2204 patients who received bone marrow transplantation. The three states a patient can be in is 1) Post- transplant, 2) Platelet recovery 3) Relapse/Death. The covariate patterns used in this example are the 3 age categories, namely <20 y.old, 20-40y.old and >40 y.old . This dataset is freely available from mstate package and you can access more information by typing ?ebmt3.
+
+```{r, echo = TRUE}
+load("ebmt.rda", envir = parent.frame(), verbose = FALSE)
+
+head(ebmt)
+```
+
+
+
+ Let's first define the transition matrix
+```{r, echo = TRUE}
+tmat <- transMat(x = list(c(2, 3),c(3), c() ), names = c("Transplant", "Platelet Recovery", "Relapse/Death" ) )
+```
+
+
+We will now create dummy variables for the age categories
+```{r, echo = TRUE}
+ebmt$age2=  recode(ebmt$age, ">40" =0, "20-40"=1,"<=20" =0 )
+ebmt$age3=  recode(ebmt$age, ">40" =1, "20-40"=0,"<=20" =0 )
+```
+
+Data preparation- From one row per participant to multiple rows per participant, one for each allowed transition.
+```{r, echo = TRUE}
+msebmt <- msprep(data = ebmt, trans = tmat, 
+                 time = c(NA, "prtime", "rfstime"), status = c(NA, "prstat", "rfsstat"), keep=c("age2","age3"))
+
+head(msebmt)
+```
+
+We can now call function msboxes_R
+ 
+msboxes_R will create a json file containing parameters that will help MSMplus to automatically create 
+the multi-state graph of each specific setting. However, the user has the option to design and create the
+multistate graph within the app as well. 
+
+```{r, echo = TRUE,message = FALSE }
+
+results3_days=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
+                        xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
+                        tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,10,by=1)),scale=365.25,
+                        jsonpath="~", name="msboxes_EBMT.json" ) 
+results3_days
+
+```
+
+
+
+
+## MSMplus Json input file of predictions: The flexjson function 
+
+ Provide time vector
+```{r, echo = TRUE}
+tgrid <- seq(1, 10, by = 1)   
+```
+Provide transition matrix
+```{r, echo = TRUE}
+tmat <- rbind(c(NA, 1, 2), c(NA, NA, 3), c(NA, NA, NA)) 
+```
+
+ Run transition specific hazard models: Clock forward approach and use of flexible parametric models
+```{r, echo = TRUE}
+
+cfwei.list<-vector(3,mode="list")
+
+for (i in 1:3) {
+  
+  cfwei.list[[i]]<-flexsurvreg(Surv(Tstart,Tstop,status)~age2+age3,subset=(trans==i),
+                               dist="weibull",data=msebmt)
+}
+
+  
+```
+
+
+ Prediction for different covariate patterns (the 3 age categories)
+```{r, echo = TRUE}
+wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
+pat1 <- msebmt[rep(wh1[1], 3), 9:10]
+attr(pat1, "trans") <- tmat
+
+
+wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
+pat2 <- msebmt[rep(wh2[1], 3), 9:10]
+attr(pat2, "trans") <- tmat
+
+wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
+pat3 <- msebmt[rep(wh3[1], 3), 9:10]
+attr(pat3, "trans") <- tmat
+```
+
+We now run the flexsurvjson function to perform the multi-state model analysis using the function 
+from package flexsurv and the pack the predictions in a json file.
+```{r, echo = TRUE}
+results_cf <- MSMplus::flexsurvjson( model=cfwei.list, vartime=seq(365.25,365.25,by=365.25), 
+                                   qmat=tmat, process="Markov",
+                                   totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
+                                   Mjson=100, variance=FALSE,
+                                   covariates_list=list(pat1,pat2,pat3), 
+                                   jsonpath="~",
+                                   name="predictions_EBMT_flex.json" ) 
+```
+
+
+```{r, echo = TRUE}
+results_cf$timevar
+results_cf$Nats
+results_cf$atlist
+results_cf$tmat
+results_cf$Ntransitions
+results_cf$is.cumhaz
+results_cf[[7]]
+```
+
+If the user has used the clock reset approach they have to specify "semiMarkov" at the process argument.

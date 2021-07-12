@@ -1,56 +1,81 @@
 
+if (!require(visNetwork)) install.packages("visNetwork", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(shiny)) install.packages("shinyjs")
+if (!require(shiny)) install.packages("shinyjs", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(shiny)) install.packages("shiny")
+if (!require(shiny)) install.packages("shiny", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(tidyverse)) install.packages("tidyverse")
+#if (!require(tidyverse)) install.packages("tidyverse")
 
-if (!require(tidyr)) install.packages("tidyr")
+if (!require(mstate)) install.packages("mstate", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(ggplot2)) install.packages("ggplot2")
+if (!require(tidyr)) install.packages("tidyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(stringr)) install.packages("stringr")
+if (!require(ggplot2)) install.packages("ggplot2", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(dplyr)) install.packages("dplyr")
+if (!require(DiagrammeR)) install.packages("DiagrammeR", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(RJSONIO)) install.packages("RJSONIO")
+if (!require(stringr)) install.packages("stringr", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(plyr)) install.packages("plyr")
+if (!require(dplyr)) install.packages("dplyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(magick)) install.packages("magick")
+if (!require(RJSONIO)) install.packages("RJSONIO", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require("processx")) install.packages("processx")
+if (!require(gapminder)) install.packages("gapminder", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require("htmlwidgets")) install.packages("htmlwidgets")
+if (!require(plyr)) install.packages("plyr", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require("jsonlite")) install.packages("jsonlite")
+if (!require(viridis)) install.packages("viridis", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require("devtools")) install.packages("devtools")
-if (!require("usethis")) install.packages("usethis")
-if (!require("githubinstall")) install.packages("githubinstall")
-if (!require("shinyMatrix"))  install.packages("shinyMatrix")
-if (!require("dlm"))  install.packages("dlm")
+if (!require(cowplot)) install.packages("cowplot", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-#library("usethis")
-#library("devtools")
-#library("githubinstall")
+if (!require(magick)) install.packages("magick", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require(StatMeasures)) install.packages("StatMeasures", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("processx")) install.packages("processx", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("webshot")) install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("htmlwidgets")) install.packages("htmlwidgets", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("raster")) install.packages("raster", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("jsonlite")) install.packages("jsonlite", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("devtools")) install.packages("devtools", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("usethis")) install.packages("usethis", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("githubinstall")) install.packages("githubinstall", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("shinyMatrix"))  install.packages("shinyMatrix", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("dlm"))  install.packages("dlm", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("rsvg"))  install.packages("rsvg", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("miniUI"))  install.packages("miniUI", INSTALL_opts = '--no-lock',dependencies = TRUE)
+if (!require("htmltools"))  install.packages("htmltools", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("webshot"))  install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
+if (!require("formattable"))  install.packages("formattable", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 
 if (!require("plotly")) install.packages("plotly")
 
+if (!require("gridExtra")) install.packages("gridExtra")
+
+
+
+
+library(rsvg)
+library(miniUI)
+library(htmltools)
+library("webshot")
 library(visNetwork)
-
 library(plotly)
-library(shinyjs)
-library(shiny)
-
-library(tidyverse)
-
+#library(tidyverse)
 library(jsonlite)
-
-
+library(webshot)
 library(htmlwidgets)
-
+library(raster)
 library(plyr)
 library(viridis)
 library('RJSONIO')
@@ -65,9 +90,15 @@ library(tidyverse)
 library(DT)
 #library(shiny.semantic)
 library(magrittr)
+library(cowplot)
 library(imager)
+library(StatMeasures)
 library(shinyMatrix)
 library(dlm)
+library(gapminder)
+library(gridExtra)
+library(shinyjs)
+library(shiny)
 
 
 ui <- navbarPage( h1("Tutorial"), fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css",
