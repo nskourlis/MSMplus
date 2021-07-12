@@ -89,17 +89,17 @@
 #' ### Prediction for different covariate patterns (the 3 age categories)
 #' 
 #' wh1 <- which(msebmt$age2 == 0 & msebmt$age3 == 0)
-#' pat1 <- msebmt[rep(wh1[1], 3), 9:10]
-#' attr(pat1, "trans") <- tmat
+#' pat1 <- msebmt[rep(wh1[1], 1), 9:10]
+#' 
 #' 
 #' 
 #' wh2 <- which(msebmt$age2 == 1 & msebmt$age3 == 0)
-#' pat2 <- msebmt[rep(wh2[1], 3), 9:10]
-#' attr(pat2, "trans") <- tmat
+#' pat2 <- msebmt[rep(wh2[1], 1), 9:10]
+#' 
 #' 
 #' wh3 <- which(msebmt$age2 == 0 & msebmt$age3 == 1)
-#' pat3 <- msebmt[rep(wh3[1], 3), 9:10]
-#' attr(pat3, "trans") <- tmat
+#' pat3 <- msebmt[rep(wh3[1], 1), 9:10]
+#' 
 #' 
 #' 
 #' #We now run the flexsurvjson function to perform the multi-state model analysis using the function 
