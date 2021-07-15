@@ -28,7 +28,7 @@
 #' @param num.integ.json Use numerical integration instead of analytic solution (see below).
 #' @param covariates_list The user can specify different covariate patterns
 #' for which predictions will be made, Default: list()
-#' @param jsonpath specify the path of the folder that the json file should be saved, Default: "~"
+#' @param jsonpath specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory
 #' @param name Specify the name of the output json file, Default: 'predictions.json'
 #' @return returns a list of objects: the time variable
 #' the number of covariate patterns, the names of covariate patterns, the transition matrix,
@@ -67,7 +67,7 @@
 #' results3_days=MSMplus::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
 #'                               xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
 #'                               tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
-#'                               jsonpath="~", name="msboxes_cav_R.json" ) 
+#'                               jsonpath="", name="msboxes_cav_R.json" ) 
 #' 
 #' 
 #' ### Defining the transition matrix with initial values under an initial assumption
@@ -95,7 +95,7 @@
 #'                          ci.json="normal", cl.json=0.95, B.json=100,
 #'                          cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,
 #'                          covariates_list=list(list(sex = 1),list(sex = 0)), 
-#'                          jsonpath="~",
+#'                          jsonpath="",
 #'                          name="predictions_cav_R.json" ) 
 #'                          
 #' }
@@ -110,7 +110,7 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
                     totlos=FALSE, visit=FALSE, sojourn=FALSE, pnext=FALSE, efpt=FALSE, envisits=FALSE,
                     ci.json="normal", cl.json=0.95, B.json=50,
                     cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,
-                    covariates_list=list(), jsonpath="~",name="predictions_R.json"  )  {
+                    covariates_list=list(), jsonpath="",name="predictions_R.json"  )  {
   
   
   
@@ -3034,7 +3034,20 @@ if (length(covariates_list)>=1) {
   
   #exportJson
   
-  write(exportJson, paste0(jsonpath ,"/", name ) )
+  wd=getwd()
+  
+  if (is.null(jsonpath) ) {
+    write(exportJson , paste0(wd ,"/", name  ) )
+  }
+  
+  if (!is.null(jsonpath)) {
+    if (nchar(jsonpath)==0) {
+      write(exportJson , paste0(wd ,"/", name  ) )
+    }
+    if (nchar(jsonpath)!=0) {
+      write(exportJson, paste0(jsonpath ,"/", name  ) )
+    }
+  }
   
   rm(list=ls(pattern="^forMSM"))
   

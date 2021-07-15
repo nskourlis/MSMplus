@@ -22,7 +22,7 @@
 #' for which predictions will be made, Default: list()
 #' @param Mjson Number of individuals to simulate in order to approximate the transition probabilities. 
 #' Users should adjust this to obtain the required precision. Default: 100
-#' @param jsonpath specify the path of the folder that the json file should be saved, Default: ""
+#' @param jsonpath specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory
 #' @param name Specify the name of the output json file, Default: 'predictions.json'
 #' @return OUTPUT_DESCRIPTION
 #' @details DETAILS
@@ -90,7 +90,7 @@
 #'                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
 #'                                     variance=FALSE, vartype="greenwood",
 #'                                     covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
-#'                                     jsonpath="~",
+#'                                     jsonpath="",
 #'                                     name="predictions_EBMT_mstate_fw.json")
 #' 
 #' 
@@ -105,7 +105,7 @@
 mstatejson <- function(x, qmat, process="Markov", 
                        totlos=FALSE, ci.json=FALSE, cl.json=0.95, B.json=10,
                        variance=FALSE, vartype="aalen",
-                       covariates_list=list(), Mjson=50,  jsonpath="~",name="predictions.json"  )  {
+                       covariates_list=list(), Mjson=50,  jsonpath="",name="predictions.json"  )  {
   
   options(scipen = 999,"digits"=10)
   
@@ -861,14 +861,15 @@ mstatejson <- function(x, qmat, process="Markov",
   
   timejson=list()
   
-  timejson[[1]]=timevar
+  timejson[[1]]=c(0,timevar)
   
   ######################################################################################################
   
+  
   atlistjson=list()
   
-  name_paste=list() 
   
+  name_paste=list() 
   
   if (length(covariates_list)>=1) {
     
@@ -900,6 +901,7 @@ mstatejson <- function(x, qmat, process="Markov",
   
   
   
+  
   ######################################################################################################
   is.cumhaz=1
   
@@ -913,8 +915,20 @@ mstatejson <- function(x, qmat, process="Markov",
   
   exportJson <- toJSON(final_unlist,force = TRUE, flatten=TRUE)
   
-  write(exportJson, paste0(jsonpath ,"/", name) )
+  wd=getwd()
   
+  if (is.null(jsonpath) ) {
+    write(exportJson , paste0(wd ,"/", name  ) )
+  }
+  
+  if (!is.null(jsonpath)) {
+    if (nchar(jsonpath)==0) {
+      write(exportJson , paste0(wd ,"/", name  ) )
+    }
+    if (nchar(jsonpath)!=0) {
+      write(exportJson, paste0(jsonpath ,"/", name  ) )
+    }
+  }  
   rm(list=ls(pattern="^forMSTATE"))
   
   final_list

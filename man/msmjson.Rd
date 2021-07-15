@@ -22,7 +22,7 @@ msmjson(
   piecewise.covariates.json = NULL,
   num.integ.json = FALSE,
   covariates_list = list(),
-  jsonpath = "~",
+  jsonpath = "",
   name = "predictions_R.json"
 )
 }
@@ -67,7 +67,7 @@ specified using explicit time-dependent covariates, and should not be used for m
 \item{covariates_list}{The user can specify different covariate patterns
 for which predictions will be made, Default: list()}
 
-\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: "~"}
+\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory}
 
 \item{name}{Specify the name of the output json file, Default: 'predictions.json'}
 }
@@ -120,7 +120,7 @@ tmat[2,4]=5; tmat[3,2]=6; tmat[3,4]=7
 results3_days=MSMplus::msboxes_R(data=cav,id= cav$id, yb=c(0.3,0.5,0.6,0.75), msm=TRUE,
                               xb=c(0.5,0.2,0.7,0.3),boxwidth=0.1,boxheight=0.1,
                               tmat.= tmat, vartime=seq(0,10,by=1),scale=1,
-                              jsonpath="~", name="msboxes_cav_R.json" ) 
+                              jsonpath="", name="msboxes_cav_R.json" ) 
 
 
 ### Defining the transition matrix with initial values under an initial assumption
@@ -148,7 +148,7 @@ results <- MSMplus::msmjson(msm.model=cavsex.msm, vartime=seq(1,3,1), mat.init=q
                          ci.json="normal", cl.json=0.95, B.json=100,
                          cores.json=NULL,piecewise.times.json=NULL, piecewise.covariates.json=NULL,num.integ.json=FALSE,
                          covariates_list=list(list(sex = 1),list(sex = 0)), 
-                         jsonpath="~",
+                         jsonpath="",
                          name="predictions_cav_R.json" ) 
                          
 }

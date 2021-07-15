@@ -25,7 +25,7 @@
 #'  This is based on simulation from the normal asymptotic distribution of the estimates, which is computationally-expensive., Default: FALSE
 #' @param covariates_list The user can specify different covariate patterns
 #' for which predictions will be made, Default: list()
-#' @param jsonpath specify the path of the folder that the json file should be saved, Default: ""
+#' @param jsonpath specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory
 #' @param name Specify the name of the output json file, Default: 'predictions.json'
 #' @return returns a list of objects: the time variable
 #' the number of covariate patterns, the names of covariate patterns, the transition matrix,
@@ -109,7 +109,7 @@
 #'                                    totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
 #'                                    Mjson=100, variance=FALSE,
 #'                                    covariates_list=list(pat1,pat2,pat3), 
-#'                                    jsonpath="~",
+#'                                    jsonpath="",
 #'                                    name="predictions_EBMT_flex_fw.json" ) 
 #' 
 #' 
@@ -128,7 +128,7 @@ flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
                            totlos=FALSE, ci.json=FALSE, cl.json=0.95, B.json=50, tcovs=NULL,
                            Mjson=50, variance=FALSE,
                            covariates_list=list(), 
-                           jsonpath="~",
+                           jsonpath="",
                            name="predictions.json" )  {
   
   options(scipen = 999,"digits"=14)
@@ -1719,7 +1719,20 @@ if (length(covariates_list)==0) {
   exportJson <- toJSON(final_unlist,force = TRUE, flatten=TRUE)
   
   
-  write(exportJson, paste0(jsonpath,"/", name ) )
+  wd=getwd()
+  
+  if (is.null(jsonpath) ) {
+    write(exportJson , paste0(wd ,"/", name  ) )
+  }
+  
+  if (!is.null(jsonpath)) {
+    if (nchar(jsonpath)==0) {
+      write(exportJson , paste0(wd ,"/", name  ) )
+    }
+    if (nchar(jsonpath)!=0) {
+      write(exportJson, paste0(jsonpath ,"/", name  ) )
+    }
+  }
   
   rm(list=ls(pattern="^forFlex"))
   

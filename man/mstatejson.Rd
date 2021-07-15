@@ -16,7 +16,7 @@ mstatejson(
   vartype = "aalen",
   covariates_list = list(),
   Mjson = 50,
-  jsonpath = "~",
+  jsonpath = "",
   name = "predictions.json"
 )
 }
@@ -48,7 +48,7 @@ for which predictions will be made, Default: list()}
 \item{Mjson}{Number of individuals to simulate in order to approximate the transition probabilities.
 Users should adjust this to obtain the required precision. Default: 100}
 
-\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: ""}
+\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory}
 
 \item{name}{Specify the name of the output json file, Default: 'predictions.json'}
 }
@@ -129,7 +129,7 @@ results_semipar <- MSMplus::mstatejson(x=cfcox,  qmat=tmat, process="Markov",
                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
                                     variance=FALSE, vartype="greenwood",
                                     covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
-                                    jsonpath="~",
+                                    jsonpath="",
                                     name="predictions_EBMT_mstate_fw.json")
 
 

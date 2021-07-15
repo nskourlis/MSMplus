@@ -17,7 +17,7 @@ flexsurvjson(
   Mjson = 50,
   variance = FALSE,
   covariates_list = list(),
-  jsonpath = "~",
+  jsonpath = "",
   name = "predictions.json"
 )
 }
@@ -53,7 +53,7 @@ This is based on simulation from the normal asymptotic distribution of the estim
 \item{covariates_list}{The user can specify different covariate patterns
 for which predictions will be made, Default: list()}
 
-\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: ""}
+\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory}
 
 \item{name}{Specify the name of the output json file, Default: 'predictions.json'}
 }
@@ -150,7 +150,7 @@ results_cf <- MSMplus::flexsurvjson( model=cfwei.list, vartime=seq(365.25,365.25
                                    totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
                                    Mjson=100, variance=FALSE,
                                    covariates_list=list(pat1,pat2,pat3), 
-                                   jsonpath="~",
+                                   jsonpath="",
                                    name="predictions_EBMT_flex_fw.json" ) 
 
 

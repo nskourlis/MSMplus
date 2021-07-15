@@ -16,7 +16,7 @@ msboxes_R(
   tmat.,
   scale = 1,
   msm = FALSE,
-  jsonpath = "~",
+  jsonpath = "",
   name = "msboxes_R.json"
 )
 }
@@ -44,7 +44,7 @@ have made each transition}
 
 \item{msm}{In case the msm package is used, the function uses statetable.msm to calculate the frequencies.Default: FALSE}
 
-\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: ""}
+\item{jsonpath}{specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory}
 
 \item{name}{Specify the name of the output json file, Default: 'msboxes_R.json'}
 }
@@ -81,7 +81,7 @@ msebmt <- msprep(data = ebmt, trans = tmat, time = c(NA, "prtime", "rfstime"), s
 results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
                               xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
                               tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
-                              jsonpath="~", name="msboxes_EBMT_R.json" ) 
+                              jsonpath="", name="msboxes_EBMT_R.json" ) 
 
 results
  
