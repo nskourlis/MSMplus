@@ -21,13 +21,13 @@ OUTPUT_DESCRIPTION
 OUTPUT_DESCRIPTION
 }
 \description{
-Launches MSMplus locally. We advice to click at "Open in a Browser" option
+runMSMplus() : Launches MSMplus locally. We advice to click at "Open in a Browser" option
 of the window that will open. It works best with the Google Chrome Browser
 
-Launches the  MSMplus help page locally. We advice to click at "Open in a Browser" option
+runMSMplus_help() : Launches the  MSMplus help page locally. We advice to click at "Open in a Browser" option
 of the window that will open. It works best with the Google Chrome Browser
 
-This page is a tutorial on how to build the json/csv input files for the MSMplus app. It also contains examples in Stata and R of
+runMSMplus_sup() : This page is a tutorial on how to build the json/csv input files for the MSMplus app. It also contains examples in Stata and R of
 conducting the multi-state analysis and deriving the neccesary input files.
 of the window that will open. It works best with the Google Chrome Browser
 }

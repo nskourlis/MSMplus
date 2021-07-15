@@ -6,7 +6,7 @@
 \alias{MSMplus-package}
 \title{MSMplus: Prepare MSMplus input files and locally deploys the MSMplus app}
 \description{
-Prepare input files and local deployment of MSMplus.
+Prepare input files and local deployment of MSMplus. The MSMplus package contains four functions for the automatic derivativation of the json input files for the MSMplus webtool (msboxes_R, msmjson,flexsurvjson and mstatejson). It also contain function runMSMplus for the local deployment of the app, runMSMplus_help which opens a help page that describes the web tool and runMSMplus_sup which opens a tutorial on how to build the json/csv input files for the MSMplus app.
 }
 \author{
 \strong{Maintainer}: Nikolaos Skourlis \email{nikolaos.skourlis@ki.se} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})

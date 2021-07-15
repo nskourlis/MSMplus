@@ -7,7 +7,7 @@ Authors@R:
            role = c("aut", "cre"),
            email = "nikolaos.skourlis@ki.se",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Prepare input files and local deployment of MSMplus.
+Description: Prepare input files and local deployment of MSMplus. The MSMplus package contains four functions for the automatic derivativation of the json input files for the MSMplus webtool (msboxes_R, msmjson,flexsurvjson and mstatejson). It also contain function runMSMplus for the local deployment of the app, runMSMplus_help which opens a help page that describes the web tool and runMSMplus_sup which opens a tutorial on how to build the json/csv input files for the MSMplus app.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

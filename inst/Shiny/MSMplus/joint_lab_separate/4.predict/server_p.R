@@ -1162,7 +1162,7 @@ if(is.null(data_P_d())) return()
       
       
       p_state = p_state %>%
-        layout(title=list(text="Probability of state for each covariate pattern over states",y=0.95),
+        layout(title=list(text="Transition probability of state for each covariate pattern over states",y=0.95),
                font= list(family = "times new roman", size = input$textsizep, color = "black"),
                margin = list(l = 50, r = 50, b = 30, t = 70),
                xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -1173,7 +1173,7 @@ if(is.null(data_P_d())) return()
                           tickwidth = 2,
                           tickcolor = toRGB("black"),
                           tickmode = "linear"),
-               yaxis =list(title= "Probability of state occupancy",rangemode = "nonnegative",                    
+               yaxis =list(title= "Transition probability of state",rangemode = "nonnegative",                    
                            dtick = input$stepy, 
                            ticklen = 5,
                            tickwidth = 2,
@@ -1236,7 +1236,7 @@ if(is.null(data_P_d())) return()
       
 
       
-      p_state = p_state +labs(title="Probability of state for each covariate pattern over states", x="Time since entry", y="Probability of state")
+      p_state = p_state +labs(title="Transition probability of state for each covariate pattern over states", x="Time since entry", y="Transition probability of state")
       
       p_state = p_state + labs(color = "Covariate\npatterns")+ labs(fill = "Covariate\npatterns")
       
@@ -1306,7 +1306,7 @@ if(is.null(data_P_d())) return()
       
       
       p_state = p_state %>%
-        layout(title=list(text="Probability of state for each covariate pattern over states",y=0.95),
+        layout(title=list(text="Transition probability of state for each covariate pattern over states",y=0.95),
                font= list(family = "times new roman", size = input$textsizep, color = "black"),
                margin = list(l = 50, r = 50, b = 30, t = 70),
                xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -1317,7 +1317,7 @@ if(is.null(data_P_d())) return()
                           tickwidth = 2,
                           tickcolor = toRGB("black"),
                           tickmode = "linear"),
-               yaxis =list(title= "Probability of state occupancy",rangemode = "nonnegative",                    
+               yaxis =list(title= "Transition probability of state",rangemode = "nonnegative",                    
                            dtick = input$stepy, 
                            ticklen = 5,
                            tickwidth = 2,
@@ -1383,7 +1383,7 @@ if(is.null(data_P_d())) return()
 
       
       
-      p_state = p_state +labs(title="Probability of state for each covariate pattern over states", x="Time since entry", y="Probability of state")
+      p_state = p_state +labs(title="Transition probability of state for each covariate pattern over states", x="Time since entry", y="Transition probability of state")
       
       
       p_state = p_state + labs(color = "Covariate\npatterns")+ labs(fill = "Covariate\npatterns")
@@ -1554,7 +1554,7 @@ datap2_re <-  reactive ({
       
       
       p_cov = p_cov %>%
-        layout(title=list(text="Probability of each state over covariate patterns",y=0.95),
+        layout(title=list(text="Transition probability of each state over covariate patterns",y=0.95),
                font= list(family = "times new roman", size = input$textsizep, color = "black"),
                margin = list(l = 50, r = 50, b = 30, t = 70),
                xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -1565,7 +1565,7 @@ datap2_re <-  reactive ({
                           tickwidth = 2,
                           tickcolor = toRGB("black"),
                           tickmode = "linear"),
-               yaxis =list(title= "Probability of state occupancy",rangemode = "nonnegative",                    
+               yaxis =list(title= "Transition probability of state",rangemode = "nonnegative",                    
                            dtick = input$stepy, 
                            ticklen = 5,
                            tickwidth = 2,
@@ -1630,7 +1630,7 @@ datap2_re <-  reactive ({
       
 
 
-      p_cov = p_cov +labs(title="Probability of each state over covariate patterns", x="Time since entry", y="Probability of state")
+      p_cov = p_cov +labs(title="Transition probability of each state over covariate patterns", x="Time since entry", y="Transition probability of state")
       
       p_cov = p_cov + labs(color = "States")+ labs(fill = "States")
       
@@ -1698,7 +1698,7 @@ datap2_re <-  reactive ({
       
       
       p_cov = p_cov %>%
-        layout(title=list(text="Probability of each state for each covariate pattern",y=0.95),
+        layout(title=list(text="Transition probability of each state for each covariate pattern",y=0.95),
                font= list(family = "times new roman", size = input$textsizep, color = "black"),
                margin = list(l = 50, r = 50, b = 30, t = 70),
                xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -1709,7 +1709,7 @@ datap2_re <-  reactive ({
                           tickwidth = 2,
                           tickcolor = toRGB("black"),
                           tickmode = "linear"),
-               yaxis =list(title= "Probability of each state over covariate patterns",rangemode = "nonnegative",                    
+               yaxis =list(title= "Transition probability of each state over covariate patterns",rangemode = "nonnegative",                    
                            dtick = input$stepy, 
                            ticklen = 5,
                            tickwidth = 2,
@@ -1780,7 +1780,7 @@ datap2_re <-  reactive ({
       
       p_cov = p_cov + scale_y_continuous(breaks=c(seq(min(data_plot$V_lci[which(!is.na(data_plot$V_lci))]),max(data_plot$V_uci[which(!is.na(data_plot$V_uci))]),by=input$stepy )))
       
-      p_cov = p_cov +labs(title="Probability of each state over covariate patterns", x="Time since entry", y="Probability of state")
+      p_cov = p_cov +labs(title="Transition probability of each state over covariate patterns", x="Time since entry", y="Transition probability of state")
       
       p_cov = p_cov + labs(color = "States")+ labs(fill = "States")
       
@@ -1855,7 +1855,7 @@ datap3_re <-  reactive ({
         hovertemplate = paste("<b>%{text}</b><br><br>", "%{yaxis.title.text}: %{y:,}<br>",
                               "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>")
       )  %>%
-      layout(title=list(text="Probability of state occupancy for all covariate patterns",y=0.95),
+      layout(title=list(text="Transition probability of state for all covariate patterns",y=0.95),
              font= list(family = "times new roman", size = input$textsizep, color = "black"),
              margin = list(l = 50, r = 50, b = 30, t = 70),
              xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -1866,7 +1866,7 @@ datap3_re <-  reactive ({
                         tickwidth = 2,
                         tickcolor = toRGB("black"),
                         tickmode = "linear"),
-             yaxis =list(title= "Probability of state occupancy",rangemode = "nonnegative",                    
+             yaxis =list(title= "Transition probability of state",rangemode = "nonnegative",                    
                          dtick = input$stepy, 
                          ticklen = 5,
                          tickwidth = 2,
@@ -1924,7 +1924,7 @@ datap3_re <-  reactive ({
                               hovertemplate = paste("<b>%{text}</b><br><br>", "%{yaxis.title.text}: %{y:,}<br>",
                                                     "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>")
     )  %>%
-      layout(title=list(text="Probability of state occupancy for all covariate patterns",y=0.95),
+      layout(title=list(text="Transition probability of state for all covariate patterns",y=0.95),
              font= list(family = "times new roman", size = input$textsizep, color = "black"),
              margin = list(l = 50, r = 50, b = 30, t = 70),
              xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -1935,7 +1935,7 @@ datap3_re <-  reactive ({
                         tickwidth = 2,
                         tickcolor = toRGB("black"),
                         tickmode = "linear"),
-             yaxis =list(title= "Probability of state occupancy",rangemode = "nonnegative",                    
+             yaxis =list(title= "Transition probability of state",rangemode = "nonnegative",                    
                          dtick = input$stepy, 
                          ticklen = 5,
                          tickwidth = 2,
@@ -2032,7 +2032,7 @@ datap4_re <-  reactive ({
                       text = 'Select or deselect lines by clicking on the legend',
                       hovertemplate = paste("<b>%{text}</b><br><br>", "%{yaxis.title.text}: %{y:,}<br>",
                                             "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>")) %>%
-           layout(title=list(text="Stacked probabilities of states among covariate patterns",y=0.95),
+           layout(title=list(text="Stacked transition probabilities of states among covariate patterns",y=0.95),
                   font= list(family = "times new roman", size = input$textsizep, color = "black"),
                   margin = list(l = 50, r = 50, b = 30, t = 70),
                   xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -2043,7 +2043,7 @@ datap4_re <-  reactive ({
                              tickwidth = 2,
                              tickcolor = toRGB("black"),
                              tickmode = "linear"),
-                  yaxis =list(title= "Stacked probability of state occupancies",rangemode = "nonnegative",                    
+                  yaxis =list(title= "Stacked transition probabilities for states",rangemode = "nonnegative",                    
                               dtick = input$stepy, 
                               ticklen = 5,
                               tickwidth = 2,
@@ -2106,7 +2106,7 @@ datap4_re <-  reactive ({
     P =  P + scale_x_continuous(breaks=c(seq(input$startx,input$endx,by=input$stepx ))) + 
              scale_y_continuous(breaks=c(seq(0,1,input$stepy)))
     
-    P =  P +labs(title="Probability of each state over covariate patterns", x="Time since entry", y="Probability of state")
+    P =  P +labs(title="Transition probability of each state over covariate patterns", x="Time since entry", y="Transition probability of state")
     
     P =  P + labs(fill = "States")
     
@@ -2204,10 +2204,10 @@ datap5_re <-  reactive ({
              color=factor(as.factor(data_plot$cov_factor),levels=labels_cov()),
              colors=data_plot$color,
              mode="bar")  %>%
-    layout(title=list(text="Probability of state occupancy across covariate patterns",y=0.95),
+    layout(title=list(text="Transition probability of state across covariate patterns",y=0.95),
            font= list(family = "times new roman", size = input$textsizep_msm, color = "black"),
            margin = list(l = 50, r = 50, b = 30, t = 70),
-           yaxis =list(title= "Probability of state", rangemode = "nonnegative",range=c(0,1),dtick = 0.1 ,ticklen = 5,tickwidth = 2,tickcolor = toRGB("black"))
+           yaxis =list(title= "Transition probability of state", rangemode = "nonnegative",range=c(0,1),dtick = 0.1 ,ticklen = 5,tickwidth = 2,tickcolor = toRGB("black"))
 
            
     ) 
@@ -2247,7 +2247,7 @@ datap5_re <-  reactive ({
       facet_wrap(~State)
     
     p_state =  p_state+ scale_y_continuous(0,1,0.1) 
-    p_state =  p_state +labs(title="Probability of each state over covariate patterns", x="Time since entry", y="Probability of state")
+    p_state =  p_state +labs(title="Transition probability of each state over covariate patterns", x="Time since entry", y="Transition probability of state")
     
     p_state =  p_state + labs(fill = "States")
     
@@ -2332,9 +2332,9 @@ datap6_re <-  reactive ({
                text = 'Select or deselect bars by clicking on the legend',
                hovertemplate = paste("<b>%{text}</b><br><br>", "%{yaxis.title.text}: %{y:,}<br>",
                                      "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>")) %>%
-    layout(title=list(text="Stacked probability of states across covariate patterns",y=0.95),
+    layout(title=list(text="Stacked transition probability of states across covariate patterns",y=0.95),
            font= list(family = "times new roman", size = input$textsizep_msm, color = "black"),
-           yaxis = list(title = 'Stacked probabilities',rangemode = "nonnegative",dtick = 0.1 ,ticklen = 5,tickwidth = 2,tickcolor = toRGB("black")),
+           yaxis = list(title = 'Stacked transition probabilities',rangemode = "nonnegative",dtick = 0.1 ,ticklen = 5,tickwidth = 2,tickcolor = toRGB("black")),
            xaxis = list(rangemode = "nonnegative"),
            margin = list(l = 50, r = 50, b = 30, t = 70),
            barmode = 'stack', bargap = 0.1)
@@ -2912,7 +2912,7 @@ datap8_re <-  reactive ({
             hovertemplate = paste("<b>%{text}</b><br><br>", "%{yaxis.title.text}: %{y:,}<br>",
                                   "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>")
           )  %>%
-          layout(title=list(text="Differences of probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
+          layout(title=list(text="Differences of transition probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
                  font= list(family = "times new roman", size = input$textsizep, color = "black"),
                  margin = list(l = 50, r = 50, b = 30, t = 70),
                  xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -2923,7 +2923,7 @@ datap8_re <-  reactive ({
                             tickwidth = 2,
                             tickcolor = toRGB("black"),
                             tickmode = "linear"),
-                 yaxis =list(title= "Differences of probabilities",                    
+                 yaxis =list(title= "Differences of transition probabilities",                    
                              dtick = input$stepy, 
                              ticklen = 5,
                              tickwidth = 2,
@@ -2980,8 +2980,8 @@ datap8_re <-  reactive ({
         P_state_d = P_state_d + scale_y_continuous(breaks=c(seq(min(data_plot$V[which(!is.na(data_plot$V))]),max(data_plot$V[which(!is.na(data_plot$V))]), by=input$stepy )))
         
 
-        P_state_d = P_state_d +labs(title="Differences of probabilities among covariate patterns (compared to ref. cov pattern)",
-                                    x="Time since entry", y="Differences of probabilities")
+        P_state_d = P_state_d +labs(title="Differences of transition probabilities among covariate patterns (compared to ref. cov pattern)",
+                                    x="Time since entry", y="Differences of transition probabilities")
         
         P_state_d = P_state_d + labs(color = "Covariate\npatterns")+ labs(fill = "Covariate\npatterns")
         
@@ -3049,7 +3049,7 @@ datap8_re <-  reactive ({
                                                      "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>"))
         
         P_state_d= P_state_d   %>%
-          layout(title=list(text="Differences of probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
+          layout(title=list(text="Differences of transition probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
                  font= list(family = "times new roman", size = input$textsizep, color = "black"),
                  margin = list(l = 50, r = 50, b = 30, t = 70),
                  xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -3060,7 +3060,7 @@ datap8_re <-  reactive ({
                             tickwidth = 2,
                             tickcolor = toRGB("black"),
                             tickmode = "linear"),
-                 yaxis =list(title= "Differences of probabilities ",                    
+                 yaxis =list(title= "Differences of transition probabilities ",                    
                              dtick = input$stepy, 
                              ticklen = 5,
                              tickwidth = 2,
@@ -3125,8 +3125,8 @@ datap8_re <-  reactive ({
         
 
         
-        P_state_d = P_state_d +labs(title="Differences of probabilities among covariate patterns (compared to ref. cov pattern)",
-                                    x="Time since entry", y="Differences of probabilities")
+        P_state_d = P_state_d +labs(title="Differences of transition probabilities among covariate patterns (compared to ref. cov pattern)",
+                                    x="Time since entry", y="Differences of transition probabilities")
         
         P_state_d = P_state_d + labs(color = "Covariate\npatterns")+ labs(fill = "Covariate\npatterns")
         
@@ -3442,7 +3442,7 @@ datap9_re <-  reactive ({
             hovertemplate = paste("<b>%{text}</b><br><br>", "%{yaxis.title.text}: %{y:,}<br>",
                                   "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>")
           )  %>%
-          layout(title=list(text="Ratios of probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
+          layout(title=list(text="Ratios of transition probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
                  font= list(family = "times new roman", size = input$textsizep, color = "black"),
                  margin = list(l = 50, r = 50, b = 30, t = 70),
                  xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -3453,7 +3453,7 @@ datap9_re <-  reactive ({
                             tickwidth = 2,
                             tickcolor = toRGB("black"),
                             tickmode = "linear"),
-                 yaxis =list(title= "Ratios in probabilities",                    
+                 yaxis =list(title= "Ratios in transition probabilities",                    
                              dtick = input$stepy, 
                              ticklen = 5,
                              tickwidth = 2,
@@ -3510,7 +3510,7 @@ datap9_re <-  reactive ({
 
         P_state_r = P_state_r + scale_y_continuous(breaks=c(seq(min(data_plot$V[which(!is.na(data_plot$V))]),max(data_plot$V[which(!is.na(data_plot$V))]), by=input$stepy )))
        
-        P_state_r = P_state_r +labs(title="Ratios of probabilities among covariate patterns (compared to ref. cov pattern)", x="Time since entry", y="Ratios of probabilities")
+        P_state_r = P_state_r +labs(title="Ratios of transition probabilities among covariate patterns (compared to ref. cov pattern)", x="Time since entry", y="Ratios of transition probabilities")
         
         P_state_r = P_state_r + labs(color = "Covariate\npatterns")+ labs(fill = "Covariate\npatterns")
         
@@ -3578,7 +3578,7 @@ datap9_re <-  reactive ({
                                                      "%{xaxis.title.text}: %{x:,}<br>","<extra></extra>"))
         
         P_state_r= P_state_r   %>%
-          layout(title=list(text="Ratios of probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
+          layout(title=list(text="Ratios of transition probabilities among covariate patterns (compared to ref. cov pattern)",y=0.95),
                  font= list(family = "times new roman", size = input$textsizep, color = "black"),
                  margin = list(l = 50, r = 50, b = 30, t = 70),
                  xaxis=list(title=list(text="Time since entry",y=0.2),
@@ -3589,7 +3589,7 @@ datap9_re <-  reactive ({
                             tickwidth = 2,
                             tickcolor = toRGB("black"),
                             tickmode = "linear"),
-                 yaxis =list(title= "Ratios of probabilities",                    
+                 yaxis =list(title= "Ratios of transition probabilities",                    
                              dtick = input$stepy, 
                              ticklen = 5,
                              tickwidth = 2,
@@ -3653,7 +3653,7 @@ datap9_re <-  reactive ({
         
          P_state_r = P_state_r + scale_y_continuous(breaks=c(seq(min(data_plot$V_lci[which(!is.na(data_plot$V_lci))]),max(data_plot$V_uci[which(!is.na(data_plot$V_uci))]),by=input$stepy )))
         
-        P_state_r = P_state_r +labs(title="Ratios of probabilities among covariate patterns (compared to ref. cov pattern)", x="Time since entry", y="Ratios of probabilities")
+        P_state_r = P_state_r +labs(title="Ratios of transition probabilities among covariate patterns (compared to ref. cov pattern)", x="Time since entry", y="Ratios of transition probabilities")
         
         P_state_r = P_state_r + labs(color = "Covariate\npatterns")+ labs(fill = "Covariate\npatterns")
         
