@@ -44,13 +44,19 @@ if (!require("raster")) install.packages("raster", INSTALL_opts = '--no-lock',de
 if (!require("jsonlite")) install.packages("jsonlite", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 if (!require("devtools")) install.packages("devtools", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 if (!require("usethis")) install.packages("usethis", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 if (!require("githubinstall")) install.packages("githubinstall", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 if (!require("shinyMatrix"))  install.packages("shinyMatrix", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 if (!require("dlm"))  install.packages("dlm", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 if (!require("rsvg"))  install.packages("rsvg", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 if (!require("miniUI"))  install.packages("miniUI", INSTALL_opts = '--no-lock',dependencies = TRUE)
+
 if (!require("htmltools"))  install.packages("htmltools", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 if (!require("webshot"))  install.packages("webshot", INSTALL_opts = '--no-lock',dependencies = TRUE)
@@ -58,7 +64,9 @@ if (!require("webshot"))  install.packages("webshot", INSTALL_opts = '--no-lock'
 if (!require("formattable"))  install.packages("formattable", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 
-if (!require("plotly")) install.packages("plotly")
+#if (!require("plotly")) install.packages("plotly")
+
+if (!require("plotly")) devtools::install_github("ropensci/plotly")
 
 if (!require("gridExtra")) install.packages("gridExtra")
 
@@ -147,6 +155,9 @@ appCSS <- "
 
 "
 
+
+
+
 #jscode <- "shinyjs.refresh = function() { location.reload(); }"
 # tagList(
 #  useShinyjs(),
@@ -156,7 +167,7 @@ appCSS <- "
   # blank title
  # Font Awesome icon
   
-  
+ #options(warn = -1)
   #id="tabs_start", h1("MSMplus"),  fluid = TRUE, inverse=TRUE,theme = "bootstrap2.css", 
                   
                   
@@ -225,20 +236,20 @@ server <- function(input, output, session) {
 
   
   
-  value1 <- reactiveVal(0)       
-  
-  observeEvent(input$tabs_start, {
-    if (input$tabs_start!="mytab_set") {
-    newValue <- value1() + 0   
-    value1(newValue)  
-    }
-  })
-  observeEvent(input$tabs_start, {
-    if (input$tabs_start=="mytab_set") {
-      newValue <- value1() + 1   
-      value1(newValue)  
-    }
-  })
+#  value1 <- reactiveVal(0)       
+#  
+#  observeEvent(input$tabs_start, {
+#    if (input$tabs_start!="mytab_set") {
+#    newValue <- value1() + 0   
+#    value1(newValue)  
+#    }
+#  })
+#  observeEvent(input$tabs_start, {
+#    if (input$tabs_start=="mytab_set") {
+#      newValue <- value1() + 1   
+#      value1(newValue)  
+#    }
+#  })
   
  # toListen <- reactive({
  #   list(input$aimtype,input$compare_approach2,input$example2,input$compare_approach,input$example)
@@ -584,25 +595,30 @@ server <- function(input, output, session) {
            list2a=fromJSON(input$json2a$datapath, flatten=TRUE)
            list2b=fromJSON(input$json2b$datapath, flatten=TRUE)
            
+           #Number of states and transitions
+           #if (ncol(list2b$tmat)!=ncol(list2a$tmat) | max(list2b$tmat[which(!is.na(list2b$tmat))])!=max(list2a$tmat[which(!is.na(list2a$tmat))]))   return(print("The 2 approaches should have the same number of states and transitions"))    
            
            Nstates=ncol(list2b$tmat)
            Ntransitions=max(list2b$tmat[which(!is.na(list2b$tmat))])
            
            y=vector()
            
-           for (i in 1:Nstates) {
+           
+           #Replace state names of second json file from kth to kth+Nstates
+           
+           # for (i in 1:Nstates) {
+           
+           for (k in 1:Nstates) {
              
-             for (k in 1:Nstates) {
-               
-              # if (i<=k) {
-                 j=i+Nstates
-                 g=k+Nstates
-                 
-                 y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
-                 names(list2b)=y
+             # if (i<=k) {
+             # j=i+Nstates
+             g=k+Nstates
+             
+             y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
+             names(list2b)=y
              #  }
-             }
            }
+           # }
            
            is.integer0 <- function(x)
            {
@@ -618,33 +634,37 @@ server <- function(input, output, session) {
              
            }
            
-         #  list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
-         #  names(list2b)
+           #  list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
+           #  names(list2b)
            
-           for (i in 1:Ntransitions) {
-             k= i+ Ntransitions
-             names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
+           #for (i in 1:Ntransitions) {
+           #  k= i+ Ntransitions
+           #  names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
+           #}
+           
+           statenames=vector()
+           for (i in 1:Nstates) {
+             statenames[i]=paste0("State ",i)
+             statenames[Nstates+i]=paste0("State ",i," 2nd approach")
            }
            
+           data=c(list2a,list2b[c(-1,-2,-3,-4,-length(list2b))],Ntransitions=Ntransitions,statenames=statenames)
            
-           ### Create a hypertmatrix####
+           cond<-which(startsWith(names(data),"statenames") )
            
-           list2b$tmat2= list2b$tmat+Ntransitions
+           data$statenames=data[cond]
            
-           l <- list(list2b$tmat,list2b$tmat2)
            
-           list2b$hypertmat<- as.matrix(bdiag(l))
-           list2b$hypertmat[which(list2b$hypertmat==0)]=NA
+           data=data[-which(startsWith(names(data),"staten") & !endsWith(names(data),"ames") )]
            
-           list2b$hypertmat
+           data$statenames=as.vector(unlist( data$statenames, recursive=FALSE))
            
-           list2a=list2a[names(list2a) %in% "tmat" == FALSE] 
-           list2b=list2b[names(list2b) %in% "tmat" == FALSE] 
-           list2b=list2b[names(list2b) %in% "tmat2" == FALSE] 
+           data
            
-           list2b$tmat=list2b$hypertmat
+           dataJson= toJSON(data)
            
-           data=c(list2a,list2b)
+           data=fromJSON(dataJson, flatten=TRUE)
+           
          }
         
         
@@ -1953,13 +1973,21 @@ server <- function(input, output, session) {
   source("joint_lab_separate/4.predict/server_extra.R", local=T)$value
   
 
- #outputOptions(output, "covarinputp", suspendWhenHidden = FALSE)
-output$fileob<- renderPrint({
+#outputOptions(output, "covarinputp", suspendWhenHidden = FALSE)
 
-value1()
-})
+  
+#output$fileob<- renderPrint({
+  
+#  json2manual()
+  
+#})
 
-   }
+  
+  
+  }
+
+
+on.exit(expr = options(warn = 0))
 
 shinyApp(ui = ui, server = server)
 

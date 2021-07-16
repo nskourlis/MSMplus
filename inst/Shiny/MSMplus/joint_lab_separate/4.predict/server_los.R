@@ -269,6 +269,14 @@ observeEvent(input$json2, {
 }) 
 
 
+#observeEvent(c(input$json2a,input$json2b), {
+#  if( length(which(startsWith(names(fromJSON(input$json2a$datapath, flatten=TRUE)), 'Los')))==0 |length(which(startsWith(names(fromJSON(input$json2b$datapath, flatten=TRUE)), 'Los')))==0  ) {
+#    js$disableTab("mytab_los")
+#    
+#  } 
+#}) 
+
+
 observeEvent(input$csv2, {
   if( length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Los')))==0 ) {
     js$disableTab("mytab_los")

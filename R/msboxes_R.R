@@ -297,7 +297,7 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' 
 #' results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
 #'                               xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
-#'                               tmatrix= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
+#'                               tmatrix= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,10,by=1)),scale=365.25,
 #'                               jsonpath="", name="msboxes_EBMT_R.json" ) 
 #' 
 #' results

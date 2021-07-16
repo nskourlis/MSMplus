@@ -7,12 +7,12 @@ output$pageupload <- renderUI({
   
   fluidRow(  
     
-   # tags$style(HTML(".shiny-output-error-validation {color: green;}")),
+    # tags$style(HTML(".shiny-output-error-validation {color: green;}")),
     
-      tags$style(type="text/css",
-                 ".shiny-output-error { visibility: hidden; }",
-                 ".shiny-output-error:before { visibility: hidden; }"
-      ),
+    tags$style(type="text/css",
+               ".shiny-output-error { visibility: hidden; }",
+               ".shiny-output-error:before { visibility: hidden; }"
+    ),
     tags$head(
       
       tags$style(type = "text/css", ".navbar-nav {display: -webkit-box;display: -ms-flexbox;-webkit-box-orient: horizontal!important;
@@ -81,10 +81,12 @@ output$pageupload <- renderUI({
            
            radioButtons(inputId="loadtype", label= "File type (csv or json)",
                         choices=c("json","csv"),selected = "json"),
-           div(radioButtons(inputId="aimtype", label= "Aim",
-                            choices=c("Single multistate model"="present","Compare 2 multistate models"="compare"),selected = "present", inline=FALSE, width="100%"),
-               style = "text-align: left; margin-right: 3px;"),
+           #  div(radioButtons(inputId="aimtype", label= "Aim",
+           #                   choices=c("Single multistate model"="present","Compare 2 multistate models"="compare"),selected = "present", inline=FALSE, width="100%"),
+           #      style = "text-align: left; margin-right: 3px;"),
            
+           radioButtons(inputId="aimtype", label= "Aim",
+                        choices=c("Single multistate model"="present","Compare 2 multistate models"="compare"),selected = "present", inline=FALSE, width="100%"), 
            
            conditionalPanel(condition="input.loadtype =='json' && input.aimtype =='present'",
                             uiOutput("example_present1")
@@ -101,9 +103,9 @@ output$pageupload <- renderUI({
            conditionalPanel("input.loadtype=='csv' && input.aimtype=='compare'",
                             uiOutput("example_compare2")
            )
-          #actionButton("hideTab", "Show settings tab")
+           #actionButton("hideTab", "Show settings tab")
            #a(id = "toggleSettingstab", "Show/hide Settings tab"),
-          # shinyjs::onclick("toggleSettingstab", shinyjs::toggle(id = "mytab_set", anim = TRUE))
+           # shinyjs::onclick("toggleSettingstab", shinyjs::toggle(id = "mytab_set", anim = TRUE))
            
            
            
@@ -131,7 +133,7 @@ output$pageupload <- renderUI({
            uiOutput("message2"),
            uiOutput("message3"),
            uiOutput("message_rules_grey")
-        
+           # uiOutput("message_rules_csv")
            # uiOutput("message5")
     )
     
@@ -205,7 +207,8 @@ output$jsonupload <- renderUI({
   item_list[[1]] <- helpText("To derive the multi-state graph, a json file with the information on the states and transitions should be provided.",)
   item_list[[2]] <- fileInput("json1_pr",  h1("Upload summary information json file"), accept = c(".json"))
   item_list[[3]] <- helpText("To derive the graphs from the predictions, a json file with the analysis results should be provided.")
-  item_list[[4]] <- div(fileInput("json2",  h1("Upload analysis results json file"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  item_list[[4]] <- fileInput("json2",  h1("Upload analysis results json file"), accept = c(".json"))
+  #item_list[[4]] <- div(fileInput("json2",  h1("Upload analysis results json file"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
   
   do.call(tagList, item_list)
   
@@ -218,9 +221,12 @@ output$twojsonupload <- renderUI({
   item_list[[1]] <- helpText("To derive the multi-state graph, a json file with the information on the states and transitions should be provided.")
   item_list[[2]] <- fileInput("json1_cp",  h1("Upload summary information json file"), accept = c(".json"))
   item_list[[3]] <- helpText("To derive the graphs from the predictions, a json file with the analysis results should be provided. 1st approach")
-  item_list[[4]] <- div(fileInput("json2a",  h1("Upload analysis results json file 1st approach"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  item_list[[4]] <-fileInput("json2a",  h1("Upload analysis results json file 1st approach"), accept = c(".json"))
+  #item_list[[4]] <- div(fileInput("json2a",  h1("Upload analysis results json file 1st approach"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  
   item_list[[5]] <- helpText("To derive the graphs from the predictions, a json file with the analysis results should be provided. 2nd approach")
-  item_list[[6]] <- div(fileInput("json2b",  h1("Upload analysis results json file 2nd approach"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  # item_list[[6]] <- div(fileInput("json2b",  h1("Upload analysis results json file 2nd approach"), accept = c(".json")), style="font-size:150%; font-family:Arial;" )
+  item_list[[6]] <- fileInput("json2b",  h1("Upload analysis results json file 2nd approach"), accept = c(".json")) 
   
   
   do.call(tagList, item_list)
@@ -229,6 +235,14 @@ output$twojsonupload <- renderUI({
 })
 
 
+#numbers1 <- reactive({
+#  validate(
+#    need(input$Nstates_pr!=0 , "Number of states should be greater than 0")
+#  )
+#})
+#output$value_numb1 <- renderPrint({ numbers() }) 
+#
+#
 
 
 output$csvupload1 <- renderUI({
@@ -417,7 +431,7 @@ json1manual<-reactive  ({
                          tmat= list_desc[[9]])
   }
   
-      
+  
   if (!is.null(input$csv1_pr)) { 
     
     frequencies= as.data.frame(read.table(input$csv1_pr$datapath,header=TRUE, sep=","))
@@ -431,7 +445,7 @@ json1manual<-reactive  ({
                          boxwidth=list_desc[[5]], boxheight= list_desc[[6]],
                          statenames=list_desc[[7]],transnames=list_desc[[8]],
                          tmat= list_desc[[9]], frequencies= frequencies   )
-    }
+  }
   
   else if (!is.null(input$csv1_cp)) { 
     
@@ -447,11 +461,11 @@ json1manual<-reactive  ({
                          boxwidth=list_desc[[5]], boxheight= list_desc[[6]],
                          statenames=list_desc[[7]],transnames=list_desc[[8]],
                          tmat= list_desc[[9]], frequencies= frequencies   )
-    }
+  }
   
-
-    
-
+  
+  
+  
   
   exportJson <- toJSON(list_desc_final, pretty = TRUE,force = TRUE, na='string')
   
@@ -480,14 +494,14 @@ json2manual<-reactive  ({
                       need(!is.null(data$Ntransitions),"Please check that you have specified the Ntransitions variable"),
                       
                       need(length(which(  !startsWith(names(data),"timevar") & !startsWith(names(data),"atlist") &
-                                          !startsWith(names(data),"Nats") & !startsWith(names(data),"Ntransitions") &
-                                          !startsWith(names(data),"P_") & !startsWith(names(data),"Haz_") &
-                                          !startsWith(names(data),"Los_") & !startsWith(names(data),"Visit_") &
-                                          !startsWith(names(data),"User_") & !startsWith(names(data),"Number_") &
-                                          !startsWith(names(data),"Next_") & !startsWith(names(data),"Soj_") &
-                                          !startsWith(names(data),"First_")))==0, 
-                                          "You may have specified a variable which does not follow the naming rules")
-                      ) 
+                                            !startsWith(names(data),"Nats") & !startsWith(names(data),"Ntransitions") &
+                                            !startsWith(names(data),"P_") & !startsWith(names(data),"Haz_") &
+                                            !startsWith(names(data),"Los_") & !startsWith(names(data),"Visit_") &
+                                            !startsWith(names(data),"User_") & !startsWith(names(data),"Number_") &
+                                            !startsWith(names(data),"Next_") & !startsWith(names(data),"Soj_") &
+                                            !startsWith(names(data),"First_")))==0, 
+                           "You may have specified a variable which does not follow the naming rules")
+      ) 
       
       
       tmatnamed= as.matrix(input$tmat_input_pr)
@@ -495,9 +509,11 @@ json2manual<-reactive  ({
       tmatnamed2[is.na(tmatnamed2)] <- 0
       Ntransitions_tmat=max(tmatnamed2)
       
-                           
+      
       shiny::validate(need(Ntransitions_tmat==data$Ntransitions , "The transition matrix you specified has different number of transitions than the ones specified at the csv results file"))                          
-                           
+      
+      data=data %>% relocate(timevar,Nats,Ntransitions,atlist, .before = everything())
+      
       
       final_list=list()
       
@@ -543,22 +559,23 @@ json2manual<-reactive  ({
     
     data1<- read.table(input$csv2a$datapath,header=TRUE, sep=",")
     
-
-    shiny::validate(need(!is.null(data1$timevar) , "Please check that you have specified the timevar variable"),
-                    need(!is.null(data1$atlist),   "Please check that you have specified the atlist variable"),
-                    need(!is.null(data1$Nats),     "Please check that you have specified the Nats variable"),
-                    need(!is.null(data1$Ntransitions),"Please check that you have specified the Ntransitions variable"),
-                    
-                    need(length(which( !startsWith(names(data1),"timevar") & !startsWith(names(data1),"atlist") &
-                                        !startsWith(names(data1),"Nats") & !startsWith(names(data1),"Ntransitions") &
-                                        !startsWith(names(data1),"P_") & !startsWith(names(data1),"Haz_") &
-                                        !startsWith(names(data1),"Los_") & !startsWith(names(data1),"Visit_") &
-                                        !startsWith(names(data1),"User_") & !startsWith(names(data1),"Number_") &
-                                        !startsWith(names(data1),"Next_") & !startsWith(names(data1),"Soj_") &
-                                        !startsWith(names(data1),"First_")))==0, 
-                         "You may have specified a variable which does not follow the naming rules")
-    ) 
     
+    
+    # shiny::validate(need(!is.null(data1$timevar) , "Please check that you have specified the timevar variable"),
+    #                 need(!is.null(data1$atlist),   "Please check that you have specified the atlist variable"),
+    #                 need(!is.null(data1$Nats),     "Please check that you have specified the Nats variable"),
+    #                 need(!is.null(data1$Ntransitions),"Please check that you have specified the Ntransitions variable"),
+    #                 
+    #                 need(length(which( !startsWith(names(data1),"timevar") & !startsWith(names(data1),"atlist") &
+    #                                     !startsWith(names(data1),"Nats") & !startsWith(names(data1),"Ntransitions") &
+    #                                     !startsWith(names(data1),"P_") & !startsWith(names(data1),"Haz_") &
+    #                                     !startsWith(names(data1),"Los_") & !startsWith(names(data1),"Visit_") &
+    #                                     !startsWith(names(data1),"User_") & !startsWith(names(data1),"Number_") &
+    #                                     !startsWith(names(data1),"Next_") & !startsWith(names(data1),"Soj_") &
+    #                                     !startsWith(names(data1),"First_")))==0, 
+    #                      "You may have specified a variable which does not follow the naming rules")
+    # ) 
+    # 
     tmatnamed= as.matrix(input$tmat_input_cp)
     tmatnamed2=tmatnamed
     tmatnamed2[is.na(tmatnamed2)] <- 0
@@ -566,6 +583,8 @@ json2manual<-reactive  ({
     
     
     shiny::validate(need(Ntransitions_tmat==data1$Ntransitions , "The transition matrix you specified has different number of transitions than the ones specified at the 1st csv results file"))                          
+    
+    data1=data1 %>% relocate(timevar,Nats,Ntransitions,atlist, .before = everything())
     
     
     
@@ -596,7 +615,7 @@ json2manual<-reactive  ({
     
     final_list_a$timevar=as.vector(final_list_a$timevar)
     
-    final_list_a$atlist=as.vector(final_list_a$atlist)
+    #  final_list_a$atlist=as.vector(final_list_a$atlist)
     
     list2a <- final_list_a
     
@@ -605,24 +624,57 @@ json2manual<-reactive  ({
     
     data2<- read.table(input$csv2b$datapath,header=TRUE, sep=",") 
     
+    #   if (is.null(data2$timevar)) {return(p("Warning:Please check that you have specified the timevar variable", style = "color:darkorange"))}
+    #   if (is.null(data2$atlist)) {return(p("Warning:Please check that you have specified the atlist variable", style = "color:darkorange"))}
+    #   if (is.null(data2$Nats)) {return(p("Warning:Please check that you have specified the Nats variable", style = "color:darkorange"))}
+    #   if (is.null(data2$Ntransitions)) {return(p("Warning:Please check that you have specified the Ntransitions variable", style = "color:darkorange"))}
+    #   
+    #   
+    #   
+    #   if (length(which(!startsWith(names(data2),"timevar") & !startsWith(names(data2),"atlist") &
+    #                    !startsWith(names(data2),"Nats") & !startsWith(names(data2),"Ntransitions") &
+    #                    !startsWith(names(data2),"P_") & !startsWith(names(data2),"Haz_") &
+    #                    !startsWith(names(data2),"Los_") & !startsWith(names(data2),"Visit_") &
+    #                    !startsWith(names(data2),"User_") & !startsWith(names(data2),"Number_") &
+    #                    !startsWith(names(data2),"Next_") & !startsWith(names(data2),"Soj_") &
+    #                    !startsWith(names(data2),"First_")))!=0) {return(p("Warning:You may have specified a variable which does not follow the naming rules", style = "color:darkorange"))}
+    #   
+    #   
+    #   
+    #   if (data2$timevar==data1$timevar) {return(p("Warning:Please check that the 2 files have predictions for the same time points", style = "color:darkorange"))}
+    #   if (data2$atlist==data1$atlist) {return(p("Warning:Please check that the 2 files have predictions for the same covariate patterns", style = "color:darkorange"))}
+    #   if (data2$Nats==data1$Nats) {return(p("Warning:Please check that the 2 files have the same number of covariate patterns variable 'Nats' ", style = "color:darkorange"))}
+    #   if (data2$Ntransitions==data1$Ntransitions) {return(p("Warning:Please check that the 2 files have the same number of transitions variable 'Ntransitions'", style = "color:darkorange"))}
+    #   
+    #   
+    #   shiny::validate(need(!is.null(data2$timevar) , "Please check that you have specified the timevar variable"),
+    #                   need(!is.null(data2$atlist),   "Please check that you have specified the atlist variable"),
+    #                   need(!is.null(data2$Nats),     "Please check that you have specified the Nats variable"),
+    #                   need(!is.null(data2$Ntransitions),"Please check that you have specified the Ntransitions variable"),
+    #                   
+    #                   need(length(which(!startsWith(names(data2),"timevar") & !startsWith(names(data2),"atlist") &
+    #                                       !startsWith(names(data2),"Nats") & !startsWith(names(data2),"Ntransitions") &
+    #                                       !startsWith(names(data2),"P_") & !startsWith(names(data2),"Haz_") &
+    #                                       !startsWith(names(data2),"Los_") & !startsWith(names(data2),"Visit_") &
+    #                                       !startsWith(names(data2),"User_") & !startsWith(names(data2),"Number_") &
+    #                                       !startsWith(names(data2),"Next_") & !startsWith(names(data2),"Soj_") &
+    #                                       !startsWith(names(data2),"First_")))==0, 
+    #                        "You may have specified a variable which does not follow the naming rules")
+    #   ) 
+    #   
+    #   
+    #   
+    #   shiny::validate(need(data2$timevar==data1$timevar , "Please check that the 2 files have predictions for the same time points"),
+    #                   need(data2$atlist==data1$atlist,    "Please check that the 2 files have predictions for the same covariate patterns"),
+    #                   need(data2$Nats==data1$Nats,     "Please check that the 2 files have the same number of covariate patterns variable 'Nats' "),
+    #                   need(data2$Ntransitions==data1$Ntransitions,"Please check that the 2 files have the same number of transitions variable 'Ntransitions' ")
+    #   ) 
+    #   
+    #   shiny::validate(need(Ntransitions_tmat==data2$Ntransitions , "The transition matrix you specified has different number of transitions than the ones specified at the 2nd csv results file"))                          
     
-    shiny::validate(need(!is.null(data2$timevar) , "Please check that you have specified the timevar variable"),
-                    need(!is.null(data2$atlist),   "Please check that you have specified the atlist variable"),
-                    need(!is.null(data2$Nats),     "Please check that you have specified the Nats variable"),
-                    need(!is.null(data2$Ntransitions),"Please check that you have specified the Ntransitions variable"),
-                    
-                    need(length(which(!startsWith(names(data2),"timevar") & !startsWith(names(data2),"atlist") &
-                                        !startsWith(names(data2),"Nats") & !startsWith(names(data2),"Ntransitions") &
-                                        !startsWith(names(data2),"P_") & !startsWith(names(data2),"Haz_") &
-                                        !startsWith(names(data2),"Los_") & !startsWith(names(data2),"Visit_") &
-                                        !startsWith(names(data2),"User_") & !startsWith(names(data2),"Number_") &
-                                        !startsWith(names(data2),"Next_") & !startsWith(names(data2),"Soj_") &
-                                        !startsWith(names(data2),"First_")))==0, 
-                         "You may have specified a variable which does not follow the naming rules")
-    ) 
     
-    shiny::validate(need(Ntransitions_tmat==data2$Ntransitions , "The transition matrix you specified has different number of transitions than the ones specified at the 2nd csv results file"))                          
     
+    data2= data2 %>% relocate(timevar,Nats,Ntransitions,atlist, .before = everything())
     
     final_list_b=list()
     
@@ -645,74 +697,88 @@ json2manual<-reactive  ({
     }
     
     
+    
     final_list_b[[ncol(data2)+1]]=as.matrix(input$tmat_input_cp)
     names(final_list_b)[ncol(data2)+1]<-c("tmat")
     
-    
-    final_list_b$timevar=as.vector(final_list_b$timevar)
-    
-    final_list_b$atlist=as.vector(final_list_b$atlist)
+    final_list_b=final_list_b[-c(1,2,3,4)]
+    #final_list_b$timevar=as.vector(final_list_b$timevar)
     
     list2b <- final_list_b
+    list2b
+    
+    
+    #final_list=c(list2a,list2b)
+    # final_list
     
     Nstates=ncol(list2b$tmat)
     Ntransitions=max(list2b$tmat[which(!is.na(list2b$tmat))])
     
     y=vector()
     
-    for (i in 1:Nstates) {
+    
+    #Replace state names of second json file from kth to kth+Nstates
+    
+    
+    for (k in 1:Nstates) {
       
-      for (k in 1:Nstates) {
-        
-        # if (i<=k) {
-        j=i+Nstates
-        g=k+Nstates
-        
-        y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
-        names(list2b)=y
-        #  }
-      }
+      
+      g=k+Nstates
+      
+      y=sub(paste0("_to_",k),paste0("_to_",g),names(list2b) )
+      names(list2b)=y
+      
     }
+    list2b
     
-    list2b=list2b[-which(!startsWith(names(list2b),"User") == FALSE)]   
-    names(list2b)
-    
-    for (i in 1:Ntransitions) {
-      k= i+ Ntransitions
-      names(list2b)=sub(paste0("h",i),paste0("h",k),names(list2b) )
+    is.integer0 <- function(x)
+    {
+      is.integer(x) && length(x) == 0L
     }
     
     
-    ### Create a hypertmatrix####
+    list2b=list2b[-length(names(list2b))]
     
-    list2b$tmat2= list2b$tmat+Ntransitions
+    if (  !is.integer0(which(startsWith(names(list2b),"User")) ) == TRUE )   {
+      
+      list2b=list2b[-which(startsWith(names(list2b),"User") == TRUE)]   
+      
+      names(list2b)
+      
+    }
     
-    l <- list(list2b$tmat,list2b$tmat2)
-    
-    list2b$hypertmat<- as.matrix(bdiag(l))
-    list2b$hypertmat[which(list2b$hypertmat==0)]=NA
-    
-    list2b$hypertmat
-    
-    list2a=list2a[names(list2a) %in% "tmat" == FALSE] 
-    list2b=list2b[names(list2b) %in% "tmat" == FALSE] 
-    list2b=list2b[names(list2b) %in% "tmat2" == FALSE] 
-    
-    list2b$tmat=list2b$hypertmat
-    
-    final_list=list()
-    final_list=c(list2a,list2b)
+    list2b   
     
     
-    exportjson <- toJSON(final_list, pretty = TRUE,force = TRUE, na='string')
+    statenames=vector()
+    for (i in 1:Nstates) {
+      statenames[i]=paste0("State ",i)
+      statenames[Nstates+i]=paste0("State ",i," 2nd approach")
+    }
     
-    exportjson
+    statenames
+    
+    
+    
+    data=c(list2a,list2b,Ntransitions=Ntransitions,statenames=statenames)
+    data
+    
+    cond<-which(startsWith(names(data),"statenames") )
+    
+    data$statenames=data[cond]
+    
+    
+    data=data[-which(startsWith(names(data),"staten") & !endsWith(names(data),"ames") )]
+    
+    data$statenames=as.vector(unlist( data$statenames, recursive=FALSE))
+    
+    data
+    
+    dataJson= toJSON(data)
+    
+    #data=fromJSON(dataJson, flatten=TRUE)
     
   }
-  
-  
-  
-  
 })
 
 
@@ -762,7 +828,7 @@ output$message2<- renderUI ({
   else if (input$loadtype=="json" & input$aimtype=="compare" ) { 
     if ((is.null(input$json2a) | is.null(input$json2b))   & input$compare_approach=="No") {
       return(p("Warning: Please provide the json file with the predictions from the two approaches", style = "color:darkorange"))
-          }
+    }
   }
   else if (input$loadtype=="csv" & input$aimtype=="compare" ) { 
     if ((is.null(input$csv2a)| is.null(input$csv2b))  & input$compare_approach2=="No") {
@@ -840,48 +906,122 @@ output$message3<- renderUI ({
 
 output$message4<-   renderUI ({ 
   
-  json1manual=  fromJSON(json1manual(), flatten=TRUE)
-
-  #options(scipen = 999)
-  
-  if (input$aimtype=="present") { Nstates=input$Nstates_pr;tmatnamed= as.matrix(input$tmat_input_pr) }
-  else if  (input$aimtype=="compare") {Nstates=input$Nstates_cp;tmatnamed= as.matrix(input$tmat_input_cp)}
-  
-  tmatnamed2=tmatnamed
-  tmatnamed2[is.na(tmatnamed2)] <- 0
-  
-  #Number of transitions
-  Ntransitions=max(tmatnamed2)
-  
-  if (!is.null(json1manual$frequencies)) {
-  
-       shiny::validate(need(!is.null(json1manual$frequencies$time_label) , "Please check that the frequency file was uploaded with the correct format and that it has variable time_label"),
-                       need(!is.null(json1manual$frequencies$timevar),   "Please check that the frequency file was uploaded with the correct format and that it has variable timevar"),
-                       need(ncol(json1manual$frequencies)==(Nstates+ Ntransitions+2),   "Please check that you have specified frequency variables for for the correct number of states and transitions"))
+  if (input$aimtype=="present") { 
+    Nstates=input$Nstates_pr;tmatnamed= as.matrix(input$tmat_input_pr)
+    tmatnamed[is.na(tmatnamed)] <- 0
+    Ntransitions=max(tmatnamed[which(!is.na(tmatnamed))])
   }
+  
+  if (input$aimtype=="present" & !is.null(input$csv1_pr)) { 
+    
+    frequencies= as.data.frame(read.table(input$csv1_pr$datapath,header=TRUE, sep=","))
+    
+    if (is.null(frequencies$time_label)) message1 = p(withMathJax(helpText(p("Warning:Please check that the frequency file was uploaded with the correct format and that it has variable time_label", style = "color:darkorange")))) else message1 =""
+    if (is.null(frequencies$timevar)) message2 = p(withMathJax(helpText(p("Warning:Please check that the frequency file was uploaded with the correct format and that it has variable timevar", style = "color:darkorange")))) else message2 =""
+    if (ncol(frequencies)!=(Nstates+ Ntransitions+2)) message3 = p(withMathJax(helpText(p("Warning:Please check that you have specified frequency variables for all states and transitions plus timevar and time_label variables", style = "color:darkorange")))) else message3 =""
+    
+    tagList(message1,message2,message3)
+    
+    
+  }
+  
+  
+  
+  
+  
+  #  json1manual=  fromJSON(json1manual(), flatten=TRUE)
+  #
+  #  #options(scipen = 999)
+  #  
+  #  if (input$aimtype=="present") { Nstates=input$Nstates_pr;tmatnamed= as.matrix(input$tmat_input_pr) }
+  #  else if  (input$aimtype=="compare") {Nstates=input$Nstates_cp;tmatnamed= as.matrix(input$tmat_input_cp)}
+  #  
+  #  tmatnamed2=tmatnamed
+  #  tmatnamed2[is.na(tmatnamed2)] <- 0
+  #  
+  #  #Number of transitions
+  #  Ntransitions=max(tmatnamed2)
+  #  
+  #  if (!is.null(json1manual$frequencies)) {
+  #  
+  #       shiny::validate(need(!is.null(json1manual$frequencies$time_label) , "Please check that the frequency file was uploaded with the correct format and that it has variable time_label"),
+  #                       need(!is.null(json1manual$frequencies$timevar),   "Please check that the frequency file was uploaded with the correct format and that it has variable timevar"),
+  #                       need(ncol(json1manual$frequencies)==(Nstates+ Ntransitions+2),   "Please check that you have specified frequency variables for for the correct number of states and transitions"))
+  #  
+  #    
+  #    
+  #   if (is.null(json1manual$frequencies$time_label))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #   if (is.null(json1manual$frequencies$timevar))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #   if (ncol(json1manual$frequencies)!=(Nstates+ Ntransitions+2))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #    message
+  #    }
+  
+  
+  
+  # message
+  
+  # return(list(message))
+  
 })
 
 output$message5<-   renderUI ({ 
   
   
-  json1manual=  fromJSON(json1manual(), flatten=TRUE)
-
+  #json1manual=  fromJSON(json1manual(), flatten=TRUE)
+  
   #options(scipen = 999)
   
-  if (input$aimtype=="present") { Nstates=input$Nstates_pr;tmatnamed= as.matrix(input$tmat_input_pr) }
-  else if  (input$aimtype=="compare") {Nstates=input$Nstates_cp;tmatnamed= as.matrix(input$tmat_input_cp)}
+  if  (input$aimtype=="compare") {
+    
+    Nstates=input$Nstates_cp;tmatnamed= as.matrix(input$tmat_input_cp)
+    tmatnamed=tmatnamed
+    tmatnamed[is.na(tmatnamed)] <- 0
+    
+  }
   
-  tmatnamed2=tmatnamed
-  tmatnamed2[is.na(tmatnamed2)] <- 0
+  
   
   #Number of transitions
-  Ntransitions=max(tmatnamed2)
+  Ntransitions=max(tmatnamed)
   
-  if (!is.null(json1manual$frequencies)) {
+  if (input$aimtype=="compare" & !is.null(input$csv1_cp)) { 
     
-    shiny::validate(need(!is.null(json1manual$frequencies$time_label) , "Please check that the frequency file was uploaded with the correct format and that it has variable time_label"),
-                    need(!is.null(json1manual$frequencies$timevar),   "Please check that the frequency file was uploaded with the correct format and that it has variable timevar"),
-                    need(ncol(json1manual$frequencies)==(Nstates+ Ntransitions+2),   "Please check that you have specified frequency variables for for the correct number of states and transitions"))
+    frequencies= as.data.frame(read.table(input$csv1_cp$datapath,header=TRUE, sep=","))
+    
+    if (is.null(frequencies$time_label)) message1 = p(withMathJax(helpText(p("Warning:Please check that the frequency file was uploaded with the correct format and that it has variable time_label", style = "color:darkorange")))) else message1 =""
+    if (is.null(frequencies$timevar)) message2 = p(withMathJax(helpText(p("Warning:Please check that the frequency file was uploaded with the correct format and that it has variable timevar", style = "color:darkorange")))) else message2 =""
+    if (ncol(frequencies)!=(Nstates+ Ntransitions+2)) message3 = p(withMathJax(helpText(p("Warning:Please check that you have specified frequency variables for all states and transitions plus timevar and time_label variables", style = "color:darkorange")))) else message3 =""
+    
+    tagList(message1,message2,message3)
+    
+    
+    #  
+    #  if (!is.null(input$csv1_cp)) { 
+    #    
+    #    frequencies= as.data.frame(read.table(input$csv1_cp$datapath,header=TRUE, sep=","))
+    #    
+    #    if (is.null(frequencies$time_label)) return(p("Warning:Please check that the frequency file was uploaded with the correct format and that it has variable time_label", style = "color:darkorange"))
+    #    if (is.null(frequencies$timevar))    return(p("Warning:Please check that the frequency file was uploaded with the correct format and that it has variable timevar", style = "color:darkorange"))
+    #    if (ncol(frequencies)!=(Nstates+ Ntransitions+2)) return(p("Warning:Please check that you have specified frequency variables for all states and transitions", style = "color:darkorange"))
+    #    
+    #  }
+    #  
+    #  
+    #    
+    #  if (!is.null(json1manual$frequencies)) {
+    #    
+    #    shiny::validate(need(!is.null(json1manual$frequencies$time_label) , "Please check that the frequency file was uploaded with the correct format and that it has variable time_label"),
+    #                    need(!is.null(json1manual$frequencies$timevar),   "Please check that the frequency file was uploaded with the correct format and that it has variable timevar"),
+    #                    need(ncol(json1manual$frequencies)==(Nstates+ Ntransitions+2),   "Please check that you have specified frequency variables for for the correct number of states and transitions"))
+    #    
+    #    if (is.null(json1manual$frequencies$time_label))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+    #    if (is.null(json1manual$frequencies$timevar))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+    #    if (ncol(json1manual$frequencies)!=(Nstates+ Ntransitions+2))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+    
+    
+    #message
+    
+    
   }
   
 })
@@ -889,53 +1029,155 @@ output$message5<-   renderUI ({
 
 output$message6<-   renderUI ({ 
   
- 
-
-  #options(scipen = 999)
-  
-  
-  if (!is.null(json2manual() )) {
+  if (!is.null( read.table(input$csv2$datapath,header=TRUE, sep=",")  )) {
     
-    json2manual=  fromJSON(json2manual(), flatten=TRUE)
+    if (input$aimtype=="present") { 
+      data<- read.table(input$csv2$datapath,header=TRUE, sep=",") 
+      
+      
+      Nstates=input$Nstates_pr;tmatnamed= as.matrix(input$tmat_input_pr)
+      tmatnamed[is.na(tmatnamed)] <- 0
+      Ntransitions=max(tmatnamed[which(!is.na(tmatnamed))])
+      
+      
+      if (is.null(data$timevar)) message1 = p(withMathJax(helpText(p("Warning:Please check that you have specified the timevar variable", style = "color:darkorange")))) else message1 =""
+      if (is.null(data$atlist)) message2 = p(withMathJax(helpText(p("Warning:Please check that you have specified the atlist variable", style = "color:darkorange")))) else message2 =""
+      if (is.null(data$Nats)) message3 = p(withMathJax(helpText(p("Warning:Please check that you have specified the Nats variable", style = "color:darkorange")))) else message3 =""
+      if (is.null(data$Ntransitions)) message4 = p(withMathJax(helpText(p("Warning:Please check that you have specified the Ntransitions variable", style = "color:darkorange")))) else message4 =""
+      if (length(which(!startsWith(names(data),"timevar") & !startsWith(names(data),"atlist") & !startsWith(names(data),"Nats") & !startsWith(names(data),"Ntransitions") &
+                       !startsWith(names(data),"P_") & !startsWith(names(data),"Haz_") &
+                       !startsWith(names(data),"Los_") & !startsWith(names(data),"Visit_") &
+                       !startsWith(names(data),"User_") & !startsWith(names(data),"Number_") &
+                       !startsWith(names(data),"Next_") & !startsWith(names(data),"Soj_") &
+                       !startsWith(names(data),"First_")))!=0)  message5 = p(withMathJax(helpText(p("Warning: You may have specified a variable which does not follow the naming rules", style = "color:darkorange")))) else message5 =""
+      
+      if (!is.null(data$Ntransitions) &  max(data$Ntransitions)!=Ntransitions) message6 = p(withMathJax(helpText(p("Warning:Number of transitions provided from the transition matrix and the results file do not agree", style = "color:darkorange")))) else message6 =""                   
+      tagList(message1,message2,message3,message4,message5, message6)
+      
+      
+    }
     
-    shiny::validate(need(!is.null(json2manual$timevar) , "Please check that you have specified the timevar variable"),
-                    need(!is.null(json2manual$atlist),   "Please check that you have specified the atlist variable"),
-                    need(!is.null(json2manual$Nats),     "Please check that you have specified the Nats variable"),
-                    need(!is.null(json2manual$Ntransitions),"Please check that you have specified the Ntransitions variable")
-                    )
   }
+  
+  #    
+  #    json2manual=  fromJSON(json2manual(), flatten=TRUE)
+  #    
+  #    shiny::validate(need(!is.null(json2manual$timevar) , "Please check that you have specified the timevar variable"),
+  #                    need(!is.null(json2manual$atlist),   "Please check that you have specified the atlist variable"),
+  #                    need(!is.null(json2manual$Nats),     "Please check that you have specified the Nats variable"),
+  #                    need(!is.null(json2manual$Ntransitions),"Please check that you have specified the Ntransitions variable")
+  #                    )
+  # 
+  #    if (is.null(json2manual$timevar))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #    if (is.null(json2manual$atlist))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #    if (is.null(json2manual$Nats))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #    if (is.null(json2manual$Ntransitions))  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #    
+  #    message
+  
+  
 })
 
 output$message7<-   renderUI ({ 
   
-
+  if (input$aimtype=="compare" & is.null( read.table(input$csv2a$datapath,header=TRUE, sep=",")  ) & is.null( read.table(input$csv2b$datapath,header=TRUE, sep=",")  )) { 
+    message = ""
+  }
+  
+  
+  if (input$aimtype=="compare" & !is.null( read.table(input$csv2a$datapath,header=TRUE, sep=",")  ) & !is.null( read.table(input$csv2b$datapath,header=TRUE, sep=",")  )) {
+    
+    
+    Nstates=input$Nstates_cp
+    tmatnamed= as.matrix(input$tmat_input_cp)
+    tmatnamed=tmatnamed
+    tmatnamed[is.na(tmatnamed)] <- 0
+    Ntransitions=max(tmatnamed)
+    
+    
+    
+    data1<- read.table(input$csv2a$datapath,header=TRUE, sep=",") 
+    data2<- read.table(input$csv2b$datapath,header=TRUE, sep=",") 
+    
+    
+    if (length(data1$timevar)==0) message1a = p(withMathJax(helpText(p("Warning:Please check that you have specified the timevar variable", style = "color:darkorange")))) else message1a =""
+    if (length(data1$atlist)==0) message2a = p(withMathJax(helpText(p("Warning:Please check that you have specified the atlist variable", style = "color:darkorange")))) else message2a =""
+    if (length(data1$Nats)==0) message3a = p(withMathJax(helpText(p("Warning:Please check that you have specified the Nats variable", style = "color:darkorange")))) else message3a =""
+    if (length(data1$Ntransitions)==0) message4a = p(withMathJax(helpText(p("Warning:Please check that you have specified the Ntransitions variable", style = "color:darkorange")))) else message4a =""
+    if (length(which(!startsWith(names(data1),"timevar") & !startsWith(names(data1),"atlist") & !startsWith(names(data1),"Nats") & !startsWith(names(data1),"Ntransitions") &
+                     !startsWith(names(data1),"P_") & !startsWith(names(data1),"Haz_") &
+                     !startsWith(names(data1),"Los_") & !startsWith(names(data1),"Visit_") &
+                     !startsWith(names(data1),"User_") & !startsWith(names(data1),"Number_") &
+                     !startsWith(names(data1),"Next_") & !startsWith(names(data1),"Soj_") &
+                     !startsWith(names(data1),"First_")))!=0)  message5a = p(withMathJax(helpText(p("You may have specified a variable which does not follow the naming rules", style = "color:darkorange")))) else message5a =""
+    
+    
+    
+    if (length(data2$timevar)==0) message1b = p(withMathJax(helpText(p("Warning: Please check that you have specified the timevar variable", style = "color:darkorange")))) else message1b =""
+    if (length(data2$atlist)==0) message2b = p(withMathJax(helpText(p("Warning: Please check that you have specified the atlist variable", style = "color:darkorange")))) else message2b =""
+    if (length(data2$Nats)==0) message3b = p(withMathJax(helpText(p("Warning: Please check that you have specified the Nats variable", style = "color:darkorange")))) else message3b =""
+    if (length(data2$Ntransitions)==0) message4b = p(withMathJax(helpText(p("Warning: Please check that you have specified the Ntransitions variable", style = "color:darkorange")))) else message4b =""
+    if (length(which(!startsWith(names(data2),"timevar") & !startsWith(names(data2),"atlist") & !startsWith(names(data2),"Nats") & !startsWith(names(data2),"Ntransitions") &
+                     !startsWith(names(data2),"P_") & !startsWith(names(data2),"Haz_") &
+                     !startsWith(names(data2),"Los_") & !startsWith(names(data2),"Visit_") &
+                     !startsWith(names(data2),"User_") & !startsWith(names(data2),"Number_") &
+                     !startsWith(names(data2),"Next_") & !startsWith(names(data2),"Soj_") &
+                     !startsWith(names(data2),"First_")))!=0)  message5b = p(withMathJax(helpText(p("Warning: You may have specified a variable which does not follow the naming rules", style = "color:darkorange")))) else message5b =""
+    
+    
+    
+    if (data2$timevar!=data1$timevar & length(data2$timevar)!=0 & length(data1$timevar)!=0 )  message1c = p(withMathJax(helpText(p("Warning:Please check that the 2 files have predictions for the same time points", style = "color:darkorange")))) else message1c =""
+    
+    if (data2$atlist!=data1$atlist & length(data2$atlist)!=0 & length(data1$atlist)!=0)  message2c = p(withMathJax(helpText(p("Warning:Please check that the 2 files have predictions for the same covariate patterns", style = "color:darkorange")))) else message2c =""
+    
+    if (data2$Nats!=data1$Nats & length(data2$Nats)!=0 & length(data1$Nats)!=0)  message3c = p(withMathJax(helpText(p("Warning:Please check that the 2 files have the same number of covariate patterns variable 'Nats' ", style = "color:darkorange")))) else message3c =""
+    
+    if (data2$Ntransitions!=data1$Ntransitions & length(data2$Ntransitions)!=0 & length(data1$Ntransitions)!=0)  message4c = p(withMathJax(helpText(p("Warning:Please check that the 2 files have the same number of transitions variable 'Ntransitions'", style = "color:darkorange")))) else message4c =""
+    
+    if (max(data2$Ntransitions)!=Ntransitions |  max(data1$Ntransitions)!=Ntransitions) message5c = p(withMathJax(helpText(p("Warning:Number of transitions provided from the transition matrix and the results file do not agree", style = "color:darkorange")))) else message5c =""                   
+    
+    
+    
+    tagList(message1a,message2a,message3a,message4a,message5a,message1b,message2b,message3b,message4b,message5b,message1c,message2c,message3c,message4c,message5c)
+    
+    
+  }
+  
+  
+  
   
   #options(scipen = 999)
   
   
-  if (!is.null(json2manual() )) {
-    
-    json2manual=  fromJSON(json2manual(), flatten=TRUE)
-    
-    shiny::validate(need(!is.null(json2manual$timevar) , "Please check that you have specified the timevar variable"),
-                    need(!is.null(json2manual$atlist),   "Please check that you have specified the atlist variable"),
-                    need(!is.null(json2manual$Nats),     "Please check that you have specified the Nats variable"),
-                    need(!is.null(json2manual$Ntransitions),"Please check that you have specified the Ntransitions variable"),
-                    
-                    need(length(which(!startsWith(names(json2manual),"P_") | !startsWith(names(json2manual),"Haz_") |
-                                        !startsWith(names(json2manual),"Los_") | !startsWith(names(json2manual),"Visit_") |
-                                        !startsWith(names(json2manual),"User_") | !startsWith(names(json2manual),"Number_") |
-                                        !startsWith(names(json2manual),"Next_") | !startsWith(names(json2manual),"Soj_") |
-                                        !startsWith(names(json2manual),"First_")))==0, 
-                         "You may have specified a variable which does not follow the naming rules")
-    ) 
-    
-  }
+  # if (!is.null(json2manual() )) {
+  #   
+  #   json2manual=  fromJSON(json2manual(), flatten=TRUE)
+  #   
+  #   shiny::validate(need(!is.null(json2manual$timevar) , "Please check that you have specified the timevar variable"),
+  #                   need(!is.null(json2manual$atlist),   "Please check that you have specified the atlist variable"),
+  #                   need(!is.null(json2manual$Nats),     "Please check that you have specified the Nats variable"),
+  #                   need(!is.null(json2manual$Ntransitions),"Please check that you have specified the Ntransitions variable"),
+  #                   
+  #                   need(length(which(!startsWith(names(json2manual),"P_") | !startsWith(names(json2manual),"Haz_") |
+  #                                       !startsWith(names(json2manual),"Los_") | !startsWith(names(json2manual),"Visit_") |
+  #                                       !startsWith(names(json2manual),"User_") | !startsWith(names(json2manual),"Number_") |
+  #                                       !startsWith(names(json2manual),"Next_") | !startsWith(names(json2manual),"Soj_") |
+  #                                       !startsWith(names(json2manual),"First_")))==0, 
+  #                        "You may have specified a variable which does not follow the naming rules")
+  #   ) 
+  #   if (length(which(!startsWith(names(json2manual),"P_") | !startsWith(names(json2manual),"Haz_") |
+  #                    !startsWith(names(json2manual),"Los_") | !startsWith(names(json2manual),"Visit_") |
+  #                    !startsWith(names(json2manual),"User_") | !startsWith(names(json2manual),"Number_") |
+  #                    !startsWith(names(json2manual),"Next_") | !startsWith(names(json2manual),"Soj_") |
+  #                    !startsWith(names(json2manual),"First_")))!=0)  message = p(withMathJax(helpText(p("eee", style = "color:darkorange"))))
+  #   
+  #   message
+  
 })
 
 output$message8<-   renderUI ({ 
   
-  p_def = withMathJax( helpText('If there are issues when uploading the results csv file, check a) That you have used "." 
+  p_def = withMathJax( helpText('Always check a) That you have used "." 
                                 as the decimal pointer and b) that you have put NA when a variable has a missing value.')
   )
   p_def
@@ -943,7 +1185,7 @@ output$message8<-   renderUI ({
 
 output$message9<-   renderUI ({ 
   
-  p_def = withMathJax( helpText('If there are issues when uploading the results csv file, check a) That you have used "." 
+  p_def = withMathJax( helpText('Always check a) That you have used "." 
                                 as the decimal pointer and b) that you have put NA when a variable has a missing value.')
   )
   p_def
@@ -966,7 +1208,20 @@ output$message_rules_grey<- renderUI({
   
 })
 
-
+output$message_rules_csv<- renderUI({
+  
+  message = p(withMathJax(
+    helpText(strong("Attention: After loading the results input file, the user has to visit the Settings tab before proceeding to the tabs with the measures, otherwise the tabs will stay empty."))#, style = "color:blue"))
+  )
+  
+  
+  )
+  
+  message
+  
+  return(list(message))
+  
+})
 
 #output$message10<-   renderPrint ({ 
 #  

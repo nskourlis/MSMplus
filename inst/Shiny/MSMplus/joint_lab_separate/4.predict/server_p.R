@@ -1,11 +1,3 @@
-
-#observeEvent(input$aimtype, {
-#  if( input$aimtype=="compare"  ) {
-#    js$disableTab("#panel7p")
-#    
-#  } 
-#}) 
-
 observeEvent(input$json2, {
   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'P')))==0  ) {
     js$disableTab("mytab_p")
@@ -23,6 +15,49 @@ observeEvent(input$csv2, {
     
   } 
 }) 
+
+#observeEvent(c(input$json2,input$aim), {
+#  if( input$aim=="present" & length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'P')))==0  ) {
+#    js$disableTab("mytab_p")
+#  } 
+#  
+#  if( input$aim=="compare" & (length(which(startsWith(names(fromJSON(input$json2a$datapath, flatten=TRUE)), 'P')))==0 | length(which(startsWith(names(fromJSON(input$json2b$datapath, flatten=TRUE)), 'P')))==0 ) ) {
+#    js$disableTab("mytab_p")
+#  } 
+#  
+#  
+#  if( input$aim=="present" & length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'P')))!=0  ) {
+#    js$enableTab("mytab_p")
+#  } 
+#  
+#  if( input$aim=="compare" & (length(which(startsWith(names(fromJSON(input$json2a$datapath, flatten=TRUE)), 'P')))!=0 & length(which(startsWith(names(fromJSON(input$json2b$datapath, flatten=TRUE)), 'P')))!=0 ) ) {
+#    js$enableTab("mytab_p")
+#  } 
+#}) 
+#
+#observeEvent(c(input$csv2,input$aim), {
+#  if(input$aim=="present" & length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'P')))==0 ) {
+#    js$disableTab("mytab_p")
+#    
+#  } 
+#  
+#  if(input$aim=="compare" & (length(which(startsWith(names( read.table(input$csv2a$datapath,header=TRUE, sep=",") ), 'P')))==0 | length(which(startsWith(names( read.table(input$csv2b$datapath,header=TRUE, sep=",") ), 'P')))==0 ) ) {
+#    js$disableTab("mytab_p")
+#    
+#  } 
+#  
+#  if(input$aim=="present" & length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'P')))!=0 ) {
+#    js$enableTab("mytab_p")
+#    
+#  } 
+#  
+#  if(input$aim=="compare" & (length(which(startsWith(names( read.table(input$csv2a$datapath,header=TRUE, sep=",") ), 'P')))!=0 & length(which(startsWith(names( read.table(input$csv2b$datapath,header=TRUE, sep=",") ), 'P')))!=0 ) ) {
+#    js$enableTab("mytab_p")
+#    
+#  } 
+#  
+#
+#}) 
 
 
 

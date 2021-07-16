@@ -106,7 +106,7 @@ output$pageinput1 <- renderUI({
 
              useShinyjs(),
              uiOutput("select")
-             #verbatimTextOutput("fileob")
+            
       ),
       column(9,
              useShinyjs(),
@@ -127,7 +127,8 @@ output$pageinput2 <- renderUI({
     ),
     column(2,
            useShinyjs(),
-           uiOutput("is_smooth")
+           uiOutput("is_smooth"),
+           verbatimTextOutput("fileob")
            
            ),
     column(2,
@@ -550,7 +551,9 @@ output$statesinput <- renderUI({
   title_choices_state=vector()
   
   for (i in 1:length(myjson2()$P)) {
-    title_choices_state[i]=paste0("State"," ",input$select,selectend()[i])
+   # title_choices_state[i]=paste0("State"," ",input$select,selectend()[i])
+    title_choices_state[i]=paste0("State"," ",i)
+    
   }
   
   
@@ -570,7 +573,8 @@ output$statesinput <- renderUI({
             
                else if ( (length(myjson2()$statenames)!=length(myjson2()$P) ) | is.null(myjson2()$statenames)) { 
                     for (i in 1:length(myjson2()$P)) {
-                      default_choices_state[i]=paste0("State"," ",input$select,selectend()[i])
+                     # default_choices_state[i]=paste0("State"," ",input$select,selectend()[i])
+                       default_choices_state[i]=paste0("State"," ",i)
                     }
               }
             
@@ -578,21 +582,22 @@ output$statesinput <- renderUI({
     
           if ((input$loadtype=="json"|input$loadtype=="csv") & input$aimtype=="compare" )  {
       
-              if (length(myjson2()$statenames)==length(myjson2()$P)/2) {
+              if (length(myjson2()$statenames)==length(myjson2()$P)) {
               
-                   for (i in 1:(length(myjson2()$P)/2))  {
+              #     for (i in 1:(length(myjson2()$P)))  {
                      
-                         default_choices_state[i]=myjson2()$statenames[i]
-                         default_choices_state[(length(myjson2()$P)/2)+i]=myjson2()$statenames[i]
-                   }
+                         default_choices_state=as.vector(myjson2()$statenames)
+                        
+              #     }
               }
            
-              else if ( (length(myjson2()$statenames)!=length(myjson2()$P/2) ) | is.null(myjson2()$statenames)) { 
+              else if ( (length(myjson2()$statenames)!=length(myjson2()$P) ) | is.null(myjson2()$statenames)) { 
              
-                  for (i in 1:length(myjson2()$P)) {
-                    default_choices_state[i]=paste0("State"," ",input$select,selectend()[i])
-                    default_choices_state[(length(myjson2()$P)/2)+i]=paste0("State"," ",input$select,selectend()[i],"2nd approach") 
-                     
+                  for (i in 1:length(myjson2()$P/2)) {
+                    #default_choices_state[i]=paste0("State"," ",input$select,selectend()[i])
+                    #default_choices_state[(length(myjson2()$P)/2)+i]=paste0("State"," ",input$select,selectend()[i],"2nd approach") 
+                    default_choices_state[i]=paste0("State"," ",i)
+                    default_choices_state[(length(myjson2()$P)/2)+i]=paste0("State"," ",i," 2nd approach") 
                   }
               }
       

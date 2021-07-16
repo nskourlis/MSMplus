@@ -1,5 +1,75 @@
 
 
+#observeEvent(input$json2, {
+#  if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))==0  ) {
+#    js$disableTab("mytab_h")
+#    
+#  } 
+#}) 
+#
+#observeEvent(input$csv2, {
+#  if( length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Haz')))==0 ) {
+#    js$disableTab("mytab_h")
+#    
+#  } 
+#}) 
+#
+#
+
+
+# toListen2 <- reactive({
+#   list(input$aimtype,input$compare_approach2,input$example2,input$compare_approach,input$example)
+# })
+#
+#
+#
+#
+#observeEvent(toListen2(), {
+#  if( input$aimtype=="present" ) {
+#      
+#      
+#      if (length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))==0  ) {
+#          js$disableTab("mytab_h")
+#      } 
+#
+#  
+#      if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))!=0  ) {
+#          js$enableTab("mytab_h")
+#      }
+#    
+#  }
+#  
+#  
+#  if( input$aimtype=="compare" ) {
+#    js$disableTab("mytab_h")
+#  } 
+#  
+#  
+#  
+#}) 
+#
+#observeEvent(toListen2(), {
+#  if(input$aimtype=="present" & length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Haz')))==0 ) {
+#    js$disableTab("mytab_h")
+#    
+#  } 
+#  
+#  if(input$aimtype=="present" & length(which(startsWith(names( read.table(input$csv2$datapath,header=TRUE, sep=",") ), 'Haz')))!=0 ) {
+#    js$enableTab("mytab_h")
+#    
+#  } 
+#  
+#  
+#  if (input$aimtype=="compare") {
+#    js$disableTab("mytab_h")
+#    
+#  }   
+#  
+#}) 
+#
+
+
+
 observeEvent(input$json2, {
   if( length(which(startsWith(names(fromJSON(input$json2$datapath, flatten=TRUE)), 'Haz')))==0  ) {
     js$disableTab("mytab_h")
@@ -20,7 +90,7 @@ observeEvent(input$aimtype, {
   if( input$aimtype=="compare" ) {
     js$disableTab("mytab_h")
   } 
-  else if( input$aimtype=="present" & value1()>0) {
+  else if( input$aimtype=="present") {
     js$enableTab("mytab_h")
   } 
   
