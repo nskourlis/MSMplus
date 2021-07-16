@@ -13,10 +13,10 @@ msboxes_R(
   boxheight = 0.1,
   tstop,
   vartime = 1,
-  tmat.,
+  tmatrix,
   scale = 1,
   msm = FALSE,
-  jsonpath = "",
+  jsonpath = NULL,
   name = "msboxes_R.json"
 )
 }
@@ -38,7 +38,7 @@ msboxes_R(
 \item{vartime}{A vector of time points at which the user wants to count the number of people in each state and the number of people that
 have made each transition}
 
-\item{tmat.}{The transition matrix (e.g  transMat(x = list(c(2, 3),c(3), c() )) ).}
+\item{tmatrix}{The transition matrix (e.g  transMat(x = list(c(2, 3),c(3), c() )) ).}
 
 \item{scale}{rescale time value}
 
@@ -80,7 +80,7 @@ msebmt <- msprep(data = ebmt, trans = tmat, time = c(NA, "prtime", "rfstime"), s
 
 results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
                               xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
-                              tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
+                              tmatrix= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
                               jsonpath="", name="msboxes_EBMT_R.json" ) 
 
 results

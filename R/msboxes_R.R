@@ -269,7 +269,7 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' @param tstop Provide the Tstop variable of your dataset
 #' @param vartime A vector of time points at which the user wants to count the number of people in each state and the number of people that 
 #' have made each transition 
-#' @param tmat. The transition matrix (e.g  transMat(x = list(c(2, 3),c(3), c() )) ). 
+#' @param tmatrix The transition matrix (e.g  transMat(x = list(c(2, 3),c(3), c() )) ). 
 #' @param scale rescale time value
 #' @param msm In case the msm package is used, the function uses statetable.msm to calculate the frequencies.Default: FALSE
 #' @param jsonpath specify the path of the folder that the json file should be saved, Default: "" saves the json file to the current working directory
@@ -297,7 +297,7 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' 
 #' results=MSMplus::msboxes_R(data=msebmt,id= msebmt$id, yb=c(0.3,0.5,0.75),
 #'                               xb=c(0.5,0.2,0.7),boxwidth=0.1,boxheight=0.1,
-#'                               tmat.= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
+#'                               tmatrix= tmat, tstop=msebmt$Tstop,vartime=c(seq(0,1,by=1)),scale=365.25,
 #'                               jsonpath="", name="msboxes_EBMT_R.json" ) 
 #' 
 #' results
@@ -305,21 +305,21 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' }
 #' @rdname msboxes_R
 #' @export 
-msboxes_R<- function(data,id,yb,xb,boxwidth=0.1,boxheight=0.1,tstop,vartime=1, tmat., scale=1, msm=FALSE,  jsonpath="",name="msboxes_R.json" ) {
+msboxes_R<- function(data,id,yb,xb,boxwidth=0.1,boxheight=0.1,tstop,vartime=1, tmatrix, scale=1, msm=FALSE,  jsonpath=NULL,name="msboxes_R.json" ) {
    
    
    
 
   
-  if (is.null(tmat.))  stop("You need to provide a transition matrix.")
+  if (is.null(tmatrix))  stop("You need to provide a transition matrix.")
   
   
-  if ((length(yb)!=nrow(tmat.)|length(xb)!=nrow(tmat.)) )  stop("The length of xb and yb arguments should much the number of states implied by the transition matrix") 
+  if ((length(yb)!=nrow(tmatrix)|length(xb)!=nrow(tmatrix)) )  stop("The length of xb and yb arguments should much the number of states implied by the transition matrix") 
   
   ##########Read info from transition matrix #############################
   
   ####Number of transitions and number of states##############
-  tmat_inner=tmat.
+  tmat_inner=tmatrix
   tmat_inner[is.na(tmat_inner)] <- 0
   ntransitions=max(tmat_inner)
   nstates=ncol(tmat_inner)
@@ -343,7 +343,7 @@ msboxes_R<- function(data,id,yb,xb,boxwidth=0.1,boxheight=0.1,tstop,vartime=1, t
   ab_states=which(state_kind=="Absorbing")
   
   #### preparing mat to save in json
-  mat=tmat.
+  mat=tmatrix
   mat[is.na(mat)] <- 0
   ntransitions=length(mat[which(mat>0)])
   nstates=ncol(mat)

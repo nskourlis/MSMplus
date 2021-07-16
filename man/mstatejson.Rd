@@ -128,7 +128,7 @@ pat3$strata <- pat3$trans
 results_semipar <- MSMplus::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
                                     variance=FALSE, vartype="greenwood",
-                                    covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
+                                    covariates_list=list(pat1 ,pat2, pat3 ) , Mjson=50,
                                     jsonpath="",
                                     name="predictions_EBMT_mstate_fw.json")
 

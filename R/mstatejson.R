@@ -89,7 +89,7 @@
 #' results_semipar <- MSMplus::mstatejson(x=cfcox,  qmat=tmat, process="Markov", 
 #'                                     totlos=TRUE, ci.json=TRUE, cl.json=0.95, B.json=10,
 #'                                     variance=FALSE, vartype="greenwood",
-#'                                     covariates_list=list(pat1 ,pat2, pat3 ) , M=50,
+#'                                     covariates_list=list(pat1 ,pat2, pat3 ) , Mjson=50,
 #'                                     jsonpath="",
 #'                                     name="predictions_EBMT_mstate_fw.json")
 #' 
@@ -308,7 +308,7 @@ mstatejson <- function(x, qmat, process="Markov",
         probm[[p]]=  mssample(Haz=modHaz$Haz[which(modHaz[[1]][,2]>=0),], trans=qmat,
                               history=list(state=start,time=0,tstate=NULL),
                               beta.state=NULL, clock=clock, output="state",
-                              Mjson = 10, tvec = timevar, cens=NULL, do.trace=NULL)
+                              M = Mjson, tvec = timevar, cens=NULL, do.trace=NULL)
         
         probm[[p]]$timevar=probm[[p]]$time
         probm[[p]]=probm[[p]][,-1]
@@ -531,7 +531,7 @@ mstatejson <- function(x, qmat, process="Markov",
           probm[[p]]=  mssample(Haz=modHaz$Haz[which(modHaz[[1]][,2]>=0),], trans=qmat,
                                 history=list(state=start,time=0,tstate=NULL),
                                 beta.state=NULL, clock=clock, output="state",
-                                Mjson = 10, tvec = timevar, cens=NULL, do.trace=NULL)
+                                M = Mjson, tvec = timevar, cens=NULL, do.trace=NULL)
           
           probm[[p]]$timevar=probm[[p]]$time
           probm[[p]]=probm[[p]][,-1]

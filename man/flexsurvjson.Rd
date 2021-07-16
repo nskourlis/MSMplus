@@ -146,12 +146,12 @@ pat3 <- msebmt[rep(wh3[1], 1), 9:10]
 #We now run the flexsurvjson function to perform the multi-state model analysis using the function 
 #from package flexsurv and the pack the predictions in a json file.
 
-results_cf <- MSMplus::flexsurvjson( model=cfwei.list, vartime=seq(365.25,365.25,by=365.25), qmat=tmat, process="Markov",
-                                   totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=10, tcovs=NULL,
-                                   Mjson=100, variance=FALSE,
-                                   covariates_list=list(pat1,pat2,pat3), 
-                                   jsonpath="",
-                                   name="predictions_EBMT_flex_fw.json" ) 
+results_cf <- MSMplus::flexsurvjson( model=cfwei.list, vartime=seq(0,3652.5,by=365.25), qmat=tmat, process="Markov",
+                                    totlos=TRUE, ci.json=FALSE, cl.json=0.95, B.json=50, tcovs=NULL,
+                                    Mjson=100, variance=FALSE,
+                                    covariates_list=list(pat1,pat2,pat3), 
+                                    jsonpath="",
+                                    name="predictions_EBMT_flex_fw.json" ) 
 
 
 
