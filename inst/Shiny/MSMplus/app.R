@@ -1,4 +1,3 @@
-
 if (!require(visNetwork)) install.packages("visNetwork", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 if (!require(shiny)) install.packages("shinyjs", INSTALL_opts = '--no-lock',dependencies = TRUE)

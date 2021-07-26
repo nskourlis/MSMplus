@@ -5,8 +5,8 @@ account: nskbiostatistics
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 3272664
-bundleId: 4810364
+bundleId: 4854218
 url: https://nskbiostatistics.shinyapps.io/MSMplus/
-when: 1626075832.35672
+when: 1627220650.50405
 asMultiple: FALSE
 asStatic: FALSE
