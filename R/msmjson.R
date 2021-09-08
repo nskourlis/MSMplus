@@ -45,7 +45,6 @@
 #' 
 #' library("MSMplus")
 #' library("msm")
-#' library("RJSONIO")
 #' library("dplyr")
 #' 
 #' options(scipen = 999,"digits"=10)
@@ -116,6 +115,7 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
   
   ###  Default for jsonpath is user's home directory ####
   options(scipen = 999,"digits"=10)
+  library("RJSONIO")
   
   
 #  

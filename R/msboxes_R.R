@@ -20,6 +20,9 @@
 #' @export 
 freq_func_total_msm<- function(data_msm, id_msm, timevar=1, scale_msm=1, Ntransitions) {
   
+  
+
+  
   freq=list()
   
   data_msm$id=id_msm
@@ -102,6 +105,8 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
                             names_of_transitions,values_of_transitions,
                             time, timevar,scale_inner=1) {
   
+  
+
 
   
   fr=list()
@@ -308,8 +313,7 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 msboxes_R<- function(data,id,yb,xb,boxwidth=0.1,boxheight=0.1,tstop,vartime=1, tmatrix, scale=1, msm=FALSE,  jsonpath=NULL,name="msboxes_R.json" ) {
    
    
-   
-
+  library("RJSONIO")
   
   if (is.null(tmatrix))  stop("You need to provide a transition matrix.")
   

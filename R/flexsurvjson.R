@@ -40,8 +40,7 @@
 #'  library("mstate")
 #'  library("flexsurv")
 #'  library("dplyr")
-#'  library("RJSONIO")
-#' head(ebmt)
+#'  head(ebmt)
 #' 
 #' 
 #' ### Let's first define the transition matrix
@@ -132,6 +131,8 @@ flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
                            name="predictions.json" )  {
   
   options(scipen = 999,"digits"=14)
+  
+  library("RJSONIO")
   
 #
 #  if (is.null(covariate_patterns)) {covariates_list=list()}

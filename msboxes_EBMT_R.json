@@ -1,0 +1,134 @@
+{
+ "Nstates": 3,
+"Ntransitions": 3,
+"xvalues": [         0.5,         0.2,         0.7 ],
+"yvalues": [         0.3,         0.5,        0.75 ],
+"boxwidth":         0.1,
+"boxheight":         0.1,
+"statenames": [ "State1", "State2", "State3" ],
+"transnames": [ "h1", "h2", "h3" ],
+"arrows": {
+ "x1": [         0.5,         0.5,         0.2 ],
+"y1": [        0.35,        0.35,        0.55 ],
+"x2": [         0.2,         0.7,         0.7 ],
+"y2": [        0.45,         0.7,         0.7 ] 
+},
+"arrowstext": {
+ "x": [        0.33,        0.62,        0.47 ],
+"y": [         0.4,       0.525,       0.625 ] 
+},
+"tmat": [ [ null, 1, 2 ],
+[ null, null, 3 ],
+[ null, null, null ] ],
+"msm":           0,
+"frequencies": [ {
+ "time_label":           1,
+"State1":        2204,
+"State2":           0,
+"State3":           0,
+"h1":           0,
+"h2":           0,
+"h3":           0,
+"timevar":           0 
+},
+{
+ "time_label":           2,
+"State1":         680,
+"State2":         920,
+"State3":         604,
+"h1":        1168,
+"h2":         356,
+"h3":         248,
+"timevar":           1 
+},
+{
+ "time_label":           3,
+"State1":         629,
+"State2":         852,
+"State3":         723,
+"h1":        1169,
+"h2":         406,
+"h3":         317,
+"timevar":           2 
+},
+{
+ "time_label":           4,
+"State1":         607,
+"State2":         823,
+"State3":         774,
+"h1":        1169,
+"h2":         428,
+"h3":         346,
+"timevar":           3 
+},
+{
+ "time_label":           5,
+"State1":         594,
+"State2":         805,
+"State3":         805,
+"h1":        1169,
+"h2":         441,
+"h3":         364,
+"timevar":           4 
+},
+{
+ "time_label":           6,
+"State1":         584,
+"State2":         796,
+"State3":         824,
+"h1":        1169,
+"h2":         451,
+"h3":         373,
+"timevar":           5 
+},
+{
+ "time_label":           7,
+"State1":         580,
+"State2":         789,
+"State3":         835,
+"h1":        1169,
+"h2":         455,
+"h3":         380,
+"timevar":           6 
+},
+{
+ "time_label":           8,
+"State1":         577,
+"State2":         787,
+"State3":         840,
+"h1":        1169,
+"h2":         458,
+"h3":         382,
+"timevar":           7 
+},
+{
+ "time_label":           9,
+"State1":         577,
+"State2":         786,
+"State3":         841,
+"h1":        1169,
+"h2":         458,
+"h3":         383,
+"timevar":           8 
+},
+{
+ "time_label":          10,
+"State1":         577,
+"State2":         786,
+"State3":         841,
+"h1":        1169,
+"h2":         458,
+"h3":         383,
+"timevar":           9 
+},
+{
+ "time_label":          11,
+"State1":         577,
+"State2":         786,
+"State3":         841,
+"h1":        1169,
+"h2":         458,
+"h3":         383,
+"timevar":          10 
+} ] 
+}

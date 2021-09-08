@@ -35,7 +35,6 @@
 #' library("survival")
 #' library("mstate")
 #' library("dplyr")
-#' library("RJSONIO")
 #'
 #'
 #'
@@ -108,6 +107,7 @@ mstatejson <- function(x, qmat, process="Markov",
                        covariates_list=list(), Mjson=50,  jsonpath="",name="predictions.json"  )  {
   
   options(scipen = 999,"digits"=10)
+  library("RJSONIO")
   
 
   
