@@ -131,8 +131,7 @@ flexsurvjson <- function( model, vartime=seq(1,1,by=1), qmat, process="Markov",
                            name="predictions.json" )  {
   
   options(scipen = 999,"digits"=14)
-  
-  library("RJSONIO")
+
   
 #
 #  if (is.null(covariate_patterns)) {covariates_list=list()}
@@ -1717,7 +1716,7 @@ if (length(covariates_list)==0) {
   final_unlist= unlist(final_list, recursive=FALSE)
   
  # exportJson <- toJSON(final_unlist, pretty = TRUE,force = TRUE, flatten=TRUE, na='string')
-  exportJson <- toJSON(final_unlist,force = TRUE, flatten=TRUE)
+  exportJson <- RJSONIO::toJSON(final_unlist,force = TRUE, flatten=TRUE)
   
   
   wd=getwd()

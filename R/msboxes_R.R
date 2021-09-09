@@ -312,8 +312,7 @@ freq_func_total <- function(msdata,msid,names_of_ststates, values_ststates,
 #' @export 
 msboxes_R<- function(data,id,yb,xb,boxwidth=0.1,boxheight=0.1,tstop,vartime=1, tmatrix, scale=1, msm=FALSE,  jsonpath=NULL,name="msboxes_R.json" ) {
    
-   
-  library("RJSONIO")
+
   
   if (is.null(tmatrix))  stop("You need to provide a transition matrix.")
   
@@ -548,7 +547,7 @@ else{
       statenames=statename, transnames=tname,
       arrows=arrows,arrowstext=arrowstext,tmat=trmat,msm=msm_inner,frequencies=p)
  
- exportJson <- toJSON(results,  dataframe = "rows",matrix="rowmajor",force=TRUE, complex="list",flatten=TRUE)
+ exportJson <-RJSONIO::toJSON(results,  dataframe = "rows",matrix="rowmajor",force=TRUE, complex="list",flatten=TRUE)
  exportJson
  
  wd=getwd()

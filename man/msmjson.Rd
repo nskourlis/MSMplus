@@ -98,7 +98,6 @@ DETAILS
 
 library("MSMplus")
 library("msm")
-library("RJSONIO")
 library("dplyr")
 
 options(scipen = 999,"digits"=10)

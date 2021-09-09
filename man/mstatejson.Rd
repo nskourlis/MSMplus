@@ -74,7 +74,6 @@ library("MSMplus")
 library("survival")
 library("mstate")
 library("dplyr")
-library("RJSONIO")
 
 
 

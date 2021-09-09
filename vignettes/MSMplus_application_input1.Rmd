@@ -50,28 +50,24 @@ library("dplyr")
 library("reshape2")
 library("flexsurv")
 library("msm")
-library("RJSONIO")
-
 ```
 
-MSMplus is a useful tool for presentation of results from a multi-state analysis in an easy,
-comprehensible and meaningful way. It aids the user to present research findings to targeted audiences. 
+MSMplus is a useful tool for presentation of results from a multi-state analysis in an easy, comprehensible and meaningful way. The intended users of the app are researchers who have built multi-state models, and want to present their results to targeted audiences. 
 
-However, the results need to be provided to the app either as a csv/excel or a json file of specific structure. 
+The results need to be provided to the app either as json or a csv/excel files of a specific structure. 
 
-The advisable approach is the manual creation of an excel/csv file with the analysis results by the researcher according to certain formatting and naming rules described in this [tutorial](https://nskbiostatistics.shinyapps.io/supplementary/). 
+Users of the supported Stata or R packages can automatically derive the json files while running the multi-state models. In Stata, this is done via the commands msboxes and predictms and in R via the current package and the use of its funtions: msboxes_R, flexjson, msmjson and mstatejson. 
 
-Here is an example data file structure:
+The csv/excel file format is necessary only for users who did not build their model using the supported Stata or R packages. The formatting and naming rules for creating the csv file inputs are described in this [tutorial](https://nskbiostatistics.shinyapps.io/supplementary/). Users of the app with little knowledge of R or Stata can benefit from this input format, as the analysis can be conducted via any statistical software and then the results can be prepared as a csv/excel file.
+
+
+Here is an example csv data file structure:
 
 ```{r, echo = TRUE}
 load("excel_input_file_ex.rda", envir = parent.frame(), verbose = FALSE)
 
 excel_input_file_ex[104:106,1:39]
 ```
-
-
-We have created an alternative way for deriving the MSMplus input files to avoid the labour. The json files can be easily derived while running the multi-state models. In Stata, this is done via the commands msboxes and predictms and in R via the current package and the use of its funtions: flexjson, msmjson, mstatejson. That being said we still advise for the manual approach as the researcher does not need to have any knowledge of R or Stata, as the analysis can be conducted via any statistical software.
-
 
 The user can locally launch the MSMplus application by writting MSMplus_prepare::runMSMplus() or access it online at https://nskbiostatistics.shinyapps.io/MSMplus/
 

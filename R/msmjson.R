@@ -115,8 +115,8 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
   
   ###  Default for jsonpath is user's home directory ####
   options(scipen = 999,"digits"=10)
-  library("RJSONIO")
   
+
   
 #  
 #  if (is.null(covariate_patterns)) {covariates_list=list()}
@@ -3030,7 +3030,7 @@ if (length(covariates_list)>=1) {
   
   
   
-  exportJson <- toJSON(final_unlist, pretty = TRUE,force = TRUE, flatten=TRUE, na='string')
+  exportJson <- RJSONIO::toJSON(final_unlist, pretty = TRUE,force = TRUE, flatten=TRUE, na='string')
   
   #exportJson
   

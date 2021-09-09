@@ -81,8 +81,7 @@ DETAILS
  library("mstate")
  library("flexsurv")
  library("dplyr")
- library("RJSONIO")
-head(ebmt)
+ head(ebmt)
 
 
 ### Let's first define the transition matrix
