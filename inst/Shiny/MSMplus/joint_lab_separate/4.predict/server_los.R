@@ -111,8 +111,8 @@ output$pagelos <- renderUI({
         column(8,
                tabsetPanel(id = "tabslos",
                  
-                 tabPanel(h2("By state"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
-                 tabPanel(h2("By covariate pattern"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
+                 tabPanel(h2("By covariate pattern over states"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
+                 tabPanel(h2("By state over covariate patterns"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
                  tabPanel(h2("By state and covariate pattern"), value = "#panel3los", plotlyOutput("los_both"  , height="600px", width = "100%"),uiOutput("shouldloadlos3")),
                  tabPanel(h2("Differences"),       value = "#panel4los",           plotlyOutput("los_diff"  , height="600px", width = "100%"),uiOutput("shouldloadlos4")),
                  tabPanel(h2("Ratios"),          value = "#panel5los",             plotlyOutput("los_ratio"  , height="600px", width = "100%"),uiOutput("shouldloadlos5"))
@@ -155,8 +155,8 @@ output$pagelos <- renderUI({
         column(8,
                tabsetPanel(id = "tabslos",
                            
-                           tabPanel(h2("By state"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
-                           tabPanel(h2("By covariate pattern"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
+                           tabPanel(h2("By covariate pattern over states"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
+                           tabPanel(h2("By state over covariate patterns"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
                            tabPanel(h2("By state and covariate pattern"), value = "#panel3los", plotlyOutput("los_both"  , height="600px", width = "100%"),uiOutput("shouldloadlos3")),
                            tabPanel(h2("Differences"),       value = "#panel4los",           plotlyOutput("los_diff"  , height="600px", width = "100%"),uiOutput("shouldloadlos4")),
                            tabPanel(h2("Ratios"),          value = "#panel5los",            print("Not Applicable"))
@@ -198,8 +198,8 @@ output$pagelos <- renderUI({
         column(8,
                tabsetPanel(id = "tabslos",
                            
-                           tabPanel(h2("By state"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
-                           tabPanel(h2("By covariate pattern"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
+                           tabPanel(h2("By covariate pattern over states"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
+                           tabPanel(h2("By state over covariate patterns"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
                            tabPanel(h2("By state and covariate pattern"), value = "#panel3los", plotlyOutput("los_both"  , height="600px", width = "100%"),uiOutput("shouldloadlos3")),
                            tabPanel(h2("Differences"),       value = "#panel4los",          print("Not Applicable")),
                            tabPanel(h2("Ratios"),          value = "#panel5los",             plotlyOutput("los_ratio"  , height="600px", width = "100%"),uiOutput("shouldloadlos5"))
@@ -246,8 +246,8 @@ output$pagelos <- renderUI({
         column(8,
                tabsetPanel(id = "tabslos",
                            
-                           tabPanel(h2("By state"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
-                           tabPanel(h2("By covariate pattern"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
+                           tabPanel(h2("By covariate pattern over states"),    value = "#panel1los",                  plotlyOutput("los_state"  , height="600px", width = "100%"),uiOutput("shouldloadlos1")),
+                           tabPanel(h2("By state over covariate patterns"),     value = "#panel2los",          plotlyOutput("los_cov"  , height="600px", width = "100%"),uiOutput("shouldloadlos2")),
                            tabPanel(h2("By state and covariate pattern"), value = "#panel3los", plotlyOutput("los_both"  , height="600px", width = "100%"),uiOutput("shouldloadlos3")),
                            tabPanel(h2("Differences"),       value = "#panel4los",           print("Not Applicable")),
                            tabPanel(h2("Ratios"),          value = "#panel5los",             print("Not Applicable"))

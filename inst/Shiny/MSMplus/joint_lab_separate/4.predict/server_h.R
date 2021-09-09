@@ -286,8 +286,8 @@ else {
       
       column(8,
              tabsetPanel(id = "tabsh",     
-               tabPanel(h2("By transitions"),                               value = "#panel1h",plotlyOutput("hazards_trans", height="600px", width = "100%"),uiOutput("shouldloadh1")),
-               tabPanel(h2("By covariate pattern"),                         value = "#panel2h",plotlyOutput("hazards_cov", height="600px", width = "100%"),uiOutput("shouldloadh4")),
+               tabPanel(h2("By covariate pattern over transitions"),                               value = "#panel1h",plotlyOutput("hazards_trans", height="600px", width = "100%"),uiOutput("shouldloadh1")),
+               tabPanel(h2("By transition over covariate patterns"),                         value = "#panel2h",plotlyOutput("hazards_cov", height="600px", width = "100%"),uiOutput("shouldloadh4")),
                tabPanel(h2("Ratios of transition intensities"),             value = "#panel4h", plotlyOutput("hr_transitions", height="600px", width = "100%"),uiOutput("shouldloadh5")),
                tabPanel(h2("Hazard differences between covariate patterns"),value = "#panel5h", plotlyOutput("H_diff", height="600px", width = "100%"),uiOutput("shouldloadh2")),
                tabPanel(h2("Hazard ratios between covariate patterns"),     value = "#panel6h", plotlyOutput("H_ratio", height="600px", width = "100%"),uiOutput("shouldloadh3"))
@@ -340,8 +340,8 @@ else {
       
       column(8,
              tabsetPanel(id = "tabsh",        
-               tabPanel(h2("By transitions"),      value = "#panel1h",                       plotlyOutput("hazards_trans", height="600px", width = "100%"),uiOutput("shouldloadh1")),
-               tabPanel(h2("By covariate pattern"),   value = "#panel2h",             plotlyOutput("hazards_cov", height="600px", width = "100%"),uiOutput("shouldloadh4")),
+               tabPanel(h2("By covariate pattern over transitions"),      value = "#panel1h",                       plotlyOutput("hazards_trans", height="600px", width = "100%"),uiOutput("shouldloadh1")),
+               tabPanel(h2("By transition over covariate patterns"),   value = "#panel2h",             plotlyOutput("hazards_cov", height="600px", width = "100%"),uiOutput("shouldloadh4")),
                tabPanel(h2("Ratios of transition intensities"),value = "#panel4h", plotlyOutput("hr_transitions", height="600px", width = "100%"),uiOutput("shouldloadh5")) ,           
                tabPanel(h2("Hazard differences between covariate patterns"),                         value = "#panel5h", plotlyOutput("H_diff", height="600px", width = "100%"),uiOutput("shouldloadh2")),
                tabPanel(h2("Hazard ratios between covariate patterns"),                               value = "#panel6h", plotlyOutput("H_ratio", height="600px", width = "100%"),uiOutput("shouldloadh3"))

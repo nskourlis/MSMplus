@@ -224,12 +224,12 @@ output$pagep <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsp", 
-                 tabPanel(h2("By state"),value = "#panel1p",
+                 tabPanel(h2("By covariate pattern over states"),value = "#panel1p",
                      fluidRow( 
                         column(12, useShinyjs(),plotlyOutput("probability_state", height="700px", width = "100%"),uiOutput("shouldloadp1"),verbatimTextOutput("states1"))
                      )
                  ),
-                 tabPanel(h2("By covariate pattern"),value = "#panel2p",
+                 tabPanel(h2("By state over covariate patterns"),value = "#panel2p",
                           fluidRow( 
                             column(12, useShinyjs(), plotlyOutput("probability_cov", height="700px", width = "100%"),uiOutput("shouldloadp2"),verbatimTextOutput("cov"))
                           )
@@ -354,12 +354,12 @@ output$pagep <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsp",
-                           tabPanel(h2("By state"),value = "#panel1p",
+                           tabPanel(h2("By covariate pattern over states"),value = "#panel1p",
                                     fluidRow( 
                                       column(12, useShinyjs(),plotlyOutput("probability_state", height="700px", width = "100%"),uiOutput("shouldloadp1"),verbatimTextOutput("states1"))
                                     )
                            ),
-                           tabPanel(h2("By covariate pattern"),value = "#panel2p",
+                           tabPanel(h2("By state over covariate patterns"),value = "#panel2p",
                                     fluidRow( 
                                       column(12, useShinyjs(), plotlyOutput("probability_cov", height="700px", width = "100%"),uiOutput("shouldloadp2"),verbatimTextOutput("cov"))
                                     )
@@ -480,12 +480,12 @@ output$pagep <- renderUI({
         ),
         column(7,
                tabsetPanel(id = "tabsp",
-                           tabPanel(h2("By state"),value = "#panel1p",
+                           tabPanel(h2("By covariate pattern over states"),value = "#panel1p",
                                     fluidRow( 
                                       column(12, useShinyjs(),plotlyOutput("probability_state", height="700px", width = "100%"),uiOutput("shouldloadp1"),verbatimTextOutput("states1"))
                                     )
                            ),
-                           tabPanel(h2("By covariate pattern"),value = "#panel2p",
+                           tabPanel(h2("By state over covariate patterns"),value = "#panel2p",
                                     fluidRow( 
                                       column(12, useShinyjs(), plotlyOutput("probability_cov", height="700px", width = "100%"),uiOutput("shouldloadp2"),verbatimTextOutput("cov"))
                                     )
@@ -608,12 +608,12 @@ output$pagep <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsp",
-                           tabPanel(h2("By state"),value = "#panel1p",
+                           tabPanel(h2("By covariate pattern over states"),value = "#panel1p",
                                     fluidRow( 
                                       column(12, useShinyjs(),plotlyOutput("probability_state", height="700px", width = "100%"),uiOutput("shouldloadp1"),verbatimTextOutput("states1"))
                                     )
                            ),
-                           tabPanel(h2("By covariate pattern"),value = "#panel2p",
+                           tabPanel(h2("By state over covariate patterns"),value = "#panel2p",
                                     fluidRow( 
                                       column(12, useShinyjs(), plotlyOutput("probability_cov", height="700px", width = "100%"),uiOutput("shouldloadp2"),verbatimTextOutput("cov"))
                                     )

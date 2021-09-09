@@ -115,8 +115,8 @@ output$pagevisit <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsvis",
-                 tabPanel(h2("By state"),  value = "#panel1vis",                  plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
-                 tabPanel(h2("By covariate pattern"), value = "#panel2vis",      plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
+                 tabPanel(h2("By covariate pattern over states"),  value = "#panel1vis",                  plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
+                 tabPanel(h2("By state over covariate patterns"), value = "#panel2vis",      plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
                  tabPanel(h2("By state and covariate pattern"),    value = "#panel3vis",          plotlyOutput("visit_both"  , height="600px", width = "100%"),uiOutput("shouldloadvis3")),
                  tabPanel(h2("Differences"), value = "#panel4vis",                plotlyOutput("visit_diff"  , height="600px", width = "100%"),uiOutput("shouldloadvis4")),
                  tabPanel(h2("Ratios"),         value = "#panel5vis",             plotlyOutput("visit_ratio"  , height="600px", width = "100%"),uiOutput("shouldloadvis5"))
@@ -161,8 +161,8 @@ output$pagevisit <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsvis",
-                 tabPanel(h2("By state"),      value = "#panel1vis",              plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
-                 tabPanel(h2("By covariate pattern"),  value = "#panel2vis",      plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
+                 tabPanel(h2("By covariate pattern over states"),      value = "#panel1vis",              plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
+                 tabPanel(h2("By state over covariate patterns"),  value = "#panel2vis",      plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
                  tabPanel(h2("By state and covariate pattern"),value = "#panel3vis", plotlyOutput("visit_both"  , height="600px", width = "100%"),uiOutput("shouldloadvis3")),
                  tabPanel(h2("Differences"),      value = "#panel4vis",           plotlyOutput("visit_diff"  , height="600px", width = "100%"),uiOutput("shouldloadvis4")),
                  tabPanel(h2("Ratios"),            value = "#panel5vis",          print("Not applicable"))
@@ -203,8 +203,8 @@ output$pagevisit <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsvis",
-                 tabPanel(h2("By state"),     value = "#panel1vis",                plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
-                 tabPanel(h2("By covariate pattern"),  value = "#panel2vis",       plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
+                 tabPanel(h2("By covariate pattern over states"),     value = "#panel1vis",                plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
+                 tabPanel(h2("By state over covariate patterns"),  value = "#panel2vis",       plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
                  tabPanel(h2("By state and covariate pattern"), value = "#panel3vis", plotlyOutput("visit_both"  , height="600px", width = "100%"),uiOutput("shouldloadvis3")),
                  tabPanel(h2("Differences"),         value = "#panel4vis",         print("Not applicable")),
                  tabPanel(h2("Ratios"),            value = "#panel5vis",           plotlyOutput("visit_ratio"  , height="600px", width = "100%"),uiOutput("shouldloadvis5"))
@@ -247,8 +247,8 @@ output$pagevisit <- renderUI({
         
         column(7,
                tabsetPanel(id = "tabsvis",
-                 tabPanel(h2("By state"), value = "#panel1vis",                    plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
-                 tabPanel(h2("By covariate pattern"), value = "#panel2vis",       plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
+                 tabPanel(h2("By covariate pattern over states"), value = "#panel1vis",                    plotlyOutput("visit_state"  , height="600px", width = "100%"),uiOutput("shouldloadvis1")),
+                 tabPanel(h2("By state over covariate patterns"), value = "#panel2vis",       plotlyOutput("visit_cov"  , height="600px", width = "100%"),uiOutput("shouldloadvis2")),
                  tabPanel(h2("By state and covariate pattern"),value = "#panel3vis", plotlyOutput("visit_both"  , height="600px", width = "100%"),uiOutput("shouldloadvis3")),
                  tabPanel(h2("Differences"),     value = "#panel4vis",            print("Not applicable")),
                  tabPanel(h2("Ratios"),            value = "#panel5vis",          print("Not applicable"))
