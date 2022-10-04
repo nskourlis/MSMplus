@@ -30,7 +30,7 @@ if (!require(cowplot)) install.packages("cowplot", INSTALL_opts = '--no-lock',de
 
 if (!require(magick)) install.packages("magick", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
-if (!require(StatMeasures)) install.packages("StatMeasures", INSTALL_opts = '--no-lock',dependencies = TRUE)
+#if (!require(StatMeasures)) install.packages("StatMeasures", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
 if (!require("processx")) install.packages("processx", INSTALL_opts = '--no-lock',dependencies = TRUE)
 
@@ -99,7 +99,7 @@ library(DT)
 library(magrittr)
 library(cowplot)
 library(imager)
-library(StatMeasures)
+#library(StatMeasures)
 library(shinyMatrix)
 library(dlm)
 library(gapminder)
