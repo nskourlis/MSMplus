@@ -30,7 +30,7 @@ if (!require(cowplot)) install.packages("cowplot")
 
 if (!require(magick)) install.packages("magick")
 
-if (!require(StatMeasures)) install.packages("StatMeasures")
+#if (!require(StatMeasures)) install.packages("StatMeasures")
 
 if (!require("processx")) install.packages("processx")
 
@@ -61,7 +61,7 @@ library(shiny.semantic)
 library(magrittr)
 library(cowplot)
 library(imager)
-library(StatMeasures)
+#library(StatMeasures)
 
 
 ui <- navbarPage("Multi-State Modelling", fluid = TRUE, inverse=TRUE,
