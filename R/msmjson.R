@@ -247,7 +247,7 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
     p_array_uci= array(dim=c(length(vartime),nstates+1,nstates),NA)
     
     
-    for (i in 1:length(vartime)) {
+    for (i in vartime) {
       p.msm <- pmatrix.msm(msm.model,t=vartime[i], t1=0,  ci=ci.json , cl=cl.json, B=B.json,
                            cores=cores.json )
       
@@ -436,7 +436,7 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
       
       
       for (j in states) {  
-        for (i in 1:length(vartime)) {
+        for (i in vartime) {
           los.msm <- totlos.msm(msm.model, start=j, fromt=0, tot= vartime[i],ci=ci.json,cl=cl.json,
                                 piecewise.times=piecewise.times.json, piecewise.covariates=piecewise.covariates.json,
                                 num.integ=num.integ.json,  B=B.json,cores=cores.json)
@@ -734,7 +734,7 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
       
       
       for (j in states) {  
-        for (i in 1:length(vartime)) {
+        for (i in vartime) {
           number.msm <- envisits.msm(msm.model, start=j, fromt=0, tot= vartime[i],
                                      piecewise.times=piecewise.times.json, piecewise.covariates=piecewise.covariates.json,
                                      num.integ=num.integ.json, 
@@ -850,7 +850,7 @@ msmjson <- function(msm.model, vartime=seq(1,1,1), mat.init,
       visit_array_uci= array(dim=c(length(vartime),nstates+1,nstates),NA)
       
       
-      for (i in 1:length(vartime)) {
+      for (i in vartime) {
         visit.msm <- ppass.msm(x=msm.model, qmatrix=NULL, tot=vartime[i], start="all",
                                piecewise.times=piecewise.times.json, piecewise.covariates=piecewise.covariates.json,
                                ci=ci.json, cl=cl.json, B=B.json,
@@ -1036,7 +1036,7 @@ if (length(covariates_list) != 0) {
     p_array_uci= array(dim=c(length(vartime),nstates+1,nstates),NA)
     
     
-    for (i in 1:length(vartime)) {
+    for (i in vartime) {
       p.msm <- pmatrix.msm(msm.model,t=vartime[i], t1=0,  ci=ci.json , cl=cl.json, B=B.json,
                            cores=cores.json ,covariates= covariates_list[[g]])
       
@@ -1227,7 +1227,7 @@ if (length(covariates_list) != 0) {
       
       
       for (j in states) {  
-        for (i in 1:length(vartime)) {
+        for (i in vartime) {
           los.msm <- totlos.msm(msm.model, start=j, fromt=0, tot= vartime[i],covariates=covariates_list[[g]],ci=ci.json,cl=cl.json,
                                 piecewise.times=piecewise.times.json, piecewise.covariates=piecewise.covariates.json,
                                 num.integ=num.integ.json,  B=B.json,cores=cores.json)
@@ -1526,7 +1526,7 @@ if (length(covariates_list) != 0) {
       
       
       for (j in states) {  
-        for (i in 1:length(vartime)) {
+        for (i in vartime) {   
           number.msm <- envisits.msm(msm.model, start=j, fromt=0, tot= vartime[i],covariates=covariates_list[[g]],
                                      piecewise.times=piecewise.times.json, piecewise.covariates=piecewise.covariates.json,
                                      num.integ=num.integ.json, 
@@ -1643,7 +1643,7 @@ if (length(covariates_list) != 0) {
       visit_array_uci= array(dim=c(length(vartime),nstates+1,nstates),NA)
       
       
-      for (i in 1:length(vartime)) {
+      for (i in vartime) {
         visit.msm <- ppass.msm(x=msm.model, qmatrix=NULL, tot=vartime[i], start="all", covariates = covariates_list[[g]],
                                piecewise.times=piecewise.times.json, piecewise.covariates=piecewise.covariates.json,
                                ci=ci.json, cl=cl.json, B=B.json,
