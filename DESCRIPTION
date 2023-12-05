@@ -32,6 +32,7 @@ Imports:
     plyr,
     dplyr,
     gapminder,
+    DT,
     viridis,
     cowplot,
     magick,
